@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
     },
     videogame_rating:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
     }
   });
 };
