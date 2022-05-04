@@ -31,7 +31,8 @@ async function createData() {
 
   videogames.data.results.map((v) => {
     videogame.push({
-      videogame_id: v.id,
+      videogame_id: uuidv4(),
+      videogame_id_api: v.id,
       videogame_name: v.name,
       videogame_description: '-',
       videogame_release_date: v.released,

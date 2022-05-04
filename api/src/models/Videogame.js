@@ -3,9 +3,12 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("videogame", {
     videogame_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
+    },
+    videogame_id_api: {
+      type: DataTypes.INTEGER,
     },
     videogame_name: {
       type: DataTypes.TEXT,

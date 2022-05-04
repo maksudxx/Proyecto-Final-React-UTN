@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const { Videogame, Genre, Platform } = require("../db");
+const axios = require("axios")
 
 const router = Router();
 
@@ -34,7 +35,14 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
       where: { videogame_id: videogame_id },
       include: [{ model: Genre }, { model: Platform }],
     });
-    res.json(videogame)
+    if(videogame.videogame_description === "-"){
+      let matchvideogame = await axios.get(`https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=51198d696f0f4a03aaa77936ccd81e51`);
+      res.json(matchvideogame.data)
+    }
+      else{
+        res.json(videogame)
+      }
+    
   } catch (err) {
     next(err);
   }
@@ -46,6 +54,7 @@ router.post("/videogame", async (req, res, next) => {
       videogame_description,
       videogame_release_date,
       videogame_rating,
+      videogame_image,
       arrayGenre,
       arrayPlatform,
     } = req.body;
@@ -56,6 +65,7 @@ router.post("/videogame", async (req, res, next) => {
       videogame_description,
       videogame_release_date,
       videogame_rating,
+      videogame_image
     });
 
     await newVideogame.addGenre(arrayGenre);
