@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
     },
     videogame_rating:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.DOUBLE,
         allowNull: false
     }
   });
