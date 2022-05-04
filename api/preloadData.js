@@ -1,20 +1,18 @@
 const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
+const {API_KEY} = process.env
 
-// const getDescription = async (id) => {
-//   await axios.get(`https://api.rawg.io/api/games/${id}?key=51198d696f0f4a03aaa77936ccd81e51`)
-// }
 
 async function createData() {
   let platforms = await axios.get(
-    "https://api.rawg.io/api/platforms?key=51198d696f0f4a03aaa77936ccd81e51"
+    `https://api.rawg.io/api/platforms?key=${API_KEY}`
   );
   let genres = await axios.get(
-    "https://api.rawg.io/api/genres?key=51198d696f0f4a03aaa77936ccd81e51"
+    `https://api.rawg.io/api/genres?key=${API_KEY}`
   );
 
   let videogames = await axios.get(
-    "https://api.rawg.io/api/games?key=51198d696f0f4a03aaa77936ccd81e51"
+    `https://api.rawg.io/api/games?key=${API_KEY}`
   );
 
   const platform = [];

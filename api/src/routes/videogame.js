@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const { Videogame, Genre, Platform } = require("../db");
 const axios = require("axios")
+const {API_KEY} = process.env
 
 const router = Router();
 
@@ -36,7 +37,7 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
       include: [{ model: Genre }, { model: Platform }],
     });
     if(videogame.videogame_description === "-"){
-      let matchvideogame = await axios.get(`https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=51198d696f0f4a03aaa77936ccd81e51`);
+      let matchvideogame = await axios.get(`https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=${API_KEY}`);
       res.json(matchvideogame.data)
     }
       else{
