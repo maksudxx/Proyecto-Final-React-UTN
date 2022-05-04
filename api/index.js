@@ -12,8 +12,10 @@ conn.sync({ force: true }).then(() => {
       const platform = await Platform.bulkCreate(data.platform);
       console.log('*********Platforms created');
       const video = await Videogame.bulkCreate(data.videogame);
-      await video[0].addGenre([genre[0].genre_id, genre[1].genre_id])
-      await video[0].addPlatform([platform[0].platform_id, platform[1].platform_id, platform[2].platform_id]), 
+      for (x in video){
+        await video[x].addGenre([genre[0].genre_id, genre[1].genre_id])
+        await video[x].addPlatform([platform[0].platform_id, platform[1].platform_id, platform[2].platform_id])
+      }
       console.log('*********Videogames created')
     });
   });

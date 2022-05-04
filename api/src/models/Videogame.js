@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("videogame", {
     videogame_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
     videogame_rating:{
         type: DataTypes.DOUBLE,
         allowNull: false
+    },
+    videogame_image:{
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   });
 };
