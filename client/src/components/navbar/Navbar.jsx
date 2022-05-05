@@ -8,7 +8,7 @@ export const Navbar = () => {
         <Link to='/dashboard' className={styles.link}>Lista de juegos</Link>
         <Link to='/newGame' className={styles.link}>Agregar un juego</Link>
         <Link to='/about' className={styles.link}>Acerca de</Link>
-        <Link to='/login' className={styles.link}>Login</Link>
+        <Link to='/login' className={styles.link}>Iniciar Sesion</Link>
     </div>
   )
 }

@@ -11,6 +11,7 @@ const Header = () => {
         <img src={LOGO} alt="logo" className={styles.image}/>
       </div>
       <Navbar/>
+      
     </header>
   );
 };
