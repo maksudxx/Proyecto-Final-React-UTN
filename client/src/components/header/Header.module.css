@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  height: 120px;
+  color: #fff;
+}
+
+.containerTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image {
+  width: 80px;
+  margin: 0;
+}
+.title {
+  margin-bottom: 0;
+}
