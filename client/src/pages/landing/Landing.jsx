@@ -17,7 +17,7 @@ const Landing = () => {
       <p className={styles.title}>BIENVENIDOS VIDEOGAMES API</p>
       <div className={styles.buttonStart}>
         <Link to="/videogames" className={styles.link}>
-          <h1 className={styles.textButton}>PRESS START BUTTON</h1>
+          <h1 className={styles.textButton}>PRESS START</h1>
         </Link>
         
       </div>
