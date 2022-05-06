@@ -1,5 +1,5 @@
 import React from "react";
-import LOGO from "../../assets/logo.gif";
+import LOGO from "../../assets/joystick.png";
 import { Navbar } from "../navbar/Navbar";
 import styles from './Header.module.css'
 

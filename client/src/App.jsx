@@ -1,19 +1,16 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
-import { getVideogames } from "./redux/actions/videogameActions";
+import Landing from "./pages/landing/Landing";
 
 function App() {
-  const videogames = useSelector((state) => state.videogame.videogames);
-  const dispatch = useDispatch();
-  console.log(videogames);
-
-  useEffect(() => {
-    dispatch(getVideogames());
-  }, [dispatch]);
   return (
     <div className="App">
-      <Header />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="videogames" element={<Header />} />
+        <Route path="newGame" element={<Header />} />
+        <Route path="about" element={<Header />} />
+      </Routes>
     </div>
   );
 }
