@@ -3,6 +3,9 @@
   justify-content: space-around;
   height: 120px;
   color: #fff;
+  position: sticky;
+    top: 0;
+    z-index: 99;
 }
 
 .containerTitle {
