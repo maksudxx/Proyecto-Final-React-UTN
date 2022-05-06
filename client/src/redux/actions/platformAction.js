@@ -1,7 +1,7 @@
 import axios from "axios";
-import { GET_GENRES as GET_PLATFORMS } from "../types";
+import { GET_PLATFORMS } from "../types";
 
-export function getVideogames() {
+export function getplatforms() {
     return async function (dispatch) {
       const response = await axios.get("http://localhost:3001/platforms");
       const json = response.data;
