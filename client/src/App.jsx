@@ -8,7 +8,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/*" element={<Header />} />
-    
       </Routes>
     </div>
   );
