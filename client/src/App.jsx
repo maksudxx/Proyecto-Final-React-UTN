@@ -7,9 +7,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="videogames" element={<Header />} />
-        <Route path="newGame" element={<Header />} />
-        <Route path="about" element={<Header />} />
+        <Route path="/*" element={<Header />} />
+    
       </Routes>
     </div>
   );
