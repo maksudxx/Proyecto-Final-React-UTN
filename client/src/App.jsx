@@ -1,15 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/header/Header";
+
 import Videogames from "./pages/videogames/Videogames";
 import Landing from "./pages/landing/Landing";
+import Header from "./components/header/Header";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/*" element={<Header />}>
-          <Route path="videogames" element={<Videogames />} />{" "}
+        <Route path="/" element={<Videogames />} >
+          <Route path='/videogames' element={<Header />} />
+          {/* <Route path='/newGame' element={<Header />} />
+          <Route path='/about' element={<Header />} /> */}
         </Route>
       </Routes>
     </div>
