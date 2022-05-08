@@ -20,7 +20,7 @@ const Videogames = () => {
         <ul className={styles.containerCards}>
           {videogames?.map((v, index) => (
             <Card
-              key={index}
+              
               id={v.videogame_id}
               idApi={v.videogame_id_api}
               name={v.videogame_name}

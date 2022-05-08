@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 import { AiOutlineStar } from "react-icons/ai";
 
-const Card = ({
-  id,
-  idApi,
-  name,
-  image,
-  rating,
-  genres,
-  platforms,
-  release,
-}) => {
+const Card = ({id, name, image, rating, genres, platforms, release }) => {
   let date = new Date(release);
   const formatDate = (date) => {
     let formatted_date =
@@ -21,7 +12,7 @@ const Card = ({
   };
 
   return (
-    <li className={styles.containerCard} key={id}>
+    <li className={styles.containerCard}>
       <img src={image} alt={name} className={styles.image} />
       <div className={styles.containerInformation}>
         <div className={styles.platforms}>
@@ -31,7 +22,10 @@ const Card = ({
             ))}
           </div>
         </div>
-        <h3 className={styles.titleGame}>{name}</h3>
+        <Link to={`/videogames/${id}`} className={styles.link}>
+          <h3 className={styles.titleGame}>{name}</h3>
+         </Link> 
+       
         <div className={styles.info}>
           <p>Fecha de Lanzamiento: </p>
           <p>{formatDate(date)}</p>
@@ -51,7 +45,7 @@ const Card = ({
             <AiOutlineStar className={styles.star} />
           </div>
         </div>
-        {/* <Link to={`/videogames/${id}`}>Ver mas...</Link> */}
+       
       </div>
     </li>
   );

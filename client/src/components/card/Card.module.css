@@ -3,10 +3,35 @@
   color: ghostwhite;
   list-style: none;
   background: hsla(0, 0%, 100%, 0.07);
-  border-radius: 20px;
-  display: flex;
+    display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 20px;
+  /* border: 5px solid;
+  border-image:
+  linear-gradient(
+    #ff512f,
+    #dd2476,
+    #1c64ff
+  )1;
+  animation: rotate 2.5s ease-in infinite */
+}
+
+/* @keyframes rotate {
+  50%{
+    border-image: linear-gradient(
+      360deg,
+      #ff512f,
+    #dd2476,
+    #1c64ff
+    )1;
+  }
+} */
+
+.containerCard:hover {
+  transform: scale(1.05);
+  opacity: 0.6;
+  cursor: pointer;
 }
 .containerInformation {
   width: 90%;
@@ -59,4 +84,14 @@
 
 .end {
   border: none;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.link:hover {
+  font-size: 1.05rem;
+  font-weight: bold;
 }
