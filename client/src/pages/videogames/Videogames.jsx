@@ -32,7 +32,18 @@ const Videogames = () => {
     <>
       <Outlet />
       <SearchBar />
-      
+      <ReactPaginate
+        id="pagination"
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
       <div className={styles.container}>
         <ul className={styles.containerCards}>
           {videogames
@@ -53,18 +64,7 @@ const Videogames = () => {
       </div>
      
      
-      <ReactPaginate
-        id="pagination"
-        previousLabel={"<"}
-        nextLabel={">"}
-        pageCount={pageCount}
-        onPageChange={changePage}
-        containerClassName={styles.paginationBttns}
-        previousLinkClassName={styles.previousBttn}
-        nextLinkClassName={styles.nextBttn}
-        disabledClassName={styles.paginationDisabled}
-        activeClassName={styles.paginationActive}
-      />
+     
       
     </>
   );
