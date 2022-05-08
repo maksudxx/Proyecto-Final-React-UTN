@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import {  Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Videogames.module.css";
 import { getVideogames } from "../../redux/actions/videogameActions";
 import Card from "../../components/card/Card";
+import SearchBar from "../../components/searchbar/SearchBar";
 
 const Videogames = () => {
   const dispatch = useDispatch();
@@ -12,15 +14,40 @@ const Videogames = () => {
     dispatch(getVideogames());
   }, [dispatch]);
 
-  console.log(videogames);
+  //pagination
+  const initialState = {
+    order: "asc",
+    page: 0,
+  };
+  const [videogameState, setVideogameState] = useState(initialState);
+  const { order, page } = videogameState;
+  const postsPorPagina = 9;
+  const pagesVisited = page * postsPorPagina;
+  const pageCount = Math.ceil(videogames?.length / postsPorPagina);
+  const changePage = ({ selected }) => {
+    setVideogameState({ ...videogameState, page: selected });
+  };
+
+
   return (
     <>
       <Outlet />
+      <SearchBar />
+      <ReactPaginate
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
       <div className={styles.container}>
         <ul className={styles.containerCards}>
-          {videogames?.map((v, index) => (
+          {videogames?.slice(pagesVisited, pagesVisited + postsPorPagina).map((v, index) => (
             <Card
-              
               id={v.videogame_id}
               idApi={v.videogame_id_api}
               name={v.videogame_name}
