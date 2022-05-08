@@ -2,14 +2,50 @@ const { Router } = require("express");
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const { Videogame, Genre, Platform } = require("../db");
-const axios = require("axios")
-const {API_KEY} = process.env
+const axios = require("axios");
+const { API_KEY } = process.env;
 
 const router = Router();
 
 router.get("/videogames", async (req, res, next) => {
   try {
     const { name } = req.query;
+    a = [];
+    let videogames = await Videogame.findAll();
+    if (videogames.length === 0) {
+      let newVideoGame = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}`
+      );
+
+      newVideoGame.data.results.map(async (v) => {
+        let video = await Videogame.create({
+          videogame_id: uuidv4(),
+          videogame_id_api: v.id,
+          videogame_name: v.name,
+          videogame_description: "-",
+          videogame_release_date: v.released,
+          videogame_rating: v.rating,
+          videogame_image: v.background_image,
+        });
+        let arrayGenre = [];
+
+        v.genres.map(async (genre) => {
+          arrayGenre.push(genre.id);
+        });
+
+        let arrayPlatform = [];
+        v.platforms.map(async (p) => {
+          arrayPlatform.push(p.platform.id);
+        });
+
+        await video.addGenre(arrayGenre);
+        try {
+          await video.addPlatform(arrayPlatform);
+        } catch (err) {
+          next(err);
+        }
+      });
+    }
 
     if (!name) {
       let videogames = await Videogame.findAll({
@@ -36,14 +72,14 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
       where: { videogame_id: videogame_id },
       include: [{ model: Genre }, { model: Platform }],
     });
-    if(videogame.videogame_description === "-"){
-      let matchvideogame = await axios.get(`https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=${API_KEY}`);
-      res.json(matchvideogame.data)
+    if (videogame.videogame_description === "-") {
+      let matchvideogame = await axios.get(
+        `https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=${API_KEY}`
+      );
+      res.json(matchvideogame.data);
+    } else {
+      res.json(videogame);
     }
-      else{
-        res.json(videogame)
-      }
-    
   } catch (err) {
     next(err);
   }
@@ -66,7 +102,7 @@ router.post("/videogame", async (req, res, next) => {
       videogame_description,
       videogame_release_date,
       videogame_rating,
-      videogame_image
+      videogame_image,
     });
 
     await newVideogame.addGenre(arrayGenre);
