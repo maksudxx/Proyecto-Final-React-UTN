@@ -9,3 +9,11 @@ export function getVideogames() {
     dispatch({ type: GET_VIDEOGAMES, payload: json });
   };
 }
+
+export function getVideogameName(name) {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/videogames?name="+name);
+    const json = response.data;
+    dispatch({ type: GET_VIDEOGAMES_NAME, payload: json });
+  };
+}

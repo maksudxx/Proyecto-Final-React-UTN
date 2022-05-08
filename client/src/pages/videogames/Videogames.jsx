@@ -32,24 +32,14 @@ const Videogames = () => {
     <>
       <Outlet />
       <SearchBar />
-      <ReactPaginate
-        id="pagination"
-        previousLabel={"<"}
-        nextLabel={">"}
-        pageCount={pageCount}
-        onPageChange={changePage}
-        containerClassName={styles.paginationBttns}
-        previousLinkClassName={styles.previousBttn}
-        nextLinkClassName={styles.nextBttn}
-        disabledClassName={styles.paginationDisabled}
-        activeClassName={styles.paginationActive}
-      />
+
       <div className={styles.container}>
         <ul className={styles.containerCards}>
           {videogames
             ?.slice(pagesVisited, pagesVisited + postsPorPagina)
             .map((v, index) => (
               <Card
+                key={index}
                 id={v.videogame_id}
                 idApi={v.videogame_id_api}
                 name={v.videogame_name}
@@ -62,6 +52,18 @@ const Videogames = () => {
             ))}
         </ul>
       </div>
+      <ReactPaginate
+        id="pagination"
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
     </>
   );
 };
