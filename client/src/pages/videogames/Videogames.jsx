@@ -21,7 +21,7 @@ const Videogames = () => {
   };
   const [videogameState, setVideogameState] = useState(initialState);
   const { order, page } = videogameState;
-  const postsPorPagina = 9;
+  const postsPorPagina = 15;
   const pagesVisited = page * postsPorPagina;
   const pageCount = Math.ceil(videogames?.length / postsPorPagina);
   const changePage = ({ selected }) => {
