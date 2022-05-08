@@ -12,15 +12,14 @@
   margin-top: 30px;
 }
 
-.containerPaginate {
-  margin-top: 50px;
-}
+
 
 .paginationBttns {
   height: 40px;
   list-style: none;
   display: flex;
   justify-content: center;
+  margin: 50px 0;
 }
 
 .paginationBttns a {

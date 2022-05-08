@@ -28,12 +28,33 @@ const Videogames = () => {
     setVideogameState({ ...videogameState, page: selected });
   };
 
-
   return (
     <>
       <Outlet />
       <SearchBar />
+      
+      <div className={styles.container}>
+        <ul className={styles.containerCards}>
+          {videogames
+            ?.slice(pagesVisited, pagesVisited + postsPorPagina)
+            .map((v, index) => (
+              <Card
+                id={v.videogame_id}
+                idApi={v.videogame_id_api}
+                name={v.videogame_name}
+                image={v.videogame_image}
+                rating={v.videogame_rating}
+                genres={v.genres}
+                platforms={v.platforms}
+                release={v.videogame_release_date}
+              />
+            ))}
+        </ul>
+      </div>
+     
+     
       <ReactPaginate
+        id="pagination"
         previousLabel={"<"}
         nextLabel={">"}
         pageCount={pageCount}
@@ -44,22 +65,7 @@ const Videogames = () => {
         disabledClassName={styles.paginationDisabled}
         activeClassName={styles.paginationActive}
       />
-      <div className={styles.container}>
-        <ul className={styles.containerCards}>
-          {videogames?.slice(pagesVisited, pagesVisited + postsPorPagina).map((v, index) => (
-            <Card
-              id={v.videogame_id}
-              idApi={v.videogame_id_api}
-              name={v.videogame_name}
-              image={v.videogame_image}
-              rating={v.videogame_rating}
-              genres={v.genres}
-              platforms={v.platforms}
-              release={v.videogame_release_date}
-            />
-          ))}
-        </ul>
-      </div>
+      
     </>
   );
 };
