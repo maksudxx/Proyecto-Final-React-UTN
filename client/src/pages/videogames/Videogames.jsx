@@ -62,10 +62,6 @@ const Videogames = () => {
             ))}
         </ul>
       </div>
-     
-     
-     
-      
     </>
   );
 };
