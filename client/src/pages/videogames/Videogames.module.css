@@ -1,6 +1,13 @@
-.container{
-    width:100vw;
-    height:100vh;
-    display: flex;
-    flex-direction: column;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.containerCards {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  gap: 60px;
+  justify-content: center;
+  margin-top: 30px;
 }

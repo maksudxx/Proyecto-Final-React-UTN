@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Card.module.css"
 
 const Card = ({
   id,
@@ -14,7 +15,7 @@ const Card = ({
 
   console.log(genres)
   return (
-    <li>
+    <li >
       <img src={image} alt={name} width={250} />
       <div>
         {platforms?.map((p) => (
