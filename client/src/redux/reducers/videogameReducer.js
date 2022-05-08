@@ -1,8 +1,8 @@
-import { GET_VIDEOGAMES } from "../types";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME } from "../types";
 
 const initialState = {
   videogames: [],
-  videogame:{}
+  videogame: {},
 };
 export default function videogameReducer(state = initialState, action) {
   switch (action.type) {
@@ -11,6 +11,12 @@ export default function videogameReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
       };
+    case GET_VIDEOGAMES_NAME: {
+      return {
+        ...state,
+        videogames: action.payload,
+      };
+    }
 
     default:
       return state;

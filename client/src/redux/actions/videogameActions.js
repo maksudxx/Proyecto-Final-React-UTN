@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_VIDEOGAMES } from "../types/index";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME } from "../types/index";
 
 
 export function getVideogames() {
