@@ -1,11 +1,12 @@
 .container {
   display: flex;
   justify-content: space-around;
+  background: hsla(0, 0%, 0%, 0.556);
   height: 120px;
   color: #fff;
   position: sticky;
-    top: 0;
-    z-index: 99;
+  top: 0;
+  z-index: 99;
 }
 
 .containerTitle {

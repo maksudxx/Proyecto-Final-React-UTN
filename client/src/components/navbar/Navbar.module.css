@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 50%;
 }
 
 .link {
@@ -15,6 +15,6 @@
 .link:hover {
   border-bottom: 0.5rem solid #fff;
   font-size: 1.2rem;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
   cursor: pointer;
 }
