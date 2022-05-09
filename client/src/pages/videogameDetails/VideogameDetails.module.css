@@ -1,0 +1,54 @@
+.container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+  width: 100vw;
+}
+
+.titleGame {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 15px 0;
+  text-transform: uppercase;
+}
+
+.containerAbout {
+  display: flex;
+  width: 100vw;
+  margin-bottom: 25px;
+}
+.img {
+  width: 550px;
+  border-radius: 10px;
+}
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+  margin-right: 15px;
+}
+
+.containerInfo2 {
+  display: grid;
+}
+
+.titleInfo {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.info {
+  display: flex;
+
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.nameInfo {
+  margin-right: 10px;
+}
+
+.requirements{
+   padding-right: 55px;;
+}
