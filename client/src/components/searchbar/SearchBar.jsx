@@ -17,8 +17,8 @@ const SearchBar = () => {
 
   return (
     <div>
-      <FilterGenre props={genres} />
-      <FilterPlatforms props={platforms} />
+      {/* <FilterGenre props={genres} />
+      <FilterPlatforms props={platforms} /> */}
       <Search />
     </div>
   );
