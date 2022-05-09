@@ -3,7 +3,7 @@
   color: ghostwhite;
   list-style: none;
   background: hsla(0, 0%, 100%, 0.07);
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
@@ -47,31 +47,33 @@
   font-size: 12px;
   justify-content: space-between;
 }
-.containerInfo {
-  display: flex;
-}
+
 .title {
   margin: 10px;
 }
 .namePlatform {
-  margin: 10px 5px;
+  margin: 5px;
 }
 .titleGame {
-  margin-left: 10px;
+  margin: 10px 0 0 10px;;
   align-self: flex-start;
 }
 
 .info {
   display: flex;
-
+  height: auto;
   font-size: 12px;
   justify-content: space-between;
   height: 50px;
   align-items: center;
   padding-left: 10px;
   border-bottom: 1px solid rgb(105, 105, 105);
+  }
+.wrap{
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: auto;
 }
-
 .calification {
   display: flex;
   align-items: center;
@@ -81,7 +83,6 @@
   margin: 0;
   width: 30px;
   font-size: 20px;
-  
 }
 
 .end {
@@ -97,3 +98,9 @@
   font-size: 1.05rem;
   font-weight: bold;
 }
+
+.pagraph{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
