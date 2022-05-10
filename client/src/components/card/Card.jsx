@@ -20,7 +20,7 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
         </Link>
 
         <div className={styles.info}>
-          <p  className={styles.pagraph}>Fecha de Lanzamiento: </p>
+          <p className={styles.pagraph}>Fecha de Lanzamiento: </p>
           <p>{formatDate(date)}</p>
         </div>
         <div className={styles.info}>
@@ -31,18 +31,19 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
             ))}
           </div>
         </div>
-        <div className={`${styles.info} ${styles.wrap}`}>
-          <p  className={styles.pagraph}>Plataformas: </p>
-          {platforms?.map((p) => (
-            <p className={styles.namePlatform}>{p.platform_name}</p>
-          ))}
-        </div>
-        <div className={`${styles.info} ${styles.end}`}>
-          <p  className={styles.pagraph}>Calificacion: </p>
+
+        <div className={styles.info}>
+          <p className={styles.pagraph}>Calificacion: </p>
           <div className={styles.calification}>
             <AiOutlineStar className={styles.star} />
             <p>{rating}</p>
           </div>
+        </div>
+        <div className={`${styles.info} ${styles.wrap} ${styles.end}`}>
+          <p  className={styles.pagraph}>Plataformas: </p>
+          {platforms?.map((p) => (
+            <p className={styles.namePlatform}>{p.platform_name}</p>
+          ))}
         </div>
       </div>
     </li>
