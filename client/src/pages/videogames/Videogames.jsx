@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Videogames.module.css";
 import { getVideogames } from "../../redux/actions/videogameActions";
@@ -37,7 +36,6 @@ const Videogames = () => {
         <Spinner />
       ) : (
         <>
-          <Outlet />
           <SearchBar />
 
           <div className={styles.container}>
