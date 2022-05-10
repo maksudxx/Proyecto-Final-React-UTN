@@ -14,7 +14,10 @@ import mario from "../../assets/mario.png";
 const Landing = () => {
   return (
     <div className={styles.container}>
-      <p className={styles.title}>BIENVENIDOS VIDEOGAMES API</p>
+      <div>
+      {/* <video autoPlay muted preload='true' loop src="https://youtu.be/Yz9ThWQ0VAc"></video> */}
+      <p className={styles.title}>Videogames Api</p>
+      </div>
       <div className={styles.buttonStart}>
         <Link to="/videogames" className={styles.link}>
           <h1 className={styles.textButton}>PRESS START</h1>
