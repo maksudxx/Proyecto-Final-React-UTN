@@ -1,23 +1,28 @@
 .container {
   display: flex;
   justify-content: space-around;
-  background: hsla(0, 0%, 0%, 0.556);
-  height: 120px;
+  background: #151515;
+  height: 100px;
   color: #fff;
   position: sticky;
   top: 0;
   z-index: 99;
+  border-bottom: 0.1px solid #fff;
+  margin-bottom: 30px;
 }
 
 .containerTitle {
-  display: flex;
-  flex-direction: column;
+  display:flex;
   align-items: center;
+  flex-direction: row;
 }
 .image {
-  width: 60px;
-  margin: 0;
+  width: 50px;
+  margin: 0 10px;
 }
 .title {
   margin-bottom: 0;
+  width: 100px;
+  text-align: center;
+  text-transform: uppercase;
 }

@@ -7,8 +7,9 @@ const Header = () => {
   return (
     <header className={styles.container}>
       <div className={styles.containerTitle}>
-        <h2 className={styles.title}>Videogames APP</h2>
+       
         <img src={LOGO} alt="logo" className={styles.image}/>
+        <h3 className={styles.title}>Videogames APP</h3>
       </div>
       <Navbar/>
       
