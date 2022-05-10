@@ -5,6 +5,7 @@ import { getGenres } from "../../redux/actions/genreActions";
 import { getPlatforms } from "../../redux/actions/platformAction";
 import FilterGenre from "../filter/FilterGenre";
 import FilterPlatforms from "../filter/FilterPlatforms";
+import styles from "./SearchBar.module.css"
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,9 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      {/* <FilterGenre props={genres} />
-      <FilterPlatforms props={platforms} /> */}
+    <div className={styles.container}>
+      <FilterGenre props={genres} />
+      <FilterPlatforms props={platforms} />
       <Search />
     </div>
   );

@@ -36,9 +36,10 @@ const Videogames = () => {
         <Spinner />
       ) : (
         <>
-          <SearchBar />
+          
 
           <div className={styles.container}>
+          <SearchBar />
             <ul className={styles.containerCards}>
               {videogames
                 ?.slice(pagesVisited, pagesVisited + postsPorPagina)
