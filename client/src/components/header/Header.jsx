@@ -9,7 +9,7 @@ const Header = () => {
       <div className={styles.containerTitle}>
        
         <img src={LOGO} alt="logo" className={styles.image}/>
-        <h3 className={styles.title}>Videogames APP</h3>
+        <h3 className={styles.title}>Videogames API</h3>
       </div>
       <Navbar/>
       
