@@ -13,9 +13,9 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
 
   return (
     <li className={styles.containerCard}>
-      <img src={image} alt={name} className={styles.image} />
-      <div className={styles.containerInformation}>
+      <div>
         <Link to={`/videogames/${id}`} className={styles.link}>
+          <img src={image} alt={name} className={styles.image} />
           <h3 className={styles.titleGame}>{name}</h3>
         </Link>
 
@@ -40,7 +40,7 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
           </div>
         </div>
         <div className={`${styles.info} ${styles.wrap} ${styles.end}`}>
-          <p  className={styles.pagraph}>Plataformas: </p>
+          <p className={styles.pagraph}>Plataformas: </p>
           {platforms?.map((p) => (
             <p className={styles.namePlatform}>{p.platform_name}</p>
           ))}

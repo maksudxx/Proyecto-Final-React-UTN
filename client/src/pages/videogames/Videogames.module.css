@@ -3,6 +3,13 @@
   flex-direction: column;
   align-items: center;
 }
+
+.title{
+  font-size: 3rem;
+  color: #fe9f02;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 .containerCards {
   width: 80vw;
   display: grid;

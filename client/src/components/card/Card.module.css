@@ -7,39 +7,23 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  /* border: 5px solid;
-  border-image:
-  linear-gradient(
-    #ff512f,
-    #dd2476,
-    #1c64ff
-  )1;
-  animation: rotate 2.5s ease-in infinite */
 }
-
-/* @keyframes rotate {
-  50%{
-    border-image: linear-gradient(
-      360deg,
-      #ff512f,
-    #dd2476,
-    #1c64ff
-    )1;
-  }
-} */
 
 .containerCard:hover {
-  transform: scale(1.05);
-  opacity: 0.6;
+  transform: scale(1.01);
+  opacity: 0.7;
   cursor: pointer;
+  border: 2px solid #fe9f02;
 }
-.containerInformation {
-  width: 90%;
-}
+
 .image {
   border-radius: 20px 20px 0 0;
   width: 300px;
   height: 168px;
+}
+.image:hover {
+  transform: scale(1.2);
+  border-radius: 0;
 }
 
 .platforms {
@@ -55,7 +39,7 @@
   margin: 5px;
 }
 .titleGame {
-  margin: 10px 0 0 10px;;
+  margin: 10px 0 0 10px;
   align-self: flex-start;
 }
 
@@ -68,8 +52,8 @@
   align-items: center;
   padding-left: 10px;
   border-bottom: 1px solid rgb(105, 105, 105);
-  }
-.wrap{
+}
+.wrap {
   flex-wrap: wrap;
   justify-content: flex-start;
   height: auto;
@@ -99,8 +83,7 @@
   font-weight: bold;
 }
 
-.pagraph{
+.pagraph {
   font-weight: bold;
   text-decoration: underline;
 }
-
