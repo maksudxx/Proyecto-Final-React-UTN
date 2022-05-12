@@ -11,5 +11,6 @@ conn.sync({ force: true }).then(() => {
     console.log("*********Genres created");
     const platform = await Platform.bulkCreate(data.platform);
     console.log("*********Platforms created");
+    console.log("*********Videogames created");
   });
 });
