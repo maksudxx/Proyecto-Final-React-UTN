@@ -3,6 +3,7 @@ import { getGenres } from "../../redux/actions/genreActions";
 import { getPlatforms } from "../../redux/actions/platformAction";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./NewVideogame.module.css";
+import { createVideogame } from "../../redux/actions/videogameActions";
 
 const NewVideogame = () => {
   const [input, setInput] = useState({
@@ -12,8 +13,6 @@ const NewVideogame = () => {
     videogame_rating: 0,
     videogame_image:
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdetallesorballo.com%2Fimagen-de-prueba-320x240%2F&psig=AOvVaw2dixc9donc4t_KJbwymqxt&ust=1652361427036000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJD14ZLE1_cCFQAAAAAdAAAAABAD",
-    genres: [],
-    platform_id: [],
   });
 
   const dispatch = useDispatch();
@@ -44,10 +43,34 @@ const NewVideogame = () => {
     arrayPlatforms.push(e.target.value);
     console.log(arrayPlatforms);
   };
+
+  const handleSubmit = (e) => {
+    let {
+      videogame_name,
+      videogame_description,
+      videogame_release_date,
+      videogame_rating,
+      videogame_image,
+    } = input;
+    e.preventDefault();
+    let data = {
+      videogame_name,
+      videogame_description,
+      videogame_release_date,
+      videogame_rating,
+      videogame_image,
+      arrayGenres,
+      arrayPlatforms,
+    };
+
+    console.log(data);
+    dispatch(createVideogame(data))
+    alert('ok')
+  };
   return (
     <div className={styles.container}>
       <p className={styles.title}>PUBLICAR UN NUEVO JUEGO</p>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.containerInput}>
           <p>Nombre del juego:</p>
           <input
@@ -132,10 +155,11 @@ const NewVideogame = () => {
           ))}
         </div>
 
-        <input type="submit" value="Guardar" className={styles.button}/>
+        <input type="submit" value="Guardar" className={styles.button} />
         <br />
       </form>
-      <br /><br />
+      <br />
+      <br />
     </div>
   );
 };
