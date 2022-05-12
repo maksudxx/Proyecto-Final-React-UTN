@@ -1,0 +1,74 @@
+.container {
+ width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.title {
+  font-size: 3rem;
+  color: #fe9f02;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: hsla(0, 0%, 100%, 0.07);
+    
+}
+.containerInput{
+  
+  margin-bottom: 20px;
+  
+}
+.input{
+  width: 20vw;
+  height: 4vh;
+  border: 0;
+  border-bottom: 3px solid #fe9f02;
+  color: #fff;
+  background: transparent
+ }
+
+.containerCheckbox {
+  border: 1px solid #fe9f02;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height:auto;
+  flex-wrap: wrap;
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 15px;
+}
+
+.nameCheck{
+    margin:10px
+}
+
+.titleCheckbox{
+  align-self: flex-start;
+}
+
+.button{
+  width: 10vw;
+  height: 5vh;
+  margin-top: 20px;
+  border: 2px solid #fe9f02;
+  background: transparent;
+  color: #fff;
+}
+
+.button:hover{
+  background:hsla(0, 0%, 100%, 0.07);
+  cursor: pointer;
+}
