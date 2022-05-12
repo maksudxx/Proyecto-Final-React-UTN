@@ -92,8 +92,8 @@ router.post("/videogame", async (req, res, next) => {
       videogame_release_date,
       videogame_rating,
       videogame_image,
-      arrayGenre,
-      arrayPlatform,
+      arrayGenres,
+      arrayPlatforms,
     } = req.body;
 
     let newVideogame = await Videogame.create({
@@ -105,8 +105,8 @@ router.post("/videogame", async (req, res, next) => {
       videogame_image,
     });
 
-    await newVideogame.addGenre(arrayGenre);
-    await newVideogame.addPlatform(arrayPlatform);
+    await newVideogame.addGenre(arrayGenres);
+    await newVideogame.addPlatform(arrayPlatforms);
     res.json(newVideogame);
   } catch (err) {
     next(err);
