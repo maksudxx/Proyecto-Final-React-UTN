@@ -4,21 +4,22 @@ import { getPlatforms } from "../../redux/actions/platformAction";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./NewVideogame.module.css";
 import { createVideogame } from "../../redux/actions/videogameActions";
+import {useHistory } from 'react-router-dom'
+import IMGPRUEBA from "../../assets/prueba_post.jpg"
 
 const NewVideogame = () => {
   const [input, setInput] = useState({
     videogame_name: "",
     videogame_description: "",
     videogame_release_date: "",
-    videogame_rating: 0,
-    videogame_image:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdetallesorballo.com%2Fimagen-de-prueba-320x240%2F&psig=AOvVaw2dixc9donc4t_KJbwymqxt&ust=1652361427036000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJD14ZLE1_cCFQAAAAAdAAAAABAD",
+    videogame_rating: "",
+    videogame_image:IMGPRUEBA,
   });
 
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genre.genres);
   const platforms = useSelector((state) => state.platform.platforms);
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getPlatforms());
@@ -63,9 +64,11 @@ const NewVideogame = () => {
       arrayPlatforms,
     };
 
-    console.log(data);
     dispatch(createVideogame(data))
-    alert('ok')
+    alert('Videojuego creado..!')
+    setTimeout(() =>{
+      history.push('/videogames')
+    },1000)
   };
   return (
     <div className={styles.container}>

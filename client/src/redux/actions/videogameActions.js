@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  CREATE_VIDEOGAME,
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_ID,
   GET_VIDEOGAMES_NAME,
@@ -31,14 +30,6 @@ export function getVideogameId(videogame_id) {
     dispatch({ type: GET_VIDEOGAMES_ID, payload: json });
   };
 }
-
-// export function createVideogame(body){
-//   console.log(body);
-//   return function(dispatch) {
-//     return await axios.post("http://localhost:3001/videogame", body)
-//     // .then((response)=> dispatch({ type: CREATE_VIDEOGAME, payload: response.data }))
-//   }
-// }
 
 export function createVideogame(body){
   return async function (dispatch){
