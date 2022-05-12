@@ -10,14 +10,32 @@ const router = Router();
 router.get("/videogames", async (req, res, next) => {
   try {
     const { name } = req.query;
-    a = [];
+
+    let arrayGames = [];
     let videogames = await Videogame.findAll();
     if (videogames.length === 0) {
       let newVideoGame = await axios.get(
         `https://api.rawg.io/api/games?key=${API_KEY}`
       );
-
-      newVideoGame.data.results.map(async (v) => {
+      let newVideoGame2 = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+      );
+      let newVideoGame3 = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+      );
+      let newVideoGame4 = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+      );
+      let newVideoGame5 = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+      );
+      arrayGames = newVideoGame.data.results.concat(
+        newVideoGame2.data.results,
+        newVideoGame3.data.results,
+        newVideoGame4.data.results,
+        newVideoGame5.data.results
+      );
+      arrayGames.map(async (v) => {
         let video = await Videogame.create({
           videogame_id: uuidv4(),
           videogame_id_api: v.id,
@@ -55,7 +73,7 @@ router.get("/videogames", async (req, res, next) => {
       res.json(videogames);
     } else {
       const matchVideogame = await Videogame.findAll({
-        where: { videogame_name: { [Op.iLike]: `${name}%` } },
+        where: { videogame_name: { [Op.iLike]: `%${name}%` } },
         include: [{ model: Genre }, { model: Platform }],
       });
       res.json(matchVideogame);
