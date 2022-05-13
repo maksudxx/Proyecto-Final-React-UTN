@@ -4,6 +4,7 @@ import Landing from "./pages/landing/Landing";
 import Header from "./components/header/Header";
 import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
 import NewVideogame from "./pages/newVideogame/NewVideogame";
+import About from "./pages/about/About";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             component={VideogameDetails}
           />
           <Route exact path="/newGame" component={NewVideogame} />
+          <Route exact path="/about" component={About}/>
         </Route>
       </Switch>
     </div>

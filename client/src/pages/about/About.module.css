@@ -1,0 +1,47 @@
+.container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 3rem;
+  color: #fe9f02;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.image {
+  width: 70%;
+}
+
+.containerInformation {
+  width: 80%;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+.list1 {
+  align-self: center;
+}
+.li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+.p {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.title2 {
+  color: #fe9f02;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subTitle {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
