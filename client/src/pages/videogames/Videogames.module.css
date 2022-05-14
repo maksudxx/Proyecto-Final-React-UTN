@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.title{
+.title {
   font-size: 3rem;
   color: #fe9f02;
   font-weight: bold;
@@ -26,6 +26,7 @@
   justify-content: center;
   margin: 60px 0;
   font-weight: bold;
+ 
 }
 
 .paginationBttns a {
@@ -53,4 +54,16 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+@media (max-width: 400px) {
+  
+  .title {
+    width: 80%;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .paginationBttns{
+    
+  }
 }

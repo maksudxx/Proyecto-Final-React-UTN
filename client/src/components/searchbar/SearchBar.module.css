@@ -8,3 +8,11 @@
     border-radius: 7px;
     margin: 45px;
 }
+
+@media(max-width: 400px){
+    .container{
+        margin: 0;
+        flex-direction: column;
+        height: 170px;
+    }
+}
