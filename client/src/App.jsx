@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
 import NewVideogame from "./pages/newVideogame/NewVideogame";
 import About from "./pages/about/About";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             component={VideogameDetails}
           />
           <Route exact path="/newGame" component={NewVideogame} />
-          <Route exact path="/about" component={About}/>
+          <Route exact path="/about" component={About} />
+          <Footer/>
         </Route>
       </Switch>
     </div>
