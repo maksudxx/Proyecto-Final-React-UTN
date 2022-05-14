@@ -1,5 +1,5 @@
 .container {
- width: 100vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,34 +14,31 @@
   margin-bottom: 30px;
 }
 
-.form{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: hsla(0, 0%, 100%, 0.07);
-    
+.form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: hsla(0, 0%, 100%, 0.07);
 }
-.containerInput{
-  
+.containerInput {
   margin-bottom: 20px;
-  
 }
-.input{
+.input {
   width: 20vw;
   height: 4vh;
   border: 0;
   border-bottom: 3px solid #fe9f02;
   color: #fff;
-  background: transparent
- }
+  background: transparent;
+}
 
 .containerCheckbox {
   border: 1px solid #fe9f02;
   display: flex;
   flex-direction: row;
   width: 90%;
-  height:auto;
+  height: auto;
   flex-wrap: wrap;
 }
 .checkbox {
@@ -51,15 +48,15 @@
   margin: 0 0 0 15px;
 }
 
-.nameCheck{
-    margin:10px
+.nameCheck {
+  margin: 10px;
 }
 
-.titleCheckbox{
+.titleCheckbox {
   align-self: flex-start;
 }
 
-.button{
+.button {
   width: 10vw;
   height: 5vh;
   margin-top: 20px;
@@ -68,7 +65,30 @@
   color: #fff;
 }
 
-.button:hover{
-  background:hsla(0, 0%, 100%, 0.07);
+.button:hover {
+  background: hsla(0, 0%, 100%, 0.07);
   cursor: pointer;
+}
+
+
+@media(max-width:400px) {
+  .container {
+    width: 100%;
+  }
+  .title{
+    width: 80%;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .form{
+    width: 90%;
+  }
+
+  .input{
+    width: 250px;
+  }
+
+  .button{
+    width: 30vw;
+  }
 }

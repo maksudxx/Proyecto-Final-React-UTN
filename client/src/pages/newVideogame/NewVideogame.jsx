@@ -75,6 +75,7 @@ const NewVideogame = () => {
       <p className={styles.title}>PUBLICAR UN NUEVO JUEGO</p>
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.containerInput}>
+          <br />
           <p>Nombre del juego:</p>
           <input
             type="text"
@@ -83,6 +84,7 @@ const NewVideogame = () => {
             placeholder="Ingrese nombre"
             onChange={handleInputChange}
             className={styles.input}
+            required='true'
           />
         </div>
         <div className={styles.containerInput}>
@@ -94,6 +96,7 @@ const NewVideogame = () => {
             placeholder="Ingrese una descripcion"
             onChange={handleInputChange}
             className={styles.input}
+            required='true'
           />
         </div>
         <div className={styles.containerInput}>
@@ -104,6 +107,7 @@ const NewVideogame = () => {
             value={input.videogame_release_date}
             onChange={handleInputChange}
             className={styles.input}
+            required='true'
           />
         </div>
 
@@ -115,6 +119,7 @@ const NewVideogame = () => {
             value={input.videogame_rating}
             onChange={handleInputChange}
             className={styles.input}
+            required='true'
           />
         </div>
 
@@ -129,7 +134,7 @@ const NewVideogame = () => {
             className={styles.input}
           />
         </div>
-        <p className={styles.titleCkeckbox}>Generos: </p>
+        <p className={styles.titleCkeckbox}>Generos </p>
         <div className={styles.containerCheckbox}>
           {genres.map((g, index) => (
             <div key={index} className={styles.checkbox}>
@@ -142,7 +147,7 @@ const NewVideogame = () => {
               />
             </div>
           ))}
-        </div>
+        </div><br />
         <p>Plataformas</p>
         <div className={styles.containerCheckbox}>
           {platforms.map((plat, index) => (
