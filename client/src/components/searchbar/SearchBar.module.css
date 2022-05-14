@@ -1,9 +1,10 @@
 .container{
     display: flex;
-    width: 65vw;
+    width: 60vw;
     justify-content: space-around;
     align-items: center;
-    height: 10vh;
+    height: 7vh;
     background:hsla(0,0%,100%,.07);
     border-radius: 7px;
+    margin: 45px;
 }
