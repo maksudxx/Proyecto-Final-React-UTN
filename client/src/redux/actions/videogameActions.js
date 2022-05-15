@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  FILTER_VIDEOGAME_GENRE,
+  FILTER_VIDEOGAME_PLATFORM,
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_ID,
   GET_VIDEOGAMES_NAME,
@@ -25,19 +27,35 @@ export function getVideogameName(name) {
 
 export function getVideogameId(videogame_id) {
   return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/videogame/" + videogame_id);
+    const response = await axios.get(
+      "http://localhost:3001/videogame/" + videogame_id
+    );
     const json = response.data;
     dispatch({ type: GET_VIDEOGAMES_ID, payload: json });
   };
 }
 
-export function createVideogame(body){
-  return async function (dispatch){
-    try{
-      return await axios.post("http://localhost:3001/videogame", body)
-    }catch(err){
-      console.log(err)
-      return
+export function createVideogame(body) {
+  return async function (dispatch) {
+    try {
+      return await axios.post("http://localhost:3001/videogame", body);
+    } catch (err) {
+      console.log(err);
+      return;
     }
-  }
+  };
+}
+
+export function filterVideogamesGenre(payload) {
+  return {
+    type: FILTER_VIDEOGAME_GENRE,
+    payload,
+  };
+}
+
+export function filterVideogamesPlatform(payload) {
+  return {
+    type: FILTER_VIDEOGAME_PLATFORM,
+    payload,
+  };
 }
