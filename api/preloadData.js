@@ -13,14 +13,14 @@ async function createData() {
     platform.push({ platform_id: p.id, platform_name: p.name });
   });
 
-  platform.push({ platform_id:9999, platform_name:'1-All'})
+  platform.push({ platform_id:9999, platform_name:'1-Todas las plataformas'})
 
   const genre = [];
   genres.data.results.map((g) => {
     genre.push({ genre_id: g.id, genre_name: g.name });
   });
 
-  genre.push({ genre_id: 9999, genre_name: "1-All"})
+  genre.push({ genre_id: 9999, genre_name: "1-Todos los generos"})
 
   return { genre, platform };
 }
