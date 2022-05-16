@@ -35,16 +35,11 @@ export default function videogameReducer(state = initialState, action) {
       };
 
     case FILTER_VIDEOGAME_PLATFORM:
-      let a = state.filterPlatforms.filter((v) => {
-        return v.platforms.some((g) => g.platform_name === action.payload);
-      });
-
-      console.log(a);
       return {
         ...state,
         videogames: state.filterPlatforms.filter((v) => {
           return v.platforms.some((g) => g.platform_name === action.payload);
-        })
+        }),
       };
 
     case FILTER_VIDEOGAME_GENRE:
