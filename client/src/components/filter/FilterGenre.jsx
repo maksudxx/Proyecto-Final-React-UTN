@@ -1,20 +1,28 @@
-import React,{ useState} from "react";
-import{useDispatch} from "react-redux";
-import styles from './Filter.module.css'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  filterVideogamesGenre,
+  getVideogames,
+} from "../../redux/actions/videogameActions";
+import styles from "./Filter.module.css";
 
 const FilterGenre = ({ props }) => {
-  const [genre, setGenre] = useState('')
-  const handleChangeGenre = (e)=>{
-    setGenre(e.target.value)
-    //distpatch
-  }
+  const [genre, setGenre] = useState("");
+  const dispatch = useDispatch();
+  const handleChangeGenre = (e) => {
+    setGenre(e.target.value);
+    dispatch(filterVideogamesGenre(e.target.value));
+  };
   return (
-    <select value={genre} onChange={handleChangeGenre} className={styles.select}>
-      <option value="all">Todos los generos</option>
-      {props?.map((g) => (
-        <option value={g.genre_name} key={g.genre_id}  >
-          {g.genre_name} 
-        </option>
+    <select
+      name="genre"
+      value={genre}
+      onChange={handleChangeGenre}
+      className={styles.select}
+    >
+      <option>Todos los generos</option>
+      {props.map((g, index) => (
+        <option key={index}>{g.genre_name}</option>
       ))}
     </select>
   );
