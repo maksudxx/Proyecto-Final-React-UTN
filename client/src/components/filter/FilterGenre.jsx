@@ -11,7 +11,12 @@ const FilterGenre = ({ props }) => {
   const dispatch = useDispatch();
   const handleChangeGenre = (e) => {
     setGenre(e.target.value);
-    dispatch(filterVideogamesGenre(e.target.value));
+    console.log(genre);
+    if(e.target.value === '1-Todos los generos'){
+      dispatch(getVideogames())
+    }else{
+      dispatch(filterVideogamesGenre(e.target.value));
+    }
   };
   return (
     <select
@@ -20,8 +25,9 @@ const FilterGenre = ({ props }) => {
       onChange={handleChangeGenre}
       className={styles.select}
     >
-      <option>Todos los generos</option>
+      
       {props.map((g, index) => (
+       
         <option key={index}>{g.genre_name}</option>
       ))}
     </select>
