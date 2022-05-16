@@ -20,7 +20,7 @@ const Videogames = () => {
   };
   const [videogameState, setVideogameState] = useState(initialState);
   const { page } = videogameState;
-  const postsPorPagina = 15;
+  const postsPorPagina = 20;
   const pagesVisited = page * postsPorPagina;
   const pageCount = Math.ceil(videogames?.length / postsPorPagina);
   const changePage = ({ selected }) => {
@@ -32,8 +32,20 @@ const Videogames = () => {
       <div className={styles.container}>
         <p className={styles.title}>LISTA DE JUEGOS</p>
         <SearchBar />
-
+        <ReactPaginate
+        id="pagination"
+        previousLabel={"<"}
+        nextLabel={">"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
         <ul className={styles.containerCards}>
+          
           {videogames?.length > 0 ? (
             videogames
             ?.slice(pagesVisited, pagesVisited + postsPorPagina)
@@ -50,21 +62,11 @@ const Videogames = () => {
                 release={v.videogame_release_date}
               />
             ))
-          ): <GameNotFound />}
+          ): <div className={styles.containerNotFound}><GameNotFound /></div>}
         </ul>
       </div>
-      <ReactPaginate
-        id="pagination"
-        previousLabel={"<"}
-        nextLabel={">"}
-        pageCount={pageCount}
-        onPageChange={changePage}
-        containerClassName={styles.paginationBttns}
-        previousLinkClassName={styles.previousBttn}
-        nextLinkClassName={styles.nextBttn}
-        disabledClassName={styles.paginationDisabled}
-        activeClassName={styles.paginationActive}
-      />
+      <br /><br />
+      
     </>
   );
 };
