@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const { Videogame, Genre, Platform } = require("../db");
 const axios = require("axios");
+const authorization = require("../middleware/authorization")
 const { API_KEY } = process.env;
 
 const router = Router();
@@ -102,7 +103,7 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
     next(err);
   }
 });
-router.post("/videogame", async (req, res, next) => {
+router.post("/videogame", authorization, async (req, res, next) => {
   try {
     const {
       videogame_name,
