@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./Videogames.module.css";
 import { getVideogames } from "../../redux/actions/videogameActions";
 import Card from "../../components/card/Card";
+import GameNotFound from "../../components/gameNotFound/GameNotFound"
 import SearchBar from "../../components/searchbar/SearchBar";
 
 const Videogames = () => {
@@ -33,7 +34,8 @@ const Videogames = () => {
         <SearchBar />
 
         <ul className={styles.containerCards}>
-          {videogames
+          {videogames?.length > 0 ? (
+            videogames
             ?.slice(pagesVisited, pagesVisited + postsPorPagina)
             .map((v, index) => (
               <Card
@@ -47,7 +49,8 @@ const Videogames = () => {
                 platforms={v.platforms}
                 release={v.videogame_release_date}
               />
-            ))}
+            ))
+          ): <GameNotFound />}
         </ul>
       </div>
       <ReactPaginate
