@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Login.module.css";
 
 const Login = ({ setAuth }) => {
   const [input, setInput] = useState({
@@ -33,27 +34,41 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={onSubmitLogin}>
-        <input
-          type="text"
-          name="user_email"
-          value={input.user_email}
-          onChange={handleInputChange}
-        />
+    <div className={styles.container}>
+      <p className={styles.title}>INICIAR SESION</p>
+      <form onSubmit={onSubmitLogin} className={styles.containerForm}>
+        <div className={styles.containerInput}>
+          <span className={styles.spanInput}>Email:</span>
+          <input
+            type="text"
+            name="user_email"
+            value={input.user_email}
+            onChange={handleInputChange}
+            placeholder="example@mail.com"
+            className={styles.input}
+          />
+        </div>
+
+        <div className={styles.containerInput}>
+          <span className={styles.spanInput}>Contraseña: </span>
         <input
           type="password"
           name="user_password"
           value={input.user_password}
           onChange={handleInputChange}
+          placeholder="**********"
+          className={styles.input}
         />
-        <input type="submit" value="Iniciar Sesion" />
+        </div>
+        <input type="submit" value="Iniciar Sesion" className={styles.button}/>
       </form>
       <div>
-        <span>No estas registrado? </span>{" "}
-        <Link to="/register">Registrate</Link>
-      </div>
+        <span className={styles.spanInfo}>No estas registrado? </span>{" "}
+        <Link to="/register" className={styles.link}>Registrate</Link>
+      </div><br />
+      
+       <Link to="/videogames" className={styles.link}>Volver atras</Link>
+      
     </div>
   );
 };
