@@ -1,5 +1,6 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Register.module.css";
 
 const Register = ({ setAuth }) => {
   const [input, setInput] = useState({
@@ -39,35 +40,55 @@ const Register = ({ setAuth }) => {
     }
   };
   return (
-    <div>
-      <p>Registro</p>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          name="user_name"
-          placeholder="nombre de usuario"
-          value={input.user_name}
-          onChange={handleInputChange}
-        />
-        <input
-          type="email"
-          name="user_email"
-          placeholder="email"
-          value={input.user_email}
-          onChange={handleInputChange}
-        />
-        <input
-          type="password"
-          name="user_password"
-          placeholder="password"
-          value={input.user_password}
-          onChange={handleInputChange}
-        />
-        <input type="submit" value="Registrarse" />
+    <div className={styles.container}>
+      <p className={styles.title}>CREAR UNA CUENTA</p>
+      <form onSubmit={onSubmitForm} className={styles.containerForm}>
+        <div className={styles.containerInput}>
+          <span className={styles.spanInput}>Nombre: </span>
+          <input
+            type="text"
+            name="user_name"
+            placeholder="nombre de usuario"
+            value={input.user_name}
+            onChange={handleInputChange}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.containerInput}>
+          <span className={styles.spanInput}>Email: </span>
+          <input
+            type="email"
+            name="user_email"
+            placeholder="email"
+            value={input.user_email}
+            onChange={handleInputChange}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.containerInput}>
+          <span className={styles.spanInput}>Contraseña: </span>
+          <input
+            type="password"
+            name="user_password"
+            placeholder="password"
+            value={input.user_password}
+            onChange={handleInputChange}
+            className={styles.input}
+          />
+        </div>
+
+        <input type="submit" value="Registrarse" className={styles.button} />
       </form>
       <div>
-        <span>Esta registrado? </span> <Link to="/login">Login</Link>
+        <span className={styles.spanInfo}>Esta registrado? </span>{" "}
+        <Link to="/login" className={styles.link}>
+          Inicie Sesion
+        </Link>
       </div>
+      <Link to="/videogames" className={styles.link}>
+        {" "}
+        Volver a lista de juegos{" "}
+      </Link>
     </div>
   );
 };
