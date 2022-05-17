@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import LOGO from "../../assets/joystick.png";
 import { Navbar } from "../navbar/Navbar";
 import styles from "./Header.module.css";
@@ -23,12 +24,14 @@ const Header = ({ setAuth, isAuthenticated }) => {
   }, []);
   return (
     <div className={styles.header}>
-      
       <header className={styles.container}>
-        <div className={styles.containerTitle}>
-          <img src={LOGO} alt="logo" className={styles.image} />
-          <h3 className={styles.title}>Videogames API</h3>
-        </div>
+        {" "}
+        <Link to="/videogames" className={styles.link}>
+          <div className={styles.containerTitle}>
+            <img src={LOGO} alt="logo" className={styles.image} />
+            <h3 className={styles.title}>Videogames API</h3>
+          </div>
+        </Link>
         <Navbar isAuthenticated={isAuthenticated} />
       </header>
       {isAuthenticated === true ? (
