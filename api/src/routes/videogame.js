@@ -103,7 +103,7 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
     next(err);
   }
 });
-router.post("/videogame", authorization, async (req, res, next) => {
+router.post("/videogame", async (req, res, next) => {
   try {
     const {
       videogame_name,

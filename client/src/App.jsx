@@ -67,7 +67,15 @@ function App() {
             path="/videogames/:videogame_id"
             component={VideogameDetails}
           />
-          <Route exact path="/newGame" component={NewVideogame} />
+          <Route
+            exact
+            path="/newGame"
+            render={(props) =>
+              isAuthenticated ? (
+                <NewVideogame {...props}  />
+              ) : null
+            }
+          />
           <Route exact path="/about" component={About} />
           <Footer />
         </Route>
