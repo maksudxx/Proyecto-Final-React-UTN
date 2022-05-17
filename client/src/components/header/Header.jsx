@@ -23,6 +23,14 @@ const Header = ({ setAuth, isAuthenticated }) => {
   }, []);
   return (
     <div className={styles.header}>
+      
+      <header className={styles.container}>
+        <div className={styles.containerTitle}>
+          <img src={LOGO} alt="logo" className={styles.image} />
+          <h3 className={styles.title}>Videogames API</h3>
+        </div>
+        <Navbar isAuthenticated={isAuthenticated} />
+      </header>
       {isAuthenticated === true ? (
         <span className={styles.containerLogin}>
           <span>Bienvenido {name}</span>
@@ -36,14 +44,6 @@ const Header = ({ setAuth, isAuthenticated }) => {
           </button>
         </span>
       ) : null}
-      <header className={styles.container}>
-        <div className={styles.containerTitle}>
-          <img src={LOGO} alt="logo" className={styles.image} />
-          <h3 className={styles.title}>Videogames API</h3>
-        </div>
-        <Navbar isAuthenticated={isAuthenticated} />
-      </header>
-      
     </div>
   );
 };
