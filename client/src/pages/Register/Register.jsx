@@ -41,7 +41,7 @@ const Register = ({ setAuth }) => {
   };
   return (
     <div className={styles.container}>
-      <p className={styles.title}>CREAR UNA CUENTA</p>
+      <p className={styles.title}>CREAR UNA NUEVA CUENTA</p>
       <form onSubmit={onSubmitForm} className={styles.containerForm}>
         <div className={styles.containerInput}>
           <span className={styles.spanInput}>Nombre: </span>
@@ -84,7 +84,7 @@ const Register = ({ setAuth }) => {
         <Link to="/login" className={styles.link}>
           Inicie Sesion
         </Link>
-      </div>
+      </div> <br />
       <Link to="/videogames" className={styles.link}>
         {" "}
         Volver a lista de juegos{" "}
