@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Videogames from "./pages/videogames/Videogames";
 import Landing from "./pages/landing/Landing";
 import Header from "./components/header/Header";
@@ -16,6 +16,23 @@ function App() {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
+
+  async function isAuth() {
+    try {
+      const response = await fetch("http://localhost:3001/auth/is-verify", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+
+      const parseRes = await response.json();
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  useEffect(() => {
+    isAuth();
+  }, []);
   return (
     <div className="App">
       <Switch>
