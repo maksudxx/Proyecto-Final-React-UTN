@@ -15,3 +15,6 @@ export const GET_GENRES = "GET_GENRES"
 
 //Platforms
 export const GET_PLATFORMS = "GET_PLATFORMs"
+
+//users
+export const GET_USER = "GET_USER"

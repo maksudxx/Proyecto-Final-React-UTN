@@ -4,10 +4,12 @@ import genreReducer from './genreReducer';
 import platformReducer from './platformReducer';
 
 
+
 const reducer = combineReducers({
     videogame: videogameReducer,
     genre: genreReducer,
-    platform: platformReducer
+    platform: platformReducer,
+    
 })
 
 export default reducer;
