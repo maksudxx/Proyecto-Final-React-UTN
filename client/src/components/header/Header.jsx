@@ -5,7 +5,6 @@ import { Navbar } from "../navbar/Navbar";
 import styles from "./Header.module.css";
 
 const Header = ({ setAuth, isAuthenticated }) => {
-  console.log(isAuthenticated);
   const [name, setName] = useState("");
   async function getName() {
     try {
@@ -22,6 +21,12 @@ const Header = ({ setAuth, isAuthenticated }) => {
   useEffect(() => {
     getName();
   }, []);
+
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setAuth(false);
+  };
   return (
     <div className={styles.header}>
       <header className={styles.container}>
@@ -37,12 +42,7 @@ const Header = ({ setAuth, isAuthenticated }) => {
       {isAuthenticated === true ? (
         <span className={styles.containerLogin}>
           <span>Bienvenido {name}</span>
-          <button
-            onClick={() => {
-              setAuth(false);
-            }}
-            className={styles.buttonLogout}
-          >
+          <button onClick={logout} className={styles.buttonLogout}>
             Cerrar sesion
           </button>
         </span>
