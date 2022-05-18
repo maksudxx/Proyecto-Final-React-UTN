@@ -11,15 +11,15 @@ const About = () => {
         <p>
           Aplicacion desarrollada por Facundo Maksud con fines educativos para
           el proyecto final del bootcamp de ReactJs dictado por la UTN. Esta
-          aplicacion consume una la api de{" "}
-          <a href="https://rawg.io/" target="_blank">
+          aplicacion consume la api de{" "}
+          <a href="https://rawg.io/" target="_blank" className={styles.a}>
             Rawg.io
           </a>{" "}
-          la cual la informacion es gurdada en una Base de datos. Las
-          tecnologias utilizadas para este proyecto para complementar con lo
+          el cual la informacion es gurdada en una Base de datos. Las
+          tecnologias y/o librerias utilizadas para este proyecto para complementar con lo
           visto en el curso fueron:{" "}
           <span className={styles.p}>
-            Redux, NodeJs, Express, Sequelize ORM, PostgreSQL
+            CSS Modules, Redux, NodeJs, Express, Sequelize ORM, PostgreSQL, JWT.
           </span>
         </p>
 
@@ -54,17 +54,22 @@ const About = () => {
             <p>
               En esta seccion podemos crear o agregar nuestro propio juego
               llenando un formulario. este juego se almacenara en la base de
-              datos de la aplicacion y se mostrara una vaz guardado en la lista
-              de juegos
+              datos de la aplicacion y se mostrara una vez guardado en la lista
+              de juegos. Aclaracion: para poder ingresar nuevos juegos tiene que
+              estar logueado.
             </p>
           </li>
           <br />
           <li className={styles.li}>
-            <p className={styles.subTitle}>Iniciar Sesion: </p>
-            <p></p>
+            <p className={styles.subTitle}>Iniciar Sesion / Registarse: </p>
+            <p>
+              En esta seccion vamos a poder crearnos una cuenta para poder crear
+              o agregar nuevos juegos a la BD.
+            </p>
           </li>
         </ul>
       </div>
+      <br /><br />
     </div>
   );
 };
