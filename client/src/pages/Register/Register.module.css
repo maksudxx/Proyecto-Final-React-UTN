@@ -73,3 +73,19 @@
 .link:hover{
     color: #fe9f02
 }
+
+@media (max-width: 400px) {
+    .containerForm {
+      height: 40vh;
+      width: 90vw;
+    }
+    .containerInput {
+      width: 90%;
+      font-size: 1.1rem;
+    }
+    .title {
+      font-size: 2rem;
+      margin: 50px 0 35px 0;
+      text-align: center;
+    }
+  }
