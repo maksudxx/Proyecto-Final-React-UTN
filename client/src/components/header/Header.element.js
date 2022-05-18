@@ -40,13 +40,13 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   height: 100%;
-  width: 150px;
+  width: 170px;
   padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: bold;
   &:hover {
     background-color: #fe9f02;
     font-color: #000;
