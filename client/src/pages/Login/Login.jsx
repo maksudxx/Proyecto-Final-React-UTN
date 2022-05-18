@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ setAuth }) => {
   const [input, setInput] = useState({
@@ -26,8 +28,15 @@ const Login = ({ setAuth }) => {
         body: JSON.stringify(data),
       });
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      setAuth(true);
+      if (parseRes.token) {
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+        alert("Bienvenido")
+        
+      }else{
+        setAuth(false);
+        alert(JSON.stringify(parseRes))
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -51,23 +60,28 @@ const Login = ({ setAuth }) => {
 
         <div className={styles.containerInput}>
           <span className={styles.spanInput}>Contraseña: </span>
-        <input
-          type="password"
-          name="user_password"
-          value={input.user_password}
-          onChange={handleInputChange}
-          placeholder="**********"
-          className={styles.input}
-        />
+          <input
+            type="password"
+            name="user_password"
+            value={input.user_password}
+            onChange={handleInputChange}
+            placeholder="**********"
+            className={styles.input}
+          />
         </div>
-        <input type="submit" value="Iniciar Sesion" className={styles.button}/>
+        <input type="submit" value="Iniciar Sesion" className={styles.button} />
       </form>
       <div>
         <span className={styles.spanInfo}>No estas registrado? </span>{" "}
-        <Link to="/register" className={styles.link}>Registrate</Link>
-      </div><br />
-      
-       <Link to="/videogames" className={styles.link}>Volver atras</Link>
+        <Link to="/register" className={styles.link}>
+          Registrate
+        </Link>
+      </div>
+      <br />
+
+      <Link to="/videogames" className={styles.link}>
+        Volver atras
+      </Link>
       
     </div>
   );

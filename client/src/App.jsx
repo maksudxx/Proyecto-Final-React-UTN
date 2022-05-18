@@ -11,6 +11,8 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Sesion from "./components/Sesion/Sesion";
 
+
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -62,7 +64,7 @@ function App() {
         />
         <Route path="/">
           <Header setAuth={setAuth} isAuthenticated={isAuthenticated} />
-          <Sesion setAuth={setAuth} isAuthenticated={isAuthenticated}/>
+          <Sesion setAuth={setAuth} isAuthenticated={isAuthenticated} />
           <Route exact path="/videogames" component={Videogames} />
           <Route
             exact
@@ -74,8 +76,10 @@ function App() {
             path="/newGame"
             render={(props) =>
               isAuthenticated ? (
-                <NewVideogame {...props}  />
-              ) : <Redirect to='/login' />
+                <NewVideogame {...props} />
+              ) : (
+                <Redirect to="/login" />
+              )
             }
           />
           <Route exact path="/about" component={About} />
