@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ setAuth }) => {
   const [input, setInput] = useState({
@@ -31,11 +29,10 @@ const Login = ({ setAuth }) => {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
-        alert("Bienvenido")
-        
-      }else{
+        alert("Bienvenido");
+      } else {
         setAuth(false);
-        alert(JSON.stringify(parseRes))
+        alert(JSON.stringify(parseRes));
       }
     } catch (error) {
       console.error(error.message);
@@ -82,7 +79,6 @@ const Login = ({ setAuth }) => {
       <Link to="/videogames" className={styles.link}>
         Volver atras
       </Link>
-      
     </div>
   );
 };
