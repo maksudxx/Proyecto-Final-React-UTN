@@ -1,53 +1,50 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import LOGO from "../../assets/joystick.png";
-import { Navbar } from "../navbar/Navbar";
-import styles from "./Header.module.css";
+import { FaBars } from "react-icons/fa";
+import {
+  IconLogoMobile,
+  Menu,
+  MenuItem,
+  MenuItemLink,
+  NavbarContainer,
+  NavbarWrapper,
+} from "./Header.element";
 
-const Header = ({ setAuth, isAuthenticated }) => {
-  const [name, setName] = useState("");
-  async function getName() {
-    try {
-      const response = await fetch("http://localhost:3001/user", {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-      const parseRes = await response.json();
-      setName(parseRes.user_name);
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
-  useEffect(() => {
-    getName();
-  }, []);
+const Header = ({ isAuthenticated }) => {
+  const [click, setClick] = useState(false);
 
-  const logout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setAuth(false);
+  const changeClick = () => {
+    setClick(!click);
+    console.log(click);
   };
+
   return (
-    <div className={styles.header}>
-      <header className={styles.container}>
-        {" "}
-        <Link to="/videogames" className={styles.link}>
-          <div className={styles.containerTitle}>
-            <img src={LOGO} alt="logo" className={styles.image} />
-            <h3 className={styles.title}>Videogames API</h3>
-          </div>
-        </Link>
-        <Navbar isAuthenticated={isAuthenticated} />
-      </header>
-      {isAuthenticated === true ? (
-        <span className={styles.containerLogin}>
-          <span>Bienvenido {name}</span>
-          <button onClick={logout} className={styles.buttonLogout}>
-            Cerrar sesion
-          </button>
-        </span>
-      ) : null}
-    </div>
+    <NavbarContainer>
+      <NavbarWrapper>
+        <IconLogoMobile onClick={() => changeClick()}>
+          <FaBars />
+        </IconLogoMobile>
+        <Menu click={click}>
+          <MenuItem onClick={() => changeClick()}>
+            <MenuItemLink to="/">Inicio</MenuItemLink>
+          </MenuItem>
+          <MenuItem onClick={() => changeClick()}>
+            <MenuItemLink to="/videogames">Lista de Juegos</MenuItemLink>
+          </MenuItem>
+          {isAuthenticated ? (
+            <MenuItem onClick={() => changeClick()}>
+              <MenuItemLink to="/newGame">Agregar juego</MenuItemLink>
+            </MenuItem>
+          ) : null}
+          <MenuItem onClick={() => changeClick()}>
+            <MenuItemLink to="/about">Acerca de</MenuItemLink>
+          </MenuItem>
+          <MenuItem onClick={() => changeClick()}>
+            <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
+          </MenuItem>
+        </Menu>
+      </NavbarWrapper>
+    </NavbarContainer>
   );
 };
 
