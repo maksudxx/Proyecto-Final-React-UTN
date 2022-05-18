@@ -11,6 +11,7 @@
   font-weight: bold;
   margin: 15px 0;
   text-transform: uppercase;
+  color: #fe9f02;
 }
 
 .containerAbout {
@@ -51,4 +52,21 @@
 
 .requirements{
    padding-right: 55px;;
+}
+
+
+@media(max-width: 400px){
+  .containerAbout{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .img{
+    width: 350px;
+    height: 200px;
+  }
+
+  .titleAbout{
+    margin-top: 15px;
+  }
 }

@@ -33,7 +33,7 @@ const VideogameDetails = () => {
             />
 
             <div className={styles.containerInfo}>
-              <h3>Acerca de</h3> <br />
+              <h3 className={styles.titleAbout}>Acerca de</h3> <br />
               <p>{videogame.description_raw}</p>
             </div>
           </div>
