@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const NavbarContainer = styled.div`
-display:flex;
   width: 100%;
   height: 100px;
   position: sticky;
@@ -9,11 +8,12 @@ display:flex;
   top: 0;
   z-index: 99;
   background-color: #000;
-  margin-bottom: 20px;
+  border-bottom: 2px solid black;
 `;
 
 export const NavbarWrapper = styled.div`
   margin: auto;
+  max-width: 800px;
   height: 100%;
   display: flex;
   align-items: center;

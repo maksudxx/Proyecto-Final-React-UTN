@@ -39,9 +39,11 @@ const Header = ({ isAuthenticated }) => {
           <MenuItem onClick={() => changeClick()}>
             <MenuItemLink to="/about">Acerca de</MenuItemLink>
           </MenuItem>
-          <MenuItem onClick={() => changeClick()}>
-            <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
-          </MenuItem>
+          {!isAuthenticated ? (
+            <MenuItem onClick={() => changeClick()}>
+              <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
+            </MenuItem>
+          ) : null}
         </Menu>
       </NavbarWrapper>
     </NavbarContainer>
