@@ -9,6 +9,7 @@ import About from "./pages/about/About";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Sesion from "./components/Sesion/Sesion";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -61,6 +62,7 @@ function App() {
         />
         <Route path="/">
           <Header setAuth={setAuth} isAuthenticated={isAuthenticated} />
+          <Sesion setAuth={setAuth} isAuthenticated={isAuthenticated}/>
           <Route exact path="/videogames" component={Videogames} />
           <Route
             exact

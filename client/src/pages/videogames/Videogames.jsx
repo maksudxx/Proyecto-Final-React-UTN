@@ -6,6 +6,7 @@ import { getVideogames } from "../../redux/actions/videogameActions";
 import Card from "../../components/card/Card";
 import GameNotFound from "../../components/gameNotFound/GameNotFound"
 import SearchBar from "../../components/searchbar/SearchBar";
+import Sesion from "../../components/sesion/Sesion"
 
 const Videogames = () => {
   const dispatch = useDispatch();
