@@ -2,6 +2,7 @@
   color: #fff;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 10px 25px;
   width: 100vw;
 }
@@ -12,11 +13,17 @@
   margin: 15px 0;
   text-transform: uppercase;
   color: #fe9f02;
+  align-self: flex-start;
+  margin: 30px 100px;
 }
 
+.routes {
+  align-self: flex-start;
+  margin-left: 100px;
+}
 .containerAbout {
   display: flex;
-  width: 100vw;
+  width: 90vw;
   margin-bottom: 25px;
 }
 .img {
@@ -50,23 +57,40 @@
   margin-right: 10px;
 }
 
-.requirements{
-   padding-right: 55px;;
+.containerPlatformAndRequirements {
+  align-self: flex-start;
+  margin: 0 75px;
 }
 
-
-@media(max-width: 400px){
-  .containerAbout{
+@media (max-width: 400px) {
+  .container {
+    align-items: flex-start;
+    width: 95%;
+  }
+  .containerAbout {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 95%;
   }
-  .img{
-    width: 350px;
-    height: 200px;
+  .img {
+    width: 300px;
+    height: 180px;
+  }
+  .titleGame {
+    align-self: center;
+    text-align: center;
+    width: 100%;
   }
 
-  .titleAbout{
+  .routes {
+    margin: 0;
+  }
+  .titleAbout {
     margin-top: 15px;
+  }
+  .containerPlatformAndRequirements {
+    width: 100%;
+    margin: 0;
   }
 }

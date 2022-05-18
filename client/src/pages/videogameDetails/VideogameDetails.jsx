@@ -21,7 +21,7 @@ const VideogameDetails = () => {
         <Spinner />
       ) : (
         <div className={styles.container}>
-          <h5>/videogames/{videogame.name}</h5>
+          <h5 className={styles.routes}>/videogames/{videogame.name}</h5>
 
           <p className={styles.titleGame}>{videogame.name}</p>
 
@@ -62,7 +62,7 @@ const VideogameDetails = () => {
               ))}
             </div>
           </div>
-          <div>
+          <div className={styles.containerPlatformAndRequirements}>
             <br />
             <h3>
               <u>Plataformas y Requerimientos</u>
@@ -76,6 +76,7 @@ const VideogameDetails = () => {
               </div>
             ))}
           </div>
+          <br />
         </div>
       )}
     </>
