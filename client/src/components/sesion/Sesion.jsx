@@ -26,7 +26,7 @@ const Sesion = ({setAuth, isAuthenticated}) => {
     };
   return (
       
-    <div>
+    <div className={styles.container}>
         {isAuthenticated === true ? (
         <span className={styles.containerLogin}>
           <span>Bienvenido {name}</span>
