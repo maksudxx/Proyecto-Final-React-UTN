@@ -73,7 +73,7 @@ function App() {
             render={(props) =>
               isAuthenticated ? (
                 <NewVideogame {...props}  />
-              ) : null
+              ) : <Redirect to='/login' />
             }
           />
           <Route exact path="/about" component={About} />
