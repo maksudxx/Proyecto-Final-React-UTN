@@ -33,8 +33,14 @@ const Register = ({ setAuth }) => {
       });
 
       const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      setAuth(true);
+      if(parseRes.token){
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+        alert('Registrado correctamente, Bienvenido!')
+      }else{
+        setAuth(false);
+        alert(JSON.stringify(parseRes))
+      }
     } catch (error) {
       console.error(error.message);
     }
