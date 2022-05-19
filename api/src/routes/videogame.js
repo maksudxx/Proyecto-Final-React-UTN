@@ -22,13 +22,13 @@ router.get("/videogames", async (req, res, next) => {
         `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
       );
       let newVideoGame3 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=3`
       );
       let newVideoGame4 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=4`
       );
       let newVideoGame5 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=5`
       );
       arrayGames = newVideoGame.data.results.concat(
         newVideoGame2.data.results,
