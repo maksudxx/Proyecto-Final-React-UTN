@@ -25,7 +25,13 @@
   padding: 5px 30px 5px 10px;
   margin-bottom: 5px;
   border: 1px solid #fe9f02;
+  color:#fe9f02;
+  font-weight: bold;
   
+}
+
+.searchInput:focus{
+  background: transparent
 }
 
 .searchInput::placeholder {
