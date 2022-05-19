@@ -63,7 +63,7 @@ const Videogames = () => {
                 release={v.videogame_release_date}
               />
             ))
-          ): <div className={styles.containerNotFound}><GameNotFound /></div>}
+          ): <GameNotFound />}
         </ul>
       </div>
       <br /><br />

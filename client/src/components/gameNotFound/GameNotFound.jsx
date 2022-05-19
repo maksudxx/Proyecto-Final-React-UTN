@@ -5,7 +5,7 @@ import styles from './GameNotFound.module.css'
 const GameNotFound = () => {
   return (
     <div className={styles.container}>
-      <h1>Videojuego no encontrado</h1>
+      <div><h1>Videojuego no encontrado</h1></div>
       <img src={NOTFOUND} alt="error" className={styles.image}/>
     </div>
   )
