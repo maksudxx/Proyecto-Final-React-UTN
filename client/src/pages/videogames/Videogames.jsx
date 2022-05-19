@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./Videogames.module.css";
 import { getVideogames } from "../../redux/actions/videogameActions";
 import Card from "../../components/card/Card";
-import GameNotFound from "../../components/gameNotFound/GameNotFound"
+import GameNotFound from "../../components/gameNotFound/GameNotFound";
 import SearchBar from "../../components/searchbar/SearchBar";
-import Sesion from "../../components/sesion/Sesion"
 
 const Videogames = () => {
   const dispatch = useDispatch();
@@ -34,40 +33,41 @@ const Videogames = () => {
         <p className={styles.title}>LISTA DE JUEGOS</p>
         <SearchBar />
         <ReactPaginate
-        id="pagination"
-        previousLabel={"<"}
-        nextLabel={">"}
-        pageCount={pageCount}
-        onPageChange={changePage}
-        containerClassName={styles.paginationBttns}
-        previousLinkClassName={styles.previousBttn}
-        nextLinkClassName={styles.nextBttn}
-        disabledClassName={styles.paginationDisabled}
-        activeClassName={styles.paginationActive}
-      />
+          id="pagination"
+          previousLabel={"<"}
+          nextLabel={">"}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={styles.paginationBttns}
+          previousLinkClassName={styles.previousBttn}
+          nextLinkClassName={styles.nextBttn}
+          disabledClassName={styles.paginationDisabled}
+          activeClassName={styles.paginationActive}
+        />
+
         <ul className={styles.containerCards}>
-          
           {videogames?.length > 0 ? (
             videogames
-            ?.slice(pagesVisited, pagesVisited + postsPorPagina)
-            .map((v, index) => (
-              <Card
-                key={index}
-                id={v.videogame_id}
-                idApi={v.videogame_id_api}
-                name={v.videogame_name}
-                image={v.videogame_image}
-                rating={v.videogame_rating}
-                genres={v.genres}
-                platforms={v.platforms}
-                release={v.videogame_release_date}
-              />
-            ))
-          ): <GameNotFound />}
+              ?.slice(pagesVisited, pagesVisited + postsPorPagina)
+              .map((v, index) => (
+                <Card
+                  key={index}
+                  id={v.videogame_id}
+                  idApi={v.videogame_id_api}
+                  name={v.videogame_name}
+                  image={v.videogame_image}
+                  rating={v.videogame_rating}
+                  genres={v.genres}
+                  platforms={v.platforms}
+                  release={v.videogame_release_date}
+                />
+              ))
+          ) : (
+            <GameNotFound />
+          )}
         </ul>
+        <br /><br />
       </div>
-      <br /><br />
-      
     </>
   );
 };
