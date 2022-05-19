@@ -39,6 +39,7 @@
 
 .containerInfo2 {
   display: grid;
+  width: 90vw;
 }
 
 .titleInfo {
