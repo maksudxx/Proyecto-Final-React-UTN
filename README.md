@@ -47,7 +47,7 @@ para poder hacer la instalacion tener una base de datos postgres
 ## Carpeta Client
     Una vez hecho la instalacion dentro de esta carpeta te encontraras con estas secciones
     '/' Landing page o pagina de inicio la cual te lleva a la siguiente ruta que es la lista de juegos.
-    '/videogames' Vista la cual contiene la lista de juegos paginada, como asi tambien tiene 2 filtros (por genero y por categoria)
+    '/videogames' Vista la cual contiene la lista de juegos paginada, como asi tambien tiene 2 filtros (por genero y por categoria) y un searchar que busca por nombre de juego
     '/videogame/:id' Vista que muestra la informacion detallada de un juego
     '/newGame' en esta seccion podemos crear o agregar un nuevo juego con la informacion que solicita la misma (para poder usar esa funcion debes estar logueado)
     '/about' vista la cual explica un poco de lo que va la pagina.
