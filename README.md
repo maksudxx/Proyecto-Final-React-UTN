@@ -19,7 +19,7 @@ para poder hacer la instalacion tener una base de datos postgres
     DATABASE = videogames
     PORT = 3001
     API_KEY = 51198d696f0f4a03aaa77936ccd81e51
-    JWT_SECRET = TU_SECRET
+    JWT_SECRET = f4cund0M4ksuD2021141192
 
 ### Endpoints
 ### Videogame
