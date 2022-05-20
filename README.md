@@ -10,8 +10,8 @@
     Una vez clonada la carpeta hacer 2 npm install (uno en carpeta api y otro en client)
 
 ## Carpeta API 
-### Variables de entorno de api 
 para poder hacer la instalacion tener una base de datos postgres
+### Variables de entorno de api 
 
     DB_USER = TU_USUARIO
     DB_PASSWORD = TU_PASSWORD
