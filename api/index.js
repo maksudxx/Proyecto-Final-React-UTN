@@ -3,7 +3,7 @@ const { conn, Genre, Platform } = require("./src/db.js");
 const { createData } = require("./preloadData");
 require("dotenv").config();
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(process.env.PORT || 3001, async () => {
     console.log("%s listening at 3001");
     const data = await createData();
