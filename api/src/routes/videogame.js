@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const { Videogame, Genre, Platform } = require("../db");
 const axios = require("axios");
-const authorization = require("../middleware/authorization")
+const authorization = require("../middleware/authorization");
 const { API_KEY } = process.env;
 
 const router = Router();

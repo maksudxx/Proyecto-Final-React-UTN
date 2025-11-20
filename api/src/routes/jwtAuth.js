@@ -59,12 +59,12 @@ router.post("/login", validInfo, async (req, res, next) => {
   }
 });
 
-router.get('/is-verify',authorization, async (req, res, next) => {
+router.get("/is-verify", authorization, async (req, res, next) => {
   try {
-    res.json(true)
+    res.json(true);
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = router;

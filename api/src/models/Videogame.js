@@ -20,13 +20,13 @@ module.exports = (sequelize) => {
     videogame_release_date: {
       type: DataTypes.DATE,
     },
-    videogame_rating:{
-        type: DataTypes.DOUBLE,
-        allowNull: false
+    videogame_rating: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
     },
-    videogame_image:{
+    videogame_image: {
       type: DataTypes.TEXT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
 };
