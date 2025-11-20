@@ -84,7 +84,7 @@ router.get("/videogames", async (req, res, next) => {
   }
 });
 
-router.get("/videogame/:videogame_id", async (req, res, next) => {
+router.get("/videogames/:videogame_id", async (req, res, next) => {
   const { videogame_id } = req.params;
   try {
     let videogame = await Videogame.findOne({
@@ -103,7 +103,7 @@ router.get("/videogame/:videogame_id", async (req, res, next) => {
     next(err);
   }
 });
-router.post("/videogame", async (req, res, next) => {
+router.post("/videogames", async (req, res, next) => {
   try {
     const {
       videogame_name,
@@ -132,7 +132,7 @@ router.post("/videogame", async (req, res, next) => {
   }
 });
 
-router.put("/videogame/:videogame_id", async (req, res, next) => {
+router.put("/videogames/:videogame_id", async (req, res, next) => {
   const {
     videogame_name,
     videogame_description,
@@ -161,7 +161,7 @@ router.put("/videogame/:videogame_id", async (req, res, next) => {
   }
 });
 
-router.delete("/videogame/:videogame_id", async (req, res, next) => {
+router.delete("/videogames/:videogame_id", async (req, res, next) => {
   const { videogame_id } = req.params;
   const videogame = await Videogame.findOne({
     where: { videogame_id: videogame_id },
