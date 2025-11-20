@@ -14,5 +14,4 @@ try {
   console.error("Error fetching genre4s:", error);
   res.status(500).json({ error: "Internal server error" });
 }
-
 module.exports = router;
