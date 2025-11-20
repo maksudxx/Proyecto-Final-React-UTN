@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const { Genre } = require("../db");
-
+const router = Router();
 try {
-  const router = Router();
+  
   router.get("/genres", async (_req, res) => {
     let genres = await Genre.findAll({
       order: [["genre_name", "asc"]],
