@@ -1,84 +1,17 @@
 const { Router } = require("express");
-const { Op } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
-const { Videogame, Genre, Platform } = require("../db");
-const axios = require("axios");
-const authorization = require("../middleware/authorization");
-const { API_KEY } = process.env;
+const {
+  getVideogames,
+  preloadGames,
+  getVideoGameById,
+} = require("../controllers/videogames");
 
 const router = Router();
 
 router.get("/videogames", async (req, res, next) => {
   try {
-    const { name } = req.query;
-
-    let arrayGames = [];
-    let videogames = await Videogame.findAll();
-    if (videogames.length === 0) {
-      let newVideoGame = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}`
-      );
-      let newVideoGame2 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=2`
-      );
-      let newVideoGame3 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=3`
-      );
-      let newVideoGame4 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=4`
-      );
-      let newVideoGame5 = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=5`
-      );
-      arrayGames = newVideoGame.data.results.concat(
-        newVideoGame2.data.results,
-        newVideoGame3.data.results,
-        newVideoGame4.data.results,
-        newVideoGame5.data.results
-      );
-      arrayGames.map(async (v) => {
-        let video = await Videogame.create({
-          videogame_id: uuidv4(),
-          videogame_id_api: v.id,
-          videogame_name: v.name,
-          videogame_description: "-",
-          videogame_release_date: v.released,
-          videogame_rating: v.rating,
-          videogame_image: v.background_image,
-        });
-        let arrayGenre = [];
-
-        v.genres.map(async (genre) => {
-          arrayGenre.push(genre.id);
-        });
-
-        let arrayPlatform = [];
-        v.platforms.map(async (p) => {
-          arrayPlatform.push(p.platform.id);
-        });
-
-        await video.addGenre(arrayGenre);
-        try {
-          await video.addPlatform(arrayPlatform);
-        } catch (err) {
-          next(err);
-        }
-      });
-    }
-
-    if (!name) {
-      let videogames = await Videogame.findAll({
-        include: [{ model: Genre }, { model: Platform }],
-      });
-
-      res.json(videogames);
-    } else {
-      const matchVideogame = await Videogame.findAll({
-        where: { videogame_name: { [Op.iLike]: `%${name}%` } },
-        include: [{ model: Genre }, { model: Platform }],
-      });
-      res.json(matchVideogame);
-    }
+    await preloadGames();
+    const games = await getVideogames(req.query.name);
+    res.json(games);
   } catch (err) {
     next(err);
   }
@@ -87,18 +20,12 @@ router.get("/videogames", async (req, res, next) => {
 router.get("/videogames/:videogame_id", async (req, res, next) => {
   const { videogame_id } = req.params;
   try {
-    let videogame = await Videogame.findOne({
-      where: { videogame_id: videogame_id },
-      include: [{ model: Genre }, { model: Platform }],
-    });
-    if (videogame.videogame_description === "-") {
-      let matchvideogame = await axios.get(
-        `https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=${API_KEY}`
-      );
-      res.json(matchvideogame.data);
-    } else {
-      res.json(videogame);
+    const videogameData = await getVideoGameById(videogame_id);
+
+    if (!videogameData) {
+      return res.status(404).json({ message: "Videogame not found" });
     }
+    res.json(videogameData);
   } catch (err) {
     next(err);
   }

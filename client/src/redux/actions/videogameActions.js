@@ -28,7 +28,7 @@ export function getVideogameName(name) {
 export function getVideogameId(videogame_id) {
   return async function (dispatch) {
     const response = await axios.get(
-      "http://localhost:3001/videogame/" + videogame_id
+      "http://localhost:3001/videogames/" + videogame_id
     );
     const json = response.data;
     dispatch({ type: GET_VIDEOGAMES_ID, payload: json });
