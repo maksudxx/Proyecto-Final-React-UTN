@@ -8,23 +8,26 @@ const PORT = process.env.PORT || 3001;
 async function startServer() {
   try {
     // Sincronizar DB
-    await conn.sync({ force: true });
+    await conn.sync({ force: false });
     console.log("Database synced");
 
-    // Preload de data
-    const { genre, platform } = await createData();
+    const countGenres = await Genre.count();
 
-    await Promise.all([
-      Genre.bulkCreate(genre, {
-        ignoreDuplicates: true,
-      }),
-      Platform.bulkCreate(platform, {
-        ignoreDuplicates: true,
-      }),
-    ]);
+    if (countGenres === 0) {
+      // Preload de data
+      const { genre, platform } = await createData();
 
-    console.log("Preload completed (Genres & Platforms created)");
+      await Promise.all([
+        Genre.bulkCreate(genre, {
+          ignoreDuplicates: true,
+        }),
+        Platform.bulkCreate(platform, {
+          ignoreDuplicates: true,
+        }),
+      ]);
 
+      console.log("Preload completed (Genres & Platforms created)");
+    }
     // Levantar servidor
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
