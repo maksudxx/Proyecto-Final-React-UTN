@@ -1,5 +1,5 @@
 const server = require("./src/app");
-const { conn, Genre, Platform, Tag } = require("./src/db.js");
+const { conn, Genre, Platform } = require("./src/db.js");
 const { createData } = require("./preloadData");
 require("dotenv").config();
 
@@ -22,10 +22,7 @@ async function startServer() {
         }),
         Platform.bulkCreate(platform, {
           ignoreDuplicates: true,
-        }),
-        Tag.bulkCreate(tag, { 
-          ignoreDuplicates: true,
-        }),
+        })
       ]);
 
       console.log("Preload completed (Genres, Tags & Platforms created)");
