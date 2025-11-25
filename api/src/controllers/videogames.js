@@ -1,13 +1,13 @@
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
-const { Videogame, Genre, Platform } = require("../db");
+const { Videogame, Genre, Platform, Tag, Developer } = require("../db");
 const axios = require("axios");
 const { API_KEY } = process.env;
 
 async function fetchGamesFromRawg(pages) {
   try {
     const requests = [];
-    for (let i = pages; i <= pages + 20; i++) {
+    for (let i = 1; i <= pages; i++) {
       requests.push(
         axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
       );
@@ -39,15 +39,48 @@ async function preloadGames() {
 
     const rawGames = await fetchGamesFromRawg(1);
     for (const g of rawGames) {
+      //obtenemos informacion que necesita la BD
+      const detailsRes = await axios.get(
+        `https://api.rawg.io/api/games/${g.id}?key=${API_KEY}`
+      );
+
+      const description = detailsRes.data.description_raw;
+
+      const tags = detailsRes.data.tags;
+      const developers = detailsRes.data.developers;
+
       const game = await Videogame.create({
         videogame_id: uuidv4(),
         videogame_id_api: g.id,
         videogame_name: g.name,
-        videogame_description: "-",
+        videogame_description: description,
         videogame_release_date: g.released,
         videogame_rating: g.rating,
         videogame_image: g.background_image,
       });
+
+      // CARGAMOS LOS TAGS QUE SE NECESITAN EN EL MOMENTO Y NO TODOS EN LA BD
+      const tagIds = [];
+      for (const t of tags) {
+        const [tagDB] = await Tag.findOrCreate({
+          where: { tag_id: t.id },
+          defaults: { tag_id: t.id, tag_name: t.name },
+        });
+        tagIds.push(tagDB.tag_id);
+      }
+      await game.addTag(tagIds);
+
+      // CARGAMOS LOS DEVELOPERS QUE SE NECESITAN EN EL MOMENTO Y NO TODOS EN LA BD
+      const devIds = [];
+      for (const d of developers) {
+        const [devDB] = await Developer.findOrCreate({
+          where: { developer_id: d.id },
+          defaults: { developer_id: d.id, developer_name: d.name },
+        });
+        devIds.push(devDB.developer_id);
+      }
+
+      await game.addDeveloper(devIds);
 
       const genreIds = g.genres.map((gen) => gen.id);
       const platformIds = g.platforms.map((p) => p.platform.id);
@@ -81,19 +114,13 @@ async function getGameById(id) {
   try {
     let videogame = await Videogame.findOne({
       where: { videogame_id: id },
-      include: [{ model: Genre }, { model: Platform }],
+      include: [{ model: Genre }, { model: Platform }, {model: Tag}, {model : Developer}],
     });
-
+    console.log(videogame)
     if (!videogame) {
       return null;
-    }
-    console.log(videogame.videogame_description);
-    if (videogame.videogame_description === "-") {
-      let matchvideogame = await axios.get(
-        `https://api.rawg.io/api/games/${videogame.videogame_id_api}?key=${API_KEY}`
-      );
-      return matchvideogame.data;
     } else {
+      console.log(videogame);
       return videogame;
     }
   } catch (error) {
