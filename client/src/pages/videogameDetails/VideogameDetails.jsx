@@ -15,64 +15,72 @@ const VideogameDetails = () => {
     setIsLoading(false);
   }, [dispatch, videogame_id]);
 
+  const {
+    videogame_name,
+    videogame_description,
+    videogame_image,
+    videogame_release_date,
+    tags,
+    developers,
+    platforms,
+    videogame_rating
+  } = videogame;
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
         <div className={styles.container}>
-          <h5 className={styles.routes}>/videogames/{videogame.name}</h5>
+          <h5 className={styles.routes}>/videogames/{videogame_name}</h5>
 
-          <p className={styles.titleGame}>{videogame.name}</p>
+          <p className={styles.titleGame}>{videogame_name}</p>
 
           <div className={styles.containerAbout}>
             <img
-              src={videogame.background_image}
-              alt={videogame.name}
+              src={videogame_image}
+              alt={videogame_name}
               className={styles.img}
             />
 
             <div className={styles.containerInfo}>
               <h3 className={styles.titleAbout}>Acerca de</h3> <br />
-              <p>{videogame.description_raw}</p>
+              <p>{videogame_description}</p>
             </div>
           </div>
 
           <div className={styles.containerInfo2}>
             <div className={styles.div}>
               <p className={styles.titleInfo}>Fecha de Lanzamiento</p>
-              <p className={styles.info}>{videogame.released}</p>
+              <p className={styles.info}>{videogame_release_date}</p>
             </div>
             <div className={styles.div}>
               <p className={styles.titleInfo}>Tags</p>
               <p className={styles.info}>
-                {videogame.tags?.map((t) => (
-                  <p className={styles.nameInfo}>{t.name}</p>
+                {tags?.map((t) => (
+                  <p className={styles.nameInfo}>{t.tag_name}</p>
                 ))}
               </p>
             </div>
             <div className={styles.div}>
               <p className={styles.titleInfo}>Rating</p>
-              <p className={styles.info}>{videogame.rating}</p>
+              <p className={styles.info}>{videogame_rating}</p>
             </div>
             <div className={styles.div}>
               <p className={styles.titleInfo}>Desarrollador</p>
-              {videogame.developers?.map((developer) => (
-                <p className={styles.info}>{developer.name}</p>
+              {developers?.map((developer) => (
+                <p className={styles.info}>{developer.developer_name}</p>
               ))}
             </div>
           </div>
           <div className={styles.containerPlatformAndRequirements}>
             <br />
             <h3>
-              <u>Plataformas y Requerimientos</u>
+              <u>Plataformas</u>
             </h3>
             <br />
-            {videogame.platforms?.map((v) => (
+            {platforms?.map((v) => (
               <div className={styles.requirements}>
-                <li>{v.platform.name}</li>
-                <p>{v.requirements.minimum}</p>
-                <p>{v.requirements.recommended}</p>
+                <li>{v.platform_name}</li>
               </div>
             ))}
           </div>
