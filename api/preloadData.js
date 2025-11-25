@@ -3,6 +3,7 @@ const axios = require("axios");
 const { API_KEY } = process.env;
 
 async function createData() {
+  //!====================GENRES===========================//
   //traer las plataformas y los generos de la api
   const genresRes = await axios.get(
     `https://api.rawg.io/api/genres?key=${API_KEY}`
@@ -17,8 +18,8 @@ async function createData() {
   // Agregar opción "Todos los géneros"
   genre.push({ genre_id: 9999, genre_name: "1-Todos los generos" });
 
+  //!====================PLATFORMS===========================//
   // Mapear plataformas
-
   let platform = [];
   let page = 1;
   let totalPages = 2;
