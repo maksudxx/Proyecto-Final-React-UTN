@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 async function startServer() {
   try {
     // Sincronizar DB
-    await conn.sync({ force: true });
+    await conn.sync({ force: false });
     console.log("Database synced");
 
     const countGenres = await Genre.count();
