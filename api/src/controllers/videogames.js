@@ -36,10 +36,10 @@ async function preloadGames() {
       console.log("Los juegos ya han sido cargados anteriormente.");
       return;
     }
-
+    // 2. hacemes la peticion a la api, ya que no hay nada cargado en la BD
     const rawGames = await fetchGamesFromRawg(1);
     for (const g of rawGames) {
-      //obtenemos informacion que necesita la BD
+      //obtenemos informacion que necesita la BD consultando por id
       const detailsRes = await axios.get(
         `https://api.rawg.io/api/games/${g.id}?key=${API_KEY}`
       );
@@ -59,7 +59,7 @@ async function preloadGames() {
         videogame_image: g.background_image,
       });
 
-      // CARGAMOS LOS TAGS QUE SE NECESITAN EN EL MOMENTO Y NO TODOS EN LA BD
+      // CARGAMOS LOS TAGS EN CASO DE QUE NO EXISTAN EN LA BD
       const tagIds = [];
       for (const t of tags) {
         const [tagDB] = await Tag.findOrCreate({
@@ -70,7 +70,7 @@ async function preloadGames() {
       }
       await game.addTag(tagIds);
 
-      // CARGAMOS LOS DEVELOPERS QUE SE NECESITAN EN EL MOMENTO Y NO TODOS EN LA BD
+      // CARGAMOS LOS DEVELOPERS EN CASO DE QUE NO EXISTA EN LA BD
       const devIds = [];
       for (const d of developers) {
         const [devDB] = await Developer.findOrCreate({
@@ -114,15 +114,17 @@ async function getGameById(id) {
   try {
     let videogame = await Videogame.findOne({
       where: { videogame_id: id },
-      include: [{ model: Genre }, { model: Platform }, {model: Tag}, {model : Developer}],
+      include: [
+        { model: Genre },
+        { model: Platform },
+        { model: Tag },
+        { model: Developer },
+      ],
     });
-    console.log(videogame)
     if (!videogame) {
       return null;
-    } else {
-      console.log(videogame);
-      return videogame;
     }
+    return videogame;
   } catch (error) {
     console.error("Error fetching videogame by ID:", error);
     throw error;
@@ -136,7 +138,9 @@ async function insertGameInDb(
   videogame_rating,
   videogame_image,
   arrayGenres,
-  arrayPlatforms
+  arrayPlatforms,
+  arrayTags,
+  arrayDevelopers
 ) {
   try {
     let newVideogame = await Videogame.create({
@@ -150,6 +154,8 @@ async function insertGameInDb(
 
     await newVideogame.addGenre(arrayGenres);
     await newVideogame.addPlatform(arrayPlatforms);
+    await newVideogame.addDeveloper(arrayDevelopers);
+    await newVideogame.addTag(arrayTags)
     return newVideogame;
   } catch (error) {
     console.error("Error insert game in DB", error);
@@ -162,7 +168,9 @@ async function editGameInDb(
   videogame_name,
   videogame_description,
   videogame_release_date,
-  videogame_rating
+  videogame_rating,
+  arrayTags,
+  arrayDevelopers
 ) {
   try {
     const editVideogame = await Videogame.findOne({
