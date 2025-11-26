@@ -44,6 +44,8 @@ router.post("/videogames", async (req, res, next) => {
       videogame_image,
       arrayGenres,
       arrayPlatforms,
+      arrayTags,
+      arrayDevelopers,
     } = req.body;
 
     const result = await insertGameInDb(
@@ -53,7 +55,9 @@ router.post("/videogames", async (req, res, next) => {
       videogame_rating,
       videogame_image,
       arrayGenres,
-      arrayPlatforms
+      arrayPlatforms,
+      arrayTags,
+      arrayDevelopers
     );
     res.json({
       message: "OK",
@@ -70,6 +74,8 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
     videogame_description,
     videogame_release_date,
     videogame_rating,
+    arrayTags,
+    arrayDevelopers,
   } = req.body;
   const { videogame_id } = req.params;
   try {
@@ -78,7 +84,9 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
       videogame_name,
       videogame_description,
       videogame_release_date,
-      videogame_rating
+      videogame_rating,
+      arrayTags,
+      arrayDevelopers
     );
 
     if (!result) {
