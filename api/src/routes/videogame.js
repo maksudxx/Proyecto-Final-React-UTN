@@ -74,6 +74,8 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
     videogame_description,
     videogame_release_date,
     videogame_rating,
+    arrayGenres,
+    arrayPlatforms,
     arrayTags,
     arrayDevelopers,
   } = req.body;
@@ -85,6 +87,8 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
       videogame_description,
       videogame_release_date,
       videogame_rating,
+      arrayGenres,
+      arrayPlatforms,
       arrayTags,
       arrayDevelopers
     );
