@@ -36,27 +36,27 @@ async function preloadGames() {
       console.log("Los juegos ya han sido cargados anteriormente.");
       return;
     }
-    // 2. hacemes la peticion a la api, ya que no hay nada cargado en la BD
+    // 2. hacemos la peticion a la api, ya que no hay nada cargado en la BD
     const rawGames = await fetchGamesFromRawg(1);
-    for (const g of rawGames) {
+    for (const game of rawGames) {
       //obtenemos informacion que necesita la BD consultando por id
       const detailsRes = await axios.get(
-        `https://api.rawg.io/api/games/${g.id}?key=${API_KEY}`
+        `https://api.rawg.io/api/games/${game.id}?key=${API_KEY}`
       );
 
-      const description = detailsRes.data.description_raw;
-
-      const tags = detailsRes.data.tags;
-      const developers = detailsRes.data.developers;
+      const { description_raw } = detailsRes.data;
+      const { id, name, released, rating, background_image } = game;
+      const { tags } = detailsRes.data;
+      const { developers } = detailsRes.data;
 
       const game = await Videogame.create({
         videogame_id: uuidv4(),
-        videogame_id_api: g.id,
-        videogame_name: g.name,
-        videogame_description: description,
-        videogame_release_date: g.released,
-        videogame_rating: g.rating,
-        videogame_image: g.background_image,
+        videogame_id_api: id,
+        videogame_name: name,
+        videogame_description: description_raw,
+        videogame_release_date: released,
+        videogame_rating: rating,
+        videogame_image: background_image,
       });
 
       // CARGAMOS LOS TAGS EN CASO DE QUE NO EXISTAN EN LA BD
@@ -82,8 +82,8 @@ async function preloadGames() {
 
       await game.addDeveloper(devIds);
 
-      const genreIds = g.genres.map((gen) => gen.id);
-      const platformIds = g.platforms.map((p) => p.platform.id);
+      const genreIds = game.genres.map((gen) => gen.id);
+      const platformIds = game.platforms.map((p) => p.platform.id);
 
       await Promise.all([
         game.addGenre(genreIds),
