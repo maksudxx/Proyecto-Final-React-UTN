@@ -143,6 +143,11 @@ async function insertGameInDb(
   arrayDevelopers
 ) {
   try {
+    let videogame = await Videogame.findOne({
+      where: { videogame_name },
+    });
+
+    if (videogame) return { message: "el juego ya existe en la base de datos" };
     let newVideogame = await Videogame.create({
       videogame_id: uuidv4(),
       videogame_name,
