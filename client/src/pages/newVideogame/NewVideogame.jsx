@@ -4,8 +4,8 @@ import { getPlatforms } from "../../redux/actions/platformAction";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./NewVideogame.module.css";
 import { createVideogame } from "../../redux/actions/videogameActions";
-import {useHistory } from 'react-router-dom'
-import IMGPRUEBA from "../../assets/prueba_post.jpg"
+import { useHistory } from "react-router-dom";
+import IMGPRUEBA from "../../assets/prueba_post.jpg";
 
 const NewVideogame = () => {
   const [input, setInput] = useState({
@@ -13,13 +13,16 @@ const NewVideogame = () => {
     videogame_description: "",
     videogame_release_date: "",
     videogame_rating: "",
-    videogame_image:IMGPRUEBA,
+    videogame_image: IMGPRUEBA,
+    arrayGenres: [],
+    arrayPlatforms: [],
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const genres = useSelector((state) => state.genre.genres);
   const platforms = useSelector((state) => state.platform.platforms);
-  const history = useHistory();
+
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getPlatforms());
@@ -33,42 +36,26 @@ const NewVideogame = () => {
     });
   };
 
-  let arrayGenres = [];
-  const handleChangeGenre = (e) => {
-    arrayGenres.push(e.target.value);
-    console.log(arrayGenres);
+  const handleCheckboxChange = (e, field) => {
+    const { value, checked } = e.target;
+    setInput((prev) => {
+      const updatedArray = checked
+        ? [...prev[field], value]
+        : prev[field].filter((id) => id !== value);
+      return { ...prev, [field]: updatedArray };
+    });
   };
 
-  const arrayPlatforms = [];
-  const handleChangePlatform = (e) => {
-    arrayPlatforms.push(e.target.value);
-    console.log(arrayPlatforms);
-  };
-
-  const handleSubmit = (e) => {
-    let {
-      videogame_name,
-      videogame_description,
-      videogame_release_date,
-      videogame_rating,
-      videogame_image,
-    } = input;
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let data = {
-      videogame_name,
-      videogame_description,
-      videogame_release_date,
-      videogame_rating,
-      videogame_image,
-      arrayGenres,
-      arrayPlatforms,
-    };
+    const result = await dispatch(createVideogame(input));
+    if (result.message === "el juego ya existe en la base de datos") {
+      alert(result.message);
+      return;
+    }
 
-    dispatch(createVideogame(data))
-    alert('Videojuego creado..!')
-    setTimeout(() =>{
-      history.push('/videogames')
-    },1000)
+    alert("Videojuego creado..!");
+    history.push("/videogames");
   };
   return (
     <div className={styles.container}>
@@ -84,7 +71,7 @@ const NewVideogame = () => {
             placeholder="Ingrese nombre"
             onChange={handleInputChange}
             className={styles.input}
-            required='true'
+            required="true"
           />
         </div>
         <div className={styles.containerInput}>
@@ -96,7 +83,7 @@ const NewVideogame = () => {
             placeholder="Ingrese una descripcion"
             onChange={handleInputChange}
             className={styles.input}
-            required='true'
+            required="true"
           />
         </div>
         <div className={styles.containerInput}>
@@ -107,7 +94,7 @@ const NewVideogame = () => {
             value={input.videogame_release_date}
             onChange={handleInputChange}
             className={styles.input}
-            required='true'
+            required="true"
           />
         </div>
 
@@ -119,7 +106,7 @@ const NewVideogame = () => {
             value={input.videogame_rating}
             onChange={handleInputChange}
             className={styles.input}
-            required='true'
+            required="true"
           />
         </div>
 
@@ -143,11 +130,12 @@ const NewVideogame = () => {
                 type="checkbox"
                 name="genres"
                 value={g.genre_id}
-                onChange={handleChangeGenre}
+                onChange={(e) => handleCheckboxChange(e, "arrayGenres")}
               />
             </div>
           ))}
-        </div><br />
+        </div>
+        <br />
         <p>Plataformas</p>
         <div className={styles.containerCheckbox}>
           {platforms.map((plat, index) => (
@@ -157,7 +145,7 @@ const NewVideogame = () => {
                 type="checkbox"
                 name="platforms"
                 value={plat.platform_id}
-                onChange={handleChangePlatform}
+                onChange={(e) => handleCheckboxChange(e, "arrayPlatforms")}
               />
             </div>
           ))}
