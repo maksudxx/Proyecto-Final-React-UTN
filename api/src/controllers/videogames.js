@@ -155,7 +155,7 @@ async function insertGameInDb(
     await newVideogame.addGenre(arrayGenres);
     await newVideogame.addPlatform(arrayPlatforms);
     await newVideogame.addDeveloper(arrayDevelopers);
-    await newVideogame.addTag(arrayTags)
+    await newVideogame.addTag(arrayTags);
     return newVideogame;
   } catch (error) {
     console.error("Error insert game in DB", error);
@@ -169,22 +169,29 @@ async function editGameInDb(
   videogame_description,
   videogame_release_date,
   videogame_rating,
+  arrayGenres,
+  arrayPlatforms,
   arrayTags,
   arrayDevelopers
 ) {
   try {
-    const editVideogame = await Videogame.findOne({
+    const editGame = await Videogame.findOne({
       where: { videogame_id },
     });
-    if (!editVideogame) return null;
+    if (!editGame) return null;
 
-    editVideogame.videogame_name = videogame_name;
-    editVideogame.videogame_description = videogame_description;
-    editVideogame.videogame_release_date = videogame_release_date;
-    editVideogame.videogame_rating = videogame_rating;
+    editGame.videogame_name = videogame_name;
+    editGame.videogame_description = videogame_description;
+    editGame.videogame_release_date = videogame_release_date;
+    editGame.videogame_rating = videogame_rating;
 
-    await editVideogame.save();
-    return editVideogame;
+    if (arrayGenres) await editGame.setGenres(arrayGenres);
+    if (arrayPlatforms) await editGame.setPlatforms(arrayPlatforms);
+    if (arrayTags) await editGame.setTags(arrayTags);
+    if (arrayDevelopers) await editGame.setDevelopers(arrayDevelopers);
+
+    await editGame.save();
+    return editGame;
   } catch (error) {
     console.error("Error insert game in DB", error);
     throw error;
