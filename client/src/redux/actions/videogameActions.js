@@ -36,9 +36,10 @@ export function getVideogameId(videogame_id) {
 }
 
 export function createVideogame(body) {
-  return async function (dispatch) {
+  return async function () {
     try {
-      return await axios.post("http://localhost:3001/videogames", body);
+      const response = await axios.post("http://localhost:3001/videogames", body);
+      return response.data
     } catch (err) {
       console.log(err);
       return;
