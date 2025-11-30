@@ -32,14 +32,18 @@ export function getVideogameId(videogame_id) {
     );
     const json = response.data;
     dispatch({ type: GET_VIDEOGAMES_ID, payload: json });
+    return json;
   };
 }
 
 export function createVideogame(body) {
   return async function () {
     try {
-      const response = await axios.post("http://localhost:3001/videogames", body);
-      return response.data
+      const response = await axios.post(
+        "http://localhost:3001/videogames",
+        body
+      );
+      return response.data;
     } catch (err) {
       console.log(err);
       return;
