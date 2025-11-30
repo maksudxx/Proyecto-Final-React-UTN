@@ -1,31 +1,12 @@
-import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useSelector, useDispatch } from "react-redux";
 import styles from "./Videogames.module.css";
-import { getVideogames } from "../../redux/actions/videogameActions";
 import Card from "../../components/card/Card";
 import GameNotFound from "../../components/gameNotFound/GameNotFound";
 import SearchBar from "../../components/searchbar/SearchBar";
+import { useVideogameList } from "../../hooks/useVideogameList";
 
 const Videogames = () => {
-  const dispatch = useDispatch();
-  const videogames = useSelector(({ videogame }) => videogame.videogames);
-  useEffect(() => {
-    dispatch(getVideogames());
-  }, [dispatch]);
-
-  //pagination
-  const initialState = {
-    page: 0,
-  };
-  const [videogameState, setVideogameState] = useState(initialState);
-  const { page } = videogameState;
-  const postsPorPagina = 20;
-  const pagesVisited = page * postsPorPagina;
-  const pageCount = Math.ceil(videogames?.length / postsPorPagina);
-  const changePage = ({ selected }) => {
-    setVideogameState({ ...videogameState, page: selected });
-  };
+ const {changePage, pageCount, pagesVisited, videogames, postsPorPagina} =useVideogameList()
 
   return (
     <>
