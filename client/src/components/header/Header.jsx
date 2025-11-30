@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import LOGO from "../../assets/joystick.png";
+import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import {
   IconLogoMobile,
