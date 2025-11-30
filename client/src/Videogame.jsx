@@ -11,8 +11,6 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Sesion from "./components/Sesion/Sesion";
 
-
-
 function Videogame() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -69,7 +67,9 @@ function Videogame() {
           <Route
             exact
             path="/videogames/:videogame_id"
-            component={VideogameDetails}
+            render={(props) => (
+              <VideogameDetails {...props} isAuthenticated={isAuthenticated} />
+            )}
           />
           <Route
             exact
