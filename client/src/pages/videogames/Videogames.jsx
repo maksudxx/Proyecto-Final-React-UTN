@@ -9,7 +9,7 @@ import SearchBar from "../../components/searchbar/SearchBar";
 
 const Videogames = () => {
   const dispatch = useDispatch();
-  const videogames = useSelector((state) => state.videogame.videogames);
+  const videogames = useSelector(({ videogame }) => videogame.videogames);
   useEffect(() => {
     dispatch(getVideogames());
   }, [dispatch]);
@@ -66,7 +66,8 @@ const Videogames = () => {
             <GameNotFound />
           )}
         </ul>
-        <br /><br />
+        <br />
+        <br />
       </div>
     </>
   );
