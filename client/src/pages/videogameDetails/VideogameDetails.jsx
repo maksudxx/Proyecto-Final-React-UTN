@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { getVideogameId } from "../../redux/actions/videogameActions";
 import styles from "./VideogameDetails.module.css";
-import { Loader } from "../../components/loader/Loader";
+import { useVideogameDetails } from "../../hooks/useVideogameDetails";
+import Spinner from "../../components/spinner/Spinner";
 
 const VideogameDetails = () => {
-  const videogame = useSelector((state) => state.videogame.videogame);
-  const dispatch = useDispatch();
-  const { videogame_id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    dispatch(getVideogameId(videogame_id));
-    setIsLoading(false);
-  }, [dispatch, videogame_id]);
+  const { isLoading, videogame } = useVideogameDetails();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const {
     videogame_name,
@@ -23,31 +17,25 @@ const VideogameDetails = () => {
     tags,
     developers,
     platforms,
-    videogame_rating
+    videogame_rating,
   } = videogame;
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
+      {
         <div className={styles.container}>
           <h5 className={styles.routes}>/videogames/{videogame_name}</h5>
-
           <p className={styles.titleGame}>{videogame_name}</p>
-
           <div className={styles.containerAbout}>
             <img
               src={videogame_image}
               alt={videogame_name}
               className={styles.img}
             />
-
             <div className={styles.containerInfo}>
               <h3 className={styles.titleAbout}>Acerca de</h3> <br />
               <p>{videogame_description}</p>
             </div>
           </div>
-
           <div className={styles.containerInfo2}>
             <div className={styles.div}>
               <p className={styles.titleInfo}>Fecha de Lanzamiento</p>
@@ -86,7 +74,7 @@ const VideogameDetails = () => {
           </div>
           <br />
         </div>
-      )}
+      }
     </>
   );
 };
