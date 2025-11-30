@@ -13,7 +13,7 @@ import Sesion from "./components/Sesion/Sesion";
 
 
 
-function App() {
+function Videogame() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setAuth = (boolean) => {
@@ -90,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default Videogame;
