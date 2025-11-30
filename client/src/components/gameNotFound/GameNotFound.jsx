@@ -1,4 +1,3 @@
-import React from "react";
 import NOTFOUND from "../../assets/Game-not-found.webp";
 import styles from "./GameNotFound.module.css";
 
