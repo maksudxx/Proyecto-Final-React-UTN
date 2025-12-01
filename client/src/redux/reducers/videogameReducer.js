@@ -4,6 +4,7 @@ import {
   GET_VIDEOGAMES_NAME,
   FILTER_VIDEOGAME_GENRE,
   FILTER_VIDEOGAME_PLATFORM,
+  DELETE_VIDEOGAME_SUCESS,
 } from "../types";
 
 const initialState = {
@@ -48,6 +49,11 @@ export default function videogameReducer(state = initialState, action) {
         videogames: state.filterGenres.filter((v) => {
           return v.genres.some((g) => g.genre_name === action.payload);
         }),
+      };
+    case DELETE_VIDEOGAME_SUCESS:
+      return {
+        ...state,
+        videogames: state.videogames.filter((game)=>game.videogame_id !== action.payload)
       };
 
     default:
