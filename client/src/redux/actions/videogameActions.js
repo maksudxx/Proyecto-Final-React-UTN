@@ -5,6 +5,7 @@ import {
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_ID,
   GET_VIDEOGAMES_NAME,
+  DELETE_VIDEOGAME_SUCESS,
 } from "../types/index";
 
 export function getVideogames() {
@@ -62,5 +63,21 @@ export function filterVideogamesPlatform(payload) {
   return {
     type: FILTER_VIDEOGAME_PLATFORM,
     payload,
+  };
+}
+
+export function deleteVideogame(id, dispatch) {
+  return async function () {
+    try {
+      const response = await axios.delete(
+        "http://localhost:3001/videogames/" + id
+      );
+      //Actulizamos la lista de videojuegos
+      dispatch({ type: DELETE_VIDEOGAME_SUCESS, payload: id });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   };
 }
