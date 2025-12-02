@@ -34,7 +34,6 @@ export const useVideogameDetails = () => {
     try {
       // Se espera a que el thunk finalice la eliminación
       const result = await dispatch(deleteVideogame(id));
-      // Asumiendo que tu acción devuelve { message: "GAME deleted" }
       if (result && result.message === "GAME deleted") {
         alert("Juego eliminado exitosamente!");
         history.push("/videogames"); // Redirige después del éxito
