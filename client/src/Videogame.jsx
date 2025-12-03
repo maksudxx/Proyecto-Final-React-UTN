@@ -37,7 +37,6 @@ function Videogame() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Landing} />
         <Route
           exact
           path="/login"
@@ -45,7 +44,7 @@ function Videogame() {
             !isAuthenticated ? (
               <Login {...props} setAuth={setAuth} />
             ) : (
-              <Redirect to="/videogames" />
+              <Redirect to="/" />
             )
           }
         />
@@ -63,7 +62,7 @@ function Videogame() {
         <Route path="/">
           <Header setAuth={setAuth} isAuthenticated={isAuthenticated} />
           <Sesion setAuth={setAuth} isAuthenticated={isAuthenticated} />
-          <Route exact path="/videogames" component={Videogames} />
+          <Route exact path="/" component={Videogames} />
           <Route
             exact
             path="/videogames/:videogame_id"
