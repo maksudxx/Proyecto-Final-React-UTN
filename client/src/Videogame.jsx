@@ -1,7 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Videogames from "./pages/videogames/Videogames";
-import Landing from "./pages/landing/Landing";
 import Header from "./components/header/Header";
 import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
 import NewVideogame from "./pages/newVideogame/NewVideogame";
