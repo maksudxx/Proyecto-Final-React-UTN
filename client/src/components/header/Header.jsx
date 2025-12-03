@@ -27,9 +27,6 @@ const Header = ({ isAuthenticated }) => {
           <MenuItem onClick={() => changeClick()}>
             <MenuItemLink to="/">Inicio</MenuItemLink>
           </MenuItem>
-          <MenuItem onClick={() => changeClick()}>
-            <MenuItemLink to="/videogames">Lista de Juegos</MenuItemLink>
-          </MenuItem>
           {isAuthenticated ? (
             <MenuItem onClick={() => changeClick()}>
               <MenuItemLink to="/newGame">Agregar juego</MenuItemLink>
