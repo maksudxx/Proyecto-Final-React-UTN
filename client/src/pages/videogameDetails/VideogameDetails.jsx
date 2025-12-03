@@ -2,14 +2,15 @@ import styles from "./VideogameDetails.module.css";
 import { useVideogameDetails } from "../../hooks/useVideogameDetails";
 import Spinner from "../../components/spinner/Spinner";
 
-const VideogameDetails = () => {
-  const { isLoading, videogame } = useVideogameDetails();
+const VideogameDetails = ({ isAuthenticated }) => {
+  const { isLoading, videogame, deleteGame } = useVideogameDetails();
 
   if (isLoading) {
     return <Spinner />;
   }
 
   const {
+    videogame_id,
     videogame_name,
     videogame_description,
     videogame_image,
@@ -23,7 +24,6 @@ const VideogameDetails = () => {
     <>
       {
         <div className={styles.container}>
-          <h5 className={styles.routes}>/videogames/{videogame_name}</h5>
           <p className={styles.titleGame}>{videogame_name}</p>
           <div className={styles.containerAbout}>
             <img
@@ -72,7 +72,12 @@ const VideogameDetails = () => {
               </div>
             ))}
           </div>
-          <br />
+          {isAuthenticated ? (
+            <div className={styles.btnContainer}>
+              <button>Modificar</button>
+              <button onClick={() => deleteGame(videogame_id)}>Eliminar</button>
+            </div>
+          ) : null}
         </div>
       }
     </>
