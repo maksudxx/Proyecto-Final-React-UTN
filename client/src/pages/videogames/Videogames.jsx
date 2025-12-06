@@ -5,51 +5,56 @@ import GameNotFound from "../../components/gameNotFound/GameNotFound";
 import SearchBar from "../../components/searchbar/SearchBar";
 import { useVideogameList } from "../../hooks/useVideogameList";
 
+import Grid from "@mui/material/Grid";
+import { MenuAside } from "../../components/Menu/MenuAside";
+
 const Videogames = () => {
- const {changePage, pageCount, pagesVisited, videogames, postsPorPagina} =useVideogameList()
+  const { changePage, pageCount, pagesVisited, videogames, postsPorPagina } =
+    useVideogameList();
 
   return (
     <>
-      <div className={styles.container}>
-        <p className={styles.title}>LISTA DE JUEGOS</p>
-        <SearchBar />
-        <ReactPaginate
-          id="pagination"
-          previousLabel={"<"}
-          nextLabel={">"}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={styles.paginationBttns}
-          previousLinkClassName={styles.previousBttn}
-          nextLinkClassName={styles.nextBttn}
-          disabledClassName={styles.paginationDisabled}
-          activeClassName={styles.paginationActive}
-        />
-
-        <ul className={styles.containerCards}>
-          {videogames?.length > 0 ? (
-            videogames
-              ?.slice(pagesVisited, pagesVisited + postsPorPagina)
-              .map((v, index) => (
-                <Card
-                  key={index}
-                  id={v.videogame_id}
-                  idApi={v.videogame_id_api}
-                  name={v.videogame_name}
-                  image={v.videogame_image}
-                  rating={v.videogame_rating}
-                  genres={v.genres}
-                  platforms={v.platforms}
-                  release={v.videogame_release_date}
-                />
-              ))
-          ) : (
-            <GameNotFound />
-          )}
-        </ul>
-        <br />
-        <br />
-      </div>
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 0, md: 2 }}>
+          <MenuAside/>
+        </Grid>
+        <Grid size={{ xs: 12, md: 10 }} className={styles.container}>
+          <SearchBar />
+          <ReactPaginate
+            id="pagination"
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={styles.paginationBttns}
+            previousLinkClassName={styles.previousBttn}
+            nextLinkClassName={styles.nextBttn}
+            disabledClassName={styles.paginationDisabled}
+            activeClassName={styles.paginationActive}
+          />
+          <ul className={styles.containerCards}>
+            {videogames?.length > 0 ? (
+              videogames
+                ?.slice(pagesVisited, pagesVisited + postsPorPagina)
+                .map((v, index) => (
+                  <Card
+                    key={index}
+                    id={v.videogame_id}
+                    idApi={v.videogame_id_api}
+                    name={v.videogame_name}
+                    image={v.videogame_image}
+                    rating={v.videogame_rating}
+                    genres={v.genres}
+                    platforms={v.platforms}
+                    release={v.videogame_release_date}
+                  />
+                ))
+            ) : (
+              <GameNotFound />
+            )}
+          </ul>
+        </Grid>
+      </Grid>
     </>
   );
 };
