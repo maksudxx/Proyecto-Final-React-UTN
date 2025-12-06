@@ -24,9 +24,11 @@ const Header = ({ isAuthenticated }) => {
           <FaBars />
         </IconLogoMobile>
         <Menu click={click}>
-          <MenuItem onClick={() => changeClick()}>
-            <MenuItemLink to="/">Inicio</MenuItemLink>
-          </MenuItem>
+          {!isAuthenticated ? (
+            <MenuItem onClick={() => changeClick()}>
+              <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
+            </MenuItem>
+          ) : null}
           {isAuthenticated ? (
             <MenuItem onClick={() => changeClick()}>
               <MenuItemLink to="/newGame">Agregar juego</MenuItemLink>
@@ -35,11 +37,6 @@ const Header = ({ isAuthenticated }) => {
           <MenuItem onClick={() => changeClick()}>
             <MenuItemLink to="/about">Acerca de</MenuItemLink>
           </MenuItem>
-          {!isAuthenticated ? (
-            <MenuItem onClick={() => changeClick()}>
-              <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
-            </MenuItem>
-          ) : null}
         </Menu>
       </NavbarWrapper>
     </NavbarContainer>
