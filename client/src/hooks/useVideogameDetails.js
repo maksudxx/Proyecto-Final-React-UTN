@@ -36,11 +36,11 @@ export const useVideogameDetails = () => {
       const result = await dispatch(deleteVideogame(id));
       if (result && result.message === "GAME deleted") {
         alert("Juego eliminado exitosamente!");
-        history.push("/videogames"); // Redirige después del éxito
+        history.push("/"); // Redirige después del éxito
       } else {
         // Manejar el caso de éxito sin un mensaje específico
         alert("Juego eliminado exitosamente!");
-        history.push("/videogames");
+        history.push("/");
       }
     } catch (error) {
       alert("Error al eliminar el juego. Consulte la consola.");
