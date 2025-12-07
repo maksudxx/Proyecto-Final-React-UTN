@@ -76,7 +76,7 @@ const Login = ({ setAuth }) => {
       </div>
       <br />
 
-      <Link to="/videogames" className={styles.link}>
+      <Link to="/" className={styles.link}>
         Volver atras
       </Link>
     </div>
