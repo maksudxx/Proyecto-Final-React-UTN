@@ -15,12 +15,16 @@ const Videogames = () => {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 0, md: 2 }} className={styles.asideGrid}>
-          <MenuAside/>
+        <Grid
+          size={{ md: 2 }}
+          sx={{ display: { xs: "none", md: "block" } }}
+          className={styles.asideGrid}
+        >
+          <MenuAside />
         </Grid>
         <Grid size={{ xs: 12, md: 10 }} className={styles.container}>
           {/* <SearchBar /> */}
-          {/* <p className={styles.title}>LISTA DE JUEGOS</p> */}
+          <p className={styles.title}>LISTA DE JUEGOS</p>
           <ul className={styles.containerCards}>
             {videogames?.length > 0 ? (
               videogames
