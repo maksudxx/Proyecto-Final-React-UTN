@@ -1,0 +1,20 @@
+.menuContainer{
+    width: 100%;
+    color: #fff;
+    padding-left: 80px;
+    cursor: pointer;
+}
+
+.title{
+    font-size: 35px;
+    font-weight: bold;
+    font-family: roboto;
+    margin-bottom: 20px;
+}
+.option{
+    font-size: 25px;
+    margin: 20px 0
+}
+.title:hover, .option:hover{
+    color: #fe9f02
+}
