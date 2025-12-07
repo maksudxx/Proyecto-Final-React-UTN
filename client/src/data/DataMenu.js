@@ -1,29 +1,34 @@
+import { FaDesktop, FaPlaystation, FaXbox, FaGamepad } from "react-icons/fa";
+import { BsNintendoSwitch } from "react-icons/bs";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { TfiAndroid } from "react-icons/tfi";
+
 export const options = [
   { name: "INICIO" },
-  { name: "REVIEWS"},
+  { name: "REVIEWS" },
   {
     name: "PLATAFORMAS",
     data: [
-      "PC",
-      "PlayStation 4",
-      "Xbox One",
-      "Nintendo Switch",
-      "iOS",
-      "Android",
+      { name: "PC", icon: FaDesktop },
+      { name: "PlayStation 4", icon: FaPlaystation },
+      { name: "Xbox One", icon: FaXbox },
+      { name: "Nintendo Switch", icon: BsNintendoSwitch },
+      { name: "iOS", icon: MdOutlinePhoneIphone },
+      { name: "Android", icon: TfiAndroid },
     ],
   },
   {
     name: "GENEROS",
     data: [
-      "Free Online Games",
-      "Action",
-      "Strategy",
-      "RPG",
-      "Shooter",
-      "Adventure",
-      "Puzzle",
-      "Racing",
-      "Sports",
+      { name: "Free Online Games", icon: FaGamepad },
+      { name: "Action", icon: FaGamepad },
+      { name: "Strategy", icon: FaGamepad },
+      { name: "RPG", icon: FaGamepad },
+      { name: "Shooter", icon: FaGamepad },
+      { name: "Adventure", icon: FaGamepad },
+      { name: "Puzzle", icon: FaGamepad },
+      { name: "Racing", icon: FaGamepad },
+      { name: "Sports", icon: FaGamepad },
     ],
   },
 ];
