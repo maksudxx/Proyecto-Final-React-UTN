@@ -1,29 +1,48 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useState } from "react";
 import { options } from "../../data/DataMenu";
+import styles from "./MenuAside.module.css";
 
 export const MenuAside = () => {
+  const [click, setClick] = useState(false);
   return (
-    <div>
+    <aside className={styles.menuContainer}>
       {options?.map(({ name, data }) => (
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ArrowDropDownIcon />}
-            aria-controls="panel2-content"
-            id="panel2-header"
-          >
-            <Typography component="span">{name}</Typography>
-          </AccordionSummary>
-          {data?.map((d) => (
-            <AccordionDetails>
-              <Typography>{d}</Typography>
-            </AccordionDetails>
+        <div>
+          <p className={styles.title}>{name}</p>
+          {data?.map(({ name, icon: Icon }) => (
+            <div key={name} className={styles.item}>
+              <p className={styles.option}>
+                <span>
+                  <Icon />
+                </span>{" "}
+                {name}
+              </p>
+            </div>
           ))}
-        </Accordion>
+        </div>
       ))}
-    </div>
+    </aside>
   );
 };
+
+// export const MenuAside = () => {
+//   return (
+//     <aside className={styles.menuContainer}>
+//       {options?.map(({ name, data }) => (
+//         <Accordion className={styles.accordion}>
+//           <AccordionSummary
+//             expandIcon={data ? <ArrowDropDownIcon /> : undefined}
+//             className={styles.accordionSummary}
+//           >
+//             <Typography component="span">{name}</Typography>
+//           </AccordionSummary>
+//           {data?.map((d) => (
+//             <AccordionDetails>
+//               <Typography>{d}</Typography>
+//             </AccordionDetails>
+//           ))}
+//         </Accordion>
+//       ))}
+//     </aside>
+//   );
+// };
