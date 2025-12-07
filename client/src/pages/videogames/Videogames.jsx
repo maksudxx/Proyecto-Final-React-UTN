@@ -15,23 +15,12 @@ const Videogames = () => {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 0, md: 2 }}>
+        <Grid size={{ xs: 0, md: 2 }} className={styles.asideGrid}>
           <MenuAside/>
         </Grid>
         <Grid size={{ xs: 12, md: 10 }} className={styles.container}>
-          <SearchBar />
-          <ReactPaginate
-            id="pagination"
-            previousLabel={"<"}
-            nextLabel={">"}
-            pageCount={pageCount}
-            onPageChange={changePage}
-            containerClassName={styles.paginationBttns}
-            previousLinkClassName={styles.previousBttn}
-            nextLinkClassName={styles.nextBttn}
-            disabledClassName={styles.paginationDisabled}
-            activeClassName={styles.paginationActive}
-          />
+          {/* <SearchBar /> */}
+          {/* <p className={styles.title}>LISTA DE JUEGOS</p> */}
           <ul className={styles.containerCards}>
             {videogames?.length > 0 ? (
               videogames
@@ -53,6 +42,18 @@ const Videogames = () => {
               <GameNotFound />
             )}
           </ul>
+          <ReactPaginate
+            id="pagination"
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={styles.paginationBttns}
+            previousLinkClassName={styles.previousBttn}
+            nextLinkClassName={styles.nextBttn}
+            disabledClassName={styles.paginationDisabled}
+            activeClassName={styles.paginationActive}
+          />
         </Grid>
       </Grid>
     </>
