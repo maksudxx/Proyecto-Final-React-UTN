@@ -37,8 +37,9 @@ async function preloadGames() {
       return;
     }
     // 2. hacemos la peticion a la api, ya que no hay nada cargado en la BD
-    const rawGames = await fetchGamesFromRawg(1);
+    const rawGames = await fetchGamesFromRawg(2);
     for (const game of rawGames) {
+      console.log(game.id)
       //obtenemos informacion que necesita la BD consultando por id
       const detailsRes = await axios.get(
         `https://api.rawg.io/api/games/${game.id}?key=${API_KEY}`
@@ -48,8 +49,9 @@ async function preloadGames() {
       const { id, name, released, rating, background_image } = game;
       const { tags } = detailsRes.data;
       const { developers } = detailsRes.data;
+      
 
-      const game = await Videogame.create({
+      const videoGame = await Videogame.create({
         videogame_id: uuidv4(),
         videogame_id_api: id,
         videogame_name: name,
@@ -68,7 +70,7 @@ async function preloadGames() {
         });
         tagIds.push(tagDB.tag_id);
       }
-      await game.addTag(tagIds);
+      await videoGame.addTag(tagIds);
 
       // CARGAMOS LOS DEVELOPERS EN CASO DE QUE NO EXISTA EN LA BD
       const devIds = [];
@@ -80,14 +82,14 @@ async function preloadGames() {
         devIds.push(devDB.developer_id);
       }
 
-      await game.addDeveloper(devIds);
-
+      await videoGame.addDeveloper(devIds);
+      console.log(game.platforms)
       const genreIds = game.genres.map((gen) => gen.id);
       const platformIds = game.platforms.map((p) => p.platform.id);
 
       await Promise.all([
-        game.addGenre(genreIds),
-        game.addPlatform(platformIds),
+        videoGame.addGenre(genreIds),
+        videoGame.addPlatform(platformIds),
       ]);
     }
   } catch (error) {
