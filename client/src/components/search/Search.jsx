@@ -25,12 +25,12 @@ const Search = () => {
         <input
           className={styles.searchInput}
           type="text"
-          placeholder="Buscar"
+          placeholder="Buscar..."
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <button className={styles.searchButton} type="submit">
-          <FcSearch size={20} />
+          <FcSearch size={50} />
         </button>
       </div>
     </form>
