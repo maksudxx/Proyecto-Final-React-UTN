@@ -3,18 +3,17 @@
   flex-direction: column;
   align-items: center;
   margin: 50px 0;
-  /* border: 1px solid #fff; */
 }
 
 .title {
-  font-size: 100px;
+  font-size: 70px;
   color: #fe9f02;
   font-weight: bold;
 }
 .containerCards {
   width: 80vw;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: repeat(auto-fill, 400px);
   gap: 60px;
   justify-content: center;
   margin: 50px 0;
@@ -67,6 +66,12 @@
   width: 100%;
   margin-top: 50px;
   /* border: 1px solid #fff; */
+}
+@media screen and (min-width: 1300px) and (max-width: 1700px) {
+.title {
+  font-size: 80px;
+  padding-left: 45px;
+}
 }
 @media (max-width: 400px) {
   .title {
