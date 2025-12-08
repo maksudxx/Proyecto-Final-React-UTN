@@ -1,45 +1,40 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import {
-  IconLogoMobile,
-  Menu,
-  MenuItem,
-  MenuItemLink,
-  NavbarContainer,
-  NavbarWrapper,
-} from "./Header.element";
-
+import { CgGames } from "react-icons/cg";
+import Search from "../search/Search";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
 const Header = ({ isAuthenticated }) => {
   const [click, setClick] = useState(false);
 
   const changeClick = () => {
     setClick(!click);
-    console.log(click);
   };
 
   return (
-    <NavbarContainer>
-      <NavbarWrapper>
-        <IconLogoMobile onClick={() => changeClick()}>
-          <FaBars />
-        </IconLogoMobile>
-        <Menu click={click}>
-          {!isAuthenticated ? (
-            <MenuItem onClick={() => changeClick()}>
-              <MenuItemLink to="/login">Iniciar Sesion</MenuItemLink>
-            </MenuItem>
-          ) : null}
-          {isAuthenticated ? (
-            <MenuItem onClick={() => changeClick()}>
-              <MenuItemLink to="/newGame">Agregar juego</MenuItemLink>
-            </MenuItem>
-          ) : null}
-          <MenuItem onClick={() => changeClick()}>
-            <MenuItemLink to="/about">Acerca de</MenuItemLink>
-          </MenuItem>
-        </Menu>
-      </NavbarWrapper>
-    </NavbarContainer>
+    <div className={styles.headerContainer}>
+      <div className={styles.menuResponsive}>
+        <FaBars />
+      </div>
+      <Link to="/" className={styles.logo}>
+        <CgGames color="white" size={150} />
+      </Link>
+      <Search />
+      <div className={styles.containerOptions}>
+        {!isAuthenticated ? (
+          <Link className={styles.option} to="/login">
+            Iniciar Sesión
+          </Link>
+        ) : (
+          <Link className={styles.option} to="/newGame">
+            Agregar juego
+          </Link>
+        )}
+        <Link className={styles.option} to="/about">
+          Acerca de
+        </Link>
+      </div>
+    </div>
   );
 };
 
