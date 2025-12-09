@@ -37,7 +37,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Genre, Platform, Videogame, Tag, Developer } = sequelize.models;
+const {
+  Genre,
+  Platform,
+  Videogame,
+  Tag,
+  Developer,
+  ImageVideogame,
+  VideoVideogame,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 Videogame.belongsToMany(Genre, { through: "videogame_genre" });
@@ -51,6 +59,18 @@ Tag.belongsToMany(Videogame, { through: "videogame_tag" });
 
 Videogame.belongsToMany(Developer, { through: "videogame_developer" });
 Developer.belongsToMany(Videogame, { through: "videogame_developer" });
+
+Videogame.hasMany(ImageVideogame, {
+  foreignKey: "videogame_id",
+  onDelete: "CASCADE",
+});
+ImageVideogame.belongsTo(Videogame, { foreignKey: "videogame_id" });
+
+Videogame.hasMany(VideoVideogame, {
+  foreignKey: "videogame_id",
+  onDelete: "CASCADE",
+});
+VideoVideogame.belongsTo(VideoVideogame, { foreignKey: "videogame_id" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
