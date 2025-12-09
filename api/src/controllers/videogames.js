@@ -1,6 +1,14 @@
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
-const { Videogame, Genre, Platform, Tag, Developer } = require("../db");
+const {
+  Videogame,
+  Genre,
+  Platform,
+  Tag,
+  Developer,
+  VideoVideogame,
+  ImageVideogame,
+} = require("../db");
 const axios = require("axios");
 const { API_KEY } = process.env;
 
@@ -39,18 +47,30 @@ async function preloadGames() {
     // 2. hacemos la peticion a la api, ya que no hay nada cargado en la BD
     const rawGames = await fetchGamesFromRawg(2);
     for (const game of rawGames) {
-      console.log(game.id)
       //obtenemos informacion que necesita la BD consultando por id
       const detailsRes = await axios.get(
         `https://api.rawg.io/api/games/${game.id}?key=${API_KEY}`
       );
 
+      // obtenemos trailers para la BD
+      const videoRes = await axios.get(
+        `https://api.rawg.io/api/games/${game.id}/movies?key=${API_KEY}`
+      );
+
+      // destructuramos la data
       const { description_raw } = detailsRes.data;
-      const { id, name, released, rating, background_image } = game;
+      const {
+        id,
+        name,
+        released,
+        rating,
+        background_image,
+        short_screenshots,
+      } = game;
       const { tags } = detailsRes.data;
       const { developers } = detailsRes.data;
-      
-
+      const { results } = videoRes.data;
+      //cargamos el juego a la BD
       const videoGame = await Videogame.create({
         videogame_id: uuidv4(),
         videogame_id_api: id,
@@ -81,9 +101,32 @@ async function preloadGames() {
         });
         devIds.push(devDB.developer_id);
       }
-
       await videoGame.addDeveloper(devIds);
-      console.log(game.platforms)
+
+      //CARGAMOS UNA LISTA DE IMAGENES A LA BD
+      for (const v of short_screenshots) {
+        await ImageVideogame.findOrCreate({
+          where: { imageVideogame_id: v.id },
+          defaults: {
+            imageVideogame_id: v.id,
+            imageVideogame_image: v.image,
+            videogame_id: videoGame.videogame_id,
+          },
+        });
+      }
+
+      //CARGAMOS VIDEOS A LA BD
+      for (video of results) {
+        await VideoVideogame.findOrCreate({
+          where: { videosVideogame_id: video.id },
+          defaults: {
+            videosVideogame_id: video.id,
+            videosVideogame_video: video.data.max,
+            videogame_id: videoGame.videogame_id,
+          },
+        });
+      }
+
       const genreIds = game.genres.map((gen) => gen.id);
       const platformIds = game.platforms.map((p) => p.platform.id);
 
