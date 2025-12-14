@@ -19,43 +19,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: hsla(0, 0%, 100%, 0.07);
+  background: #ffffff12;
+  padding: 40px 0;
+  margin-bottom: 50px;
 }
 .containerInput {
   margin-bottom: 20px;
 }
 .input {
-  width: 20vw;
-  height: 4vh;
+  width: 30vw;
+  height: 50px;
   border: 0;
   border-bottom: 3px solid #fe9f02;
   color: #fff;
   background: transparent;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
-.input:focus{
+.input:focus {
   outline: 0;
 }
-.containerCheckbox {
-  border: 1px solid #fe9f02;
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  height: auto;
-  flex-wrap: wrap;
-}
-.checkbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0 15px;
-}
 
-.nameCheck {
-  margin: 10px;
-}
 
-.titleCheckbox {
-  align-self: flex-start;
+.select{
+  color:#000
 }
 
 .button {
@@ -72,25 +59,24 @@
   cursor: pointer;
 }
 
-
-@media(max-width:400px) {
+@media (max-width: 400px) {
   .container {
     width: 100%;
   }
-  .title{
+  .title {
     width: 80%;
     font-size: 1.5rem;
     text-align: center;
   }
-  .form{
+  .form {
     width: 90%;
   }
 
-  .input{
+  .input {
     width: 250px;
   }
 
-  .button{
+  .button {
     width: 30vw;
   }
 }
