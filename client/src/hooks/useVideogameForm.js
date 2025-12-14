@@ -37,34 +37,41 @@ export const useVideogame = () => {
     });
   };
 
-  const handleCheckboxChange = (e, field) => {
-    const { value, checked } = e.target;
-    setInput((prev) => {
-      const updatedArray = checked
-        ? [...prev[field], value]
-        : prev[field].filter((id) => id !== value);
-      return { ...prev, [field]: updatedArray };
-    });
+  const handleSelectChange = (selectedOptions, field) => {
+    setInput((prev) => ({
+      ...prev,
+      [field]: selectedOptions ? selectedOptions.map((opt) => opt.value) : [],
+    }));
   };
+
+  const genreOptions = genres.map((g) => ({
+    value: g.genre_id,
+    label: g.genre_name,
+  }));
+
+   const platformsOptions = platforms.map((p) => ({
+    value: p.platform_id,
+    label: p.platform_name,
+  }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await dispatch(createVideogame(input));
+    const result = dispatch(createVideogame(input));
     if (result.message === "el juego ya existe en la base de datos") {
       alert(result.message);
       return;
     }
 
     alert("Videojuego creado..!");
-    history.push("/videogames");
+    history.push("/");
   };
 
   return {
     handleInputChange,
-    handleCheckboxChange,
+    handleSelectChange,
     handleSubmit,
-    genres,
-    platforms,
+    genreOptions,
+    platformsOptions,
     input,
   };
 };
