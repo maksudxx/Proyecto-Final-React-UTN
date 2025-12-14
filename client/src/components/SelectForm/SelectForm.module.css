@@ -1,0 +1,10 @@
+.containerSelect {
+  width: 30vw;
+  margin-bottom: 20px;
+}
+
+.select{
+    height: 50px;
+    background-color: transparent;
+    color: #fe9f02;
+}
