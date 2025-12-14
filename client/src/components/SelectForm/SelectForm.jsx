@@ -1,7 +1,7 @@
 import Select from "react-select";
 import styles from "./SelectForm.module.css";
 
-const SelectForm = ({ title, option, handleSelectChange }) => {
+const SelectForm = ({ title, option, handleSelectChange, field }) => {
   const placeholder = `seleccioná ${title}`;
 
   const customStyles = {
@@ -77,7 +77,7 @@ const SelectForm = ({ title, option, handleSelectChange }) => {
       <Select
         options={option}
         isMulti
-        onChange={(selected) => handleSelectChange(selected, "arrayGenres")}
+        onChange={(selected) => handleSelectChange(selected, field)}
         placeholder={placeholder}
         styles={customStyles}
       />
