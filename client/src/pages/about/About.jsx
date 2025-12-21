@@ -1,12 +1,14 @@
-import React from "react";
 import styles from "./About.module.css";
-import IMGABOUT from "../../assets/fondoabout.jpg";
 
 const About = () => {
   return (
     <div className={styles.container}>
       <p className={styles.title}>Acerca de "Videogames API"</p>
-      <img src={IMGABOUT} alt="personajes" className={styles.image} />
+      <img
+        src="https://res.cloudinary.com/djh4udgqb/image/upload/v1765769562/fondoabout_xdq0um.jpg"
+        alt="personajes"
+        className={styles.image}
+      />
       <div className={styles.containerInformation}>
         <p>
           Aplicacion desarrollada por Facundo Maksud con fines educativos para
@@ -16,8 +18,8 @@ const About = () => {
             Rawg.io
           </a>{" "}
           el cual la informacion es gurdada en una Base de datos. Las
-          tecnologias y/o librerias utilizadas para este proyecto para complementar con lo
-          visto en el curso fueron:{" "}
+          tecnologias y/o librerias utilizadas para este proyecto para
+          complementar con lo visto en el curso fueron:{" "}
           <span className={styles.p}>
             CSS Modules, Redux, NodeJs, Express, Sequelize ORM, PostgreSQL, JWT.
           </span>
@@ -69,7 +71,8 @@ const About = () => {
           </li>
         </ul>
       </div>
-      <br /><br />
+      <br />
+      <br />
     </div>
   );
 };
