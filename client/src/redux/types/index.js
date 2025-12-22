@@ -17,6 +17,8 @@ export const GET_PLATFORMS = "GET_PLATFORMs"
 //users
 export const GET_USER = "GET_USER"
 
+//Tags
+export const GET_TAG = "GET_TAG"
+
 //Developers
 
-//Tags
