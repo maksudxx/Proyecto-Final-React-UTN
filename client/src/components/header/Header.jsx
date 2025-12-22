@@ -4,6 +4,7 @@ import { CgGames } from "react-icons/cg";
 import Search from "../search/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+
 const Header = ({ isAuthenticated }) => {
   const [click, setClick] = useState(false);
 
@@ -13,24 +14,32 @@ const Header = ({ isAuthenticated }) => {
 
   return (
     <div className={styles.headerContainer}>
-      <div className={styles.menuResponsive}>
+      <div className={styles.menuResponsive} onClick={changeClick}>
         <FaBars />
       </div>
+
       <Link to="/" className={styles.logo}>
-        <CgGames color="white" size={150} />
+        <CgGames color="white" size={120} />
       </Link>
-      <Search />
-      <div className={styles.containerOptions}>
+
+      <div className={styles.search}>
+        <Search />
+      </div>
+
+      <div
+        className={`${styles.containerOptions} ${click ? styles.active : ""}`}
+      >
         {!isAuthenticated ? (
-          <Link className={styles.option} to="/login">
+          <Link className={styles.option} to="/login" onClick={changeClick}>
             Iniciar Sesión
           </Link>
         ) : (
-          <Link className={styles.option} to="/newGame">
+          <Link className={styles.option} to="/newGame" onClick={changeClick}>
             Agregar juego
           </Link>
         )}
-        <Link className={styles.option} to="/about">
+
+        <Link className={styles.option} to="/about" onClick={changeClick}>
           Acerca de
         </Link>
       </div>
