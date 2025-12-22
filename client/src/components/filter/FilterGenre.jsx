@@ -11,7 +11,6 @@ const FilterGenre = ({ props }) => {
   const dispatch = useDispatch();
   const handleChangeGenre = (e) => {
     setGenre(e.target.value);
-    console.log(genre);
     e.target.value === "1-Todos los generos"
       ? dispatch(getVideogames())
       : dispatch(filterVideogamesGenre(e.target.value));
