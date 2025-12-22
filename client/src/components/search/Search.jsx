@@ -1,5 +1,5 @@
-import React from "react";
-import { FcSearch } from "react-icons/fc";
+import { IoSearch } from "react-icons/io5";
+
 import { useState, useEffect } from "react";
 import {
   getVideogames,
@@ -30,7 +30,7 @@ const Search = () => {
           onChange={(e) => setName(e.target.value)}
         />
         <button className={styles.searchButton} type="submit">
-          <FcSearch size={50} />
+          <IoSearch size={50} style={{color:"#ffffff2f"}}/>
         </button>
       </div>
     </form>
