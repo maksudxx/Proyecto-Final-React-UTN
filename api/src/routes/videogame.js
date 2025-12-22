@@ -59,6 +59,12 @@ router.post("/videogames", async (req, res, next) => {
       arrayTags,
       arrayDevelopers
     );
+
+    //Entra aqui en caso de que el juego ya exista en la BD
+    if (result.message) {
+      return res.status(400).json(result);
+    }
+
     res.json({
       message: "OK",
       data: result,
