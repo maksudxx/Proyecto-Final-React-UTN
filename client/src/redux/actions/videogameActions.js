@@ -47,7 +47,7 @@ export function createVideogame(body) {
       return response.data;
     } catch (err) {
       console.log(err);
-      return;
+      return err.response.data;
     }
   };
 }
