@@ -13,7 +13,6 @@ const SelectForm = ({ title, option, handleSelectChange, field }) => {
       borderRadius: 0,
       boxShadow: "none",
       minHeight: "50px",
-
       "&:hover": {
         borderBottom: "1px solid #fe9f02",
       },
@@ -21,8 +20,8 @@ const SelectForm = ({ title, option, handleSelectChange, field }) => {
 
     placeholder: (base) => ({
       ...base,
-      color: "#fff", // Placeholder blanco
-      opacity: 1,    // Para que se vea bien
+      color: "#fff",
+      opacity: 1,
     }),
 
     singleValue: (base) => ({
