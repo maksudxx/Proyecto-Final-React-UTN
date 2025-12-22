@@ -188,11 +188,14 @@ async function insertGameInDb(
   arrayDevelopers
 ) {
   try {
+    // 1- Verificamos si el videojuego ya existe en la BD
     let videogame = await Videogame.findOne({
       where: { videogame_name },
     });
 
     if (videogame) return { message: "el juego ya existe en la base de datos" };
+
+    // 2. Se crea el videojuego
     let newVideogame = await Videogame.create({
       videogame_id: uuidv4(),
       videogame_name,
@@ -202,9 +205,20 @@ async function insertGameInDb(
       videogame_image,
     });
 
+    // 3. Procesamos los desarrolladores, en caso de no existir lo crea.
+    const developerInstances = await Promise.all(
+      arrayDevelopers.map(async (dev) => {
+        const [instance] = await Developer.findOrCreate({
+          where: { developer_name: dev.name },
+          defaults: { developer_name: dev.name },
+        });
+        return instance.developer_id;
+      })
+    );
+
     await newVideogame.addGenre(arrayGenres);
     await newVideogame.addPlatform(arrayPlatforms);
-    await newVideogame.addDeveloper(arrayDevelopers);
+    await newVideogame.addDevelopers(developerInstances);
     await newVideogame.addTag(arrayTags);
     return newVideogame;
   } catch (error) {
