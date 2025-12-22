@@ -16,6 +16,7 @@ const NewVideogame = () => {
     platformsOptions,
     tagsOptions,
     loading,
+    imagePreview,
   } = useVideogame();
 
   const {
@@ -24,7 +25,7 @@ const NewVideogame = () => {
     videogame_rating,
     videogame_image,
     videogame_release_date,
-    developers
+    developers,
   } = input;
 
   return (
@@ -145,13 +146,9 @@ const NewVideogame = () => {
             </div>
           )}
 
-          {!loading && videogame_image && (
+          {imagePreview && (
             <img
-              src={
-                videogame_image.startsWith("http")
-                  ? videogame_image
-                  : `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${videogame_image}`
-              }
+              src={imagePreview}
               alt="Preview"
               className={styles.imgPreview}
             />
