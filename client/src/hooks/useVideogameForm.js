@@ -5,6 +5,7 @@ import { getGenres } from "../redux/actions/genreActions";
 import { getPlatforms } from "../redux/actions/platformAction";
 import { createVideogame } from "../redux/actions/videogameActions";
 import { useCloudinaryUpload } from "./useCloudinary";
+import { getTags } from "../redux/actions/tagActions";
 
 export const useVideogame = () => {
   const [input, setInput] = useState({
@@ -13,6 +14,7 @@ export const useVideogame = () => {
     videogame_release_date: "",
     videogame_rating: "",
     videogame_image: "",
+    developers: "",
     arrayGenres: [],
     arrayPlatforms: [],
     arrayTags: [],
@@ -24,17 +26,32 @@ export const useVideogame = () => {
   const history = useHistory();
   const genres = useSelector((state) => state.genre.genres);
   const platforms = useSelector((state) => state.platform.platforms);
+  const tags = useSelector((state) => state.tag.tags);
+
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getPlatforms());
+    dispatch(getTags());
   }, [dispatch]);
 
   const handleInputChange = function (e) {
-    e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    if (name === "developers") {
+      const arrayDevs = value.split(",").map((dev) => ({
+        id: null,
+        name: dev,
+      }));
+      setInput({
+        ...input,
+        [name]: value,
+        arrayDevelopers: arrayDevs,
+      });
+    } else {
+      setInput({
+        ...input,
+        [name]: value,
+      });
+    }
   };
 
   const handleSelectChange = (selectedOptions, field) => {
@@ -54,9 +71,15 @@ export const useVideogame = () => {
     label: p.platform_name,
   }));
 
+  //crear tagsoptions y desarrolladesOptions
+
+  const tagsOptions = tags.map(({ tag_id, tag_name }) => ({
+    value: tag_id,
+    label: tag_name,
+  }));
+
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    console.log("Archivo seleccionado:", file);
     if (!file) return;
 
     try {
@@ -72,12 +95,11 @@ export const useVideogame = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = dispatch(createVideogame(input));
+    const result = await dispatch(createVideogame(input));
     if (result.message === "el juego ya existe en la base de datos") {
       alert(result.message);
       return;
     }
-
     alert("Videojuego creado..!");
     history.push("/");
   };
@@ -89,7 +111,8 @@ export const useVideogame = () => {
     handleSubmit,
     genreOptions,
     platformsOptions,
+    tagsOptions,
     input,
-    loading
+    loading,
   };
 };
