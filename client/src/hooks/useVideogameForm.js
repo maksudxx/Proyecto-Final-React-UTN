@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getGenres } from "../redux/actions/genreActions";
 import { getPlatforms } from "../redux/actions/platformAction";
-import { createVideogame } from "../redux/actions/videogameActions";
+import {
+  createVideogame,
+  getVideogameName,
+} from "../redux/actions/videogameActions";
 import { useCloudinaryUpload } from "./useCloudinary";
 import { getTags } from "../redux/actions/tagActions";
 
@@ -20,6 +23,9 @@ export const useVideogame = () => {
     arrayTags: [],
     arrayDevelopers: [],
   });
+
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const { upload, loading } = useCloudinaryUpload();
   const dispatch = useDispatch();
@@ -71,8 +77,6 @@ export const useVideogame = () => {
     label: p.platform_name,
   }));
 
-  //crear tagsoptions y desarrolladesOptions
-
   const tagsOptions = tags.map(({ tag_id, tag_name }) => ({
     value: tag_id,
     label: tag_name,
@@ -82,27 +86,58 @@ export const useVideogame = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    try {
-      const result = await upload(file);
-      setInput((prev) => ({
-        ...prev,
-        videogame_image: result.secure_url,
-      }));
-    } catch (err) {
-      console.error("Error subiendo la imagen:", err);
-    }
+    setImageFile(file);
+
+    const previewUrl = URL.createObjectURL(file);
+    setImagePreview(previewUrl);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const result = await dispatch(createVideogame(input));
-    if (result.message === "el juego ya existe en la base de datos") {
-      alert(result.message);
-      return;
-    }
-    alert("Videojuego creado..!");
-    history.push("/");
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // 1. Validar si existe en la BD
+  const exists = await dispatch(
+    getVideogameName(input.videogame_name)
+  );
+
+  if (exists && exists.length > 0) {
+    alert("el juego ya existe en la base de datos");
+    return;
+  }
+
+  // 2. Subir imagen SOLO si no existe
+  let imageUrl = null;
+  if (imageFile) {
+    const uploadResult = await upload(imageFile);
+    imageUrl = uploadResult.secure_url;
+  }
+
+  // 3. Crear payload con la imagen ya subida a cloudinary
+  const payload = {
+    ...input,
+    videogame_image: imageUrl,
   };
+
+  // 4. Crear videojuego
+  const result = await dispatch(createVideogame(payload));
+
+  if (result.message !== "OK") {
+    alert(result.message);
+    return;
+  }
+
+  alert("Videojuego creado..!");
+  history.push("/");
+};
+
 
   return {
     handleImageUpload,
@@ -114,5 +149,6 @@ export const useVideogame = () => {
     tagsOptions,
     input,
     loading,
+    imagePreview,
   };
 };
