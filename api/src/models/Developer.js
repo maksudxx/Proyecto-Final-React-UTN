@@ -6,6 +6,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
+      unique: true,
     },
     developer_name: {
       type: DataTypes.TEXT,
