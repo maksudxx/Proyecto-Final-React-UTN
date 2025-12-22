@@ -12,9 +12,6 @@ export const uploadImageToCloudinary = async (file) => {
       body: formData,
     }
   );
-  console.log("Response status:", response.status);
-  console.log("Response ok:", response.ok);
-
   if (!response.ok) {
     throw new Error("Error subiendo imagen a Cloudinary");
   }
