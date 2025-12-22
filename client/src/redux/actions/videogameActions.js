@@ -23,6 +23,7 @@ export function getVideogameName(name) {
     );
     const json = response.data;
     dispatch({ type: GET_VIDEOGAMES_NAME, payload: json });
+    return json;
   };
 }
 
