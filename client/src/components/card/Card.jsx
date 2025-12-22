@@ -26,8 +26,8 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
           <div className={styles.info}>
             <p className={styles.pagraph}>Generos:</p>
             <div className={styles.info}>
-              {genres?.map((g) => (
-                <p className={styles.namePlatform}>{g.genre_name}</p>
+              {genres?.map((g, index) => (
+                <p key={index}className={styles.namePlatform}>{g.genre_name}</p>
               ))}
             </div>
           </div>
@@ -42,8 +42,8 @@ const Card = ({ id, name, image, rating, genres, platforms, release }) => {
           <div className={styles.separator}></div>
           <div className={`${styles.info} ${styles.wrap}`}>
             <p className={styles.pagraph}>Plataformas: </p>
-            {platforms?.map((p) => (
-              <p className={styles.namePlatform}>{p.platform_name}</p>
+            {platforms?.map((p, index) => (
+              <p key={index}className={styles.namePlatform}>{p.platform_name}</p>
             ))}
           </div>
         </div>

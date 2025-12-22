@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
-import Spinner from "../spinner/Spinner";
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-export const PrivateRoute = ({ children, isAuthenticated, checkAuth }) => {
-  const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(false);
+export const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+    />
+  );
+};
 
-  useEffect(() => {
-    async function verify() {
-      const result = await checkAuth();
-      setAuth(result);
-      setLoading(false);
-    }
-    verify();
-  }, [checkAuth]);
-
-  if (loading) return <Spinner />;
-
-  return auth || isAuthenticated ? children : <Redirect to="/login" />;
-}

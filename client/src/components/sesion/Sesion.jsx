@@ -1,8 +1,10 @@
 import React,{ useState, useEffect} from 'react'
 import styles from './Sesion.module.css'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Sesion = ({setAuth, isAuthenticated}) => {
     const [name, setName] = useState("");
+    const history = useHistory()
     async function getName() {
       try {
         const response = await fetch("http://localhost:3001/user", {
@@ -23,6 +25,7 @@ const Sesion = ({setAuth, isAuthenticated}) => {
       e.preventDefault();
       localStorage.removeItem("token");
       setAuth(false);
+      history.push("/")
     };
   return (
       

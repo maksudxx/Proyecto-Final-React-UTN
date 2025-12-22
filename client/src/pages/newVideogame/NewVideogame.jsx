@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SelectForm from "../../components/SelectForm/SelectForm";
 import Spinner from "../../components/spinner/Spinner";
 import { useVideogame } from "../../hooks/useVideogameForm";
@@ -5,7 +6,8 @@ import styles from "./NewVideogame.module.css";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
-const NewVideogame = () => {
+const NewVideogame = (isAuthenticated) => {
+  if (!isAuthenticated) return <Redirect to="/" />
   const {
     handleImageUpload,
     handleInputChange,

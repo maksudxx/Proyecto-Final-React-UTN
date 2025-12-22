@@ -10,6 +10,7 @@ import Register from "./pages/Register/Register";
 import Sesion from "./components/Sesion/Sesion";
 import { useAuth } from "./hooks/useAuth";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
+import { useEffect, useState } from "react";
 
 function Videogame() {
   const { isAuthenticated, setAuth, checkAuth } = useAuth();
@@ -39,9 +40,12 @@ function Videogame() {
 
         {/* Rutas privadas */}
         <Route exact path="/newGame">
-          <PrivateRoute isAuthenticated={isAuthenticated} checkAuth={checkAuth}>
-            <NewVideogame />
-          </PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/newGame"
+            component={NewVideogame}
+            isAuthenticated={isAuthenticated}
+          />
         </Route>
       </Switch>
 
