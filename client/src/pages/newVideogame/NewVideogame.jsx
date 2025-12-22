@@ -14,6 +14,7 @@ const NewVideogame = () => {
     input,
     genreOptions,
     platformsOptions,
+    tagsOptions,
     loading,
   } = useVideogame();
 
@@ -23,6 +24,7 @@ const NewVideogame = () => {
     videogame_rating,
     videogame_image,
     videogame_release_date,
+    developers
   } = input;
 
   return (
@@ -37,20 +39,6 @@ const NewVideogame = () => {
             name="videogame_name"
             value={videogame_name}
             placeholder="Ingrese nombre"
-            onChange={handleInputChange}
-            className={styles.input}
-            required
-          />
-        </div>
-
-        {/* Descripción */}
-        <div className={styles.containerInput}>
-          <p>Descripción:</p>
-          <input
-            type="text"
-            name="videogame_description"
-            value={videogame_description}
-            placeholder="Ingrese una descripción"
             onChange={handleInputChange}
             className={styles.input}
             required
@@ -87,6 +75,58 @@ const NewVideogame = () => {
           />
         </div>
 
+        {/* Desarrollador */}
+        <div className={styles.containerInput}>
+          <p>Desarrollador/es (separar por coma):</p>
+          <input
+            type="text"
+            name="developers"
+            value={developers}
+            placeholder="Ingrese desarrollador/es"
+            onChange={handleInputChange}
+            className={styles.input}
+            required
+          />
+        </div>
+
+        {/* Descripción */}
+        <div className={styles.containerInput}>
+          <p>Descripción:</p>
+          <input
+            type="text"
+            name="videogame_description"
+            value={videogame_description}
+            placeholder="Ingrese una descripción"
+            onChange={handleInputChange}
+            className={styles.input}
+            required
+          />
+        </div>
+
+        {/* Select de géneros */}
+        <SelectForm
+          title="Géneros"
+          option={genreOptions}
+          field="arrayGenres"
+          handleSelectChange={handleSelectChange}
+        />
+
+        {/* Select de plataformas */}
+        <SelectForm
+          title="Plataformas"
+          option={platformsOptions}
+          field="arrayPlatforms"
+          handleSelectChange={handleSelectChange}
+        />
+
+        {/* Select de Tags */}
+        <SelectForm
+          title="Tags"
+          option={tagsOptions}
+          field="arrayTags"
+          handleSelectChange={handleSelectChange}
+        />
+
         {/* Imagen principal */}
         <div className={`${styles.containerInput} ${styles.containerImage}`}>
           <p>Imagen Principal:</p>
@@ -117,22 +157,6 @@ const NewVideogame = () => {
             />
           )}
         </div>
-
-        {/* Select de géneros */}
-        <SelectForm
-          title="Géneros"
-          option={genreOptions}
-          field="arrayGenres"
-          handleSelectChange={handleSelectChange}
-        />
-
-        {/* Select de plataformas */}
-        <SelectForm
-          title="Plataformas"
-          option={platformsOptions}
-          field="arrayPlatforms"
-          handleSelectChange={handleSelectChange}
-        />
 
         {/* Botón enviar */}
         <input type="submit" value="Guardar" className={styles.button} />
