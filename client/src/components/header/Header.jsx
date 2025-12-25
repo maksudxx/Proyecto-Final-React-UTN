@@ -4,8 +4,10 @@ import { CgGames } from "react-icons/cg";
 import Search from "../search/Search";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useSelector } from "react-redux";
 
-const Header = ({ isAuthenticated }) => {
+export const Header = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [click, setClick] = useState(false);
 
   const changeClick = () => {
@@ -46,5 +48,3 @@ const Header = ({ isAuthenticated }) => {
     </div>
   );
 };
-
-export default Header;
