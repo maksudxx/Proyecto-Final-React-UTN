@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux"; // Importar
-import { loginAction } from "../../redux/actions/authActions"; // Importar
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../redux/actions/authActions";
+import { toast } from "react-toastify";
 import styles from "./Login.module.css";
 
 export const Login = () => {
@@ -19,11 +20,10 @@ export const Login = () => {
     e.preventDefault();
     // Despachamos la acción
     const result = await dispatch(loginAction(input));
-
     if (result.success) {
-      alert("Bienvenido");
+      toast.success("Bienvenido");
     } else {
-      alert(
+      toast.error(
         typeof result.msg === "string" ? result.msg : JSON.stringify(result.msg)
       );
     }

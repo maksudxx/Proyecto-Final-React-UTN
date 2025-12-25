@@ -9,6 +9,7 @@ import {
 } from "../redux/actions/videogameActions";
 import { useCloudinaryUpload } from "./useCloudinary";
 import { getTags } from "../redux/actions/tagActions";
+import { toast } from "react-toastify";
 
 export const useVideogame = () => {
   const [input, setInput] = useState({
@@ -109,7 +110,7 @@ export const useVideogame = () => {
   );
 
   if (exists && exists.length > 0) {
-    alert("el juego ya existe en la base de datos");
+    toast.warning("el juego ya existe en la base de datos");
     return;
   }
 
@@ -130,11 +131,11 @@ export const useVideogame = () => {
   const result = await dispatch(createVideogame(payload));
 
   if (result.message !== "OK") {
-    alert(result.message);
+    toast.error(result.message);
     return;
   }
 
-  alert("Videojuego creado..!");
+  toast.success("Videojuego creado..!");
   history.push("/");
 };
 

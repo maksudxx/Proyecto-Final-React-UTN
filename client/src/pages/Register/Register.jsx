@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { registerAction } from "../../redux/actions/authActions";
+import { toast } from "react-toastify";
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ export const Register = () => {
     const result = await dispatch(registerAction(input));
 
     if (result.success) {
-      alert("Registrado correctamente, Bienvenido!");
+      toast.success("Registrado correctamente, Bienvenido!");
     } else {
-      alert(JSON.stringify(result.msg));
+      toast.error(JSON.stringify(result.msg));
     }
   };
   return (

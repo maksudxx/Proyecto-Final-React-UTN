@@ -6,6 +6,8 @@ import {
 } from "../redux/actions/videogameActions";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 export const useVideogameDetails = () => {
   const videogame = useSelector(({ videogame }) => videogame.videogame);
@@ -35,15 +37,15 @@ export const useVideogameDetails = () => {
       // Se espera a que el thunk finalice la eliminación
       const result = await dispatch(deleteVideogame(id));
       if (result && result.message === "GAME deleted") {
-        alert("Juego eliminado exitosamente!");
+        toast.success("Juego eliminado exitosamente!");
         history.push("/"); // Redirige después del éxito
       } else {
         // Manejar el caso de éxito sin un mensaje específico
-        alert("Juego eliminado exitosamente!");
+        toast.success("Juego eliminado exitosamente!");
         history.push("/");
       }
     } catch (error) {
-      alert("Error al eliminar el juego. Consulte la consola.");
+      toast.error("Error al eliminar el juego. Consulte la consola.");
       console.error("Delete failed:", error);
     }
   };

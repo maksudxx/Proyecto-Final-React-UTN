@@ -1,17 +1,19 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Videogames from "./pages/videogames/Videogames";
-import {Header} from "./components/header/Header";
+import { Header } from "./components/header/Header";
 import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
 import NewVideogame from "./pages/newVideogame/NewVideogame";
 import About from "./pages/about/About";
 import Footer from "./components/footer/Footer";
-import {Login} from "./pages/Login/Login";
-import {Register} from "./pages/Register/Register";
+import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
 import { Sesion } from "./components/sesion/Sesion";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { checkAuthAction } from "./redux/actions/authActions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Videogame() {
   const dispatch = useDispatch();
@@ -26,18 +28,22 @@ function Videogame() {
     <div className="App">
       <Header />
       <Sesion />
-
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+      />
+      ;
       <Switch>
         {/* Rutas públicas */}
         <Route exact path="/login">
           {!isAuthenticated ? <Login /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/register">
-          {!isAuthenticated ? (
-            <Register />
-          ) : (
-            <Redirect to="/" />
-          )}
+          {!isAuthenticated ? <Register /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/" component={Videogames} />
         <Route exact path="/videogames/:videogame_id">
@@ -53,7 +59,6 @@ function Videogame() {
           />
         </Route>
       </Switch>
-
       <Footer />
     </div>
   );
