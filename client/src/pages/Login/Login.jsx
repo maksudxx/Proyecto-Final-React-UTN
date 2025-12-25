@@ -1,41 +1,31 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux"; // Importar
+import { loginAction } from "../../redux/actions/authActions"; // Importar
 import styles from "./Login.module.css";
 
-const Login = ({ setAuth }) => {
+export const Login = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     user_email: "",
     user_password: "",
   });
-  const handleInputChange = function (e) {
-    e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+
+  const handleInputChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const onSubmitLogin = async (e) => {
     e.preventDefault();
-    try {
-      let { user_email, user_password } = input;
-      let data = { user_email, user_password };
-      const response = await fetch("http://localhost:3001/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const parseRes = await response.json();
-      if (parseRes.token) {
-        localStorage.setItem("token", parseRes.token);
-        setAuth(true);
-        alert("Bienvenido");
-      } else {
-        setAuth(false);
-        alert(JSON.stringify(parseRes));
-      }
-    } catch (error) {
-      console.error(error.message);
+    // Despachamos la acción
+    const result = await dispatch(loginAction(input));
+
+    if (result.success) {
+      alert("Bienvenido");
+    } else {
+      alert(
+        typeof result.msg === "string" ? result.msg : JSON.stringify(result.msg)
+      );
     }
   };
 
@@ -82,5 +72,3 @@ const Login = ({ setAuth }) => {
     </div>
   );
 };
-
-export default Login;
