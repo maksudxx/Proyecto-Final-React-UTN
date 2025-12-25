@@ -1,33 +1,41 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Videogames from "./pages/videogames/Videogames";
-import Header from "./components/header/Header";
+import {Header} from "./components/header/Header";
 import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
 import NewVideogame from "./pages/newVideogame/NewVideogame";
 import About from "./pages/about/About";
 import Footer from "./components/footer/Footer";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Sesion from "./components/Sesion/Sesion";
+import {Login} from "./pages/Login/Login";
+import {Register} from "./pages/Register/Register";
 import { useAuth } from "./hooks/useAuth";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
-import { useEffect, useState } from "react";
+import { Sesion } from "./components/sesion/Sesion";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { checkAuthAction } from "./redux/actions/authActions";
 
 function Videogame() {
-  const { isAuthenticated, setAuth, checkAuth } = useAuth();
+  const dispatch = useDispatch();
 
+  const { isAuthenticated, loading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
+  if (loading) return <div>Verificando...</div>;
   return (
     <div className="App">
-      <Header setAuth={setAuth} isAuthenticated={isAuthenticated} />
-      <Sesion setAuth={setAuth} isAuthenticated={isAuthenticated} />
+      <Header />
+      <Sesion />
 
       <Switch>
         {/* Rutas públicas */}
         <Route exact path="/login">
-          {!isAuthenticated ? <Login setAuth={setAuth} /> : <Redirect to="/" />}
+          {!isAuthenticated ? <Login /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/register">
           {!isAuthenticated ? (
-            <Register setAuth={setAuth} />
+            <Register />
           ) : (
             <Redirect to="/" />
           )}
@@ -41,8 +49,6 @@ function Videogame() {
         {/* Rutas privadas */}
         <Route exact path="/newGame">
           <PrivateRoute
-            exact
-            path="/newGame"
             component={NewVideogame}
             isAuthenticated={isAuthenticated}
           />
