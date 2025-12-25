@@ -1,48 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
+import { useDispatch } from "react-redux";
+import { registerAction } from "../../redux/actions/authActions";
 
-const Register = ({ setAuth }) => {
+export const Register = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     user_name: "",
     user_email: "",
     user_password: "",
   });
-  const handleInputChange = function (e) {
-    e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+
+  const handleInputChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    try {
-      let { user_name, user_email, user_password } = input;
-      let data = {
-        user_name,
-        user_email,
-        user_password,
-      };
+    const result = await dispatch(registerAction(input));
 
-      const response = await fetch("http://localhost:3001/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const parseRes = await response.json();
-      if(parseRes.token){
-        localStorage.setItem("token", parseRes.token);
-        setAuth(true);
-        alert('Registrado correctamente, Bienvenido!')
-      }else{
-        setAuth(false);
-        alert(JSON.stringify(parseRes))
-      }
-    } catch (error) {
-      console.error(error.message);
+    if (result.success) {
+      alert("Registrado correctamente, Bienvenido!");
+    } else {
+      alert(JSON.stringify(result.msg));
     }
   };
   return (
@@ -90,7 +71,8 @@ const Register = ({ setAuth }) => {
         <Link to="/login" className={styles.link}>
           Inicie Sesion
         </Link>
-      </div> <br />
+      </div>{" "}
+      <br />
       <Link to="/videogames" className={styles.link}>
         {" "}
         Volver a lista de juegos{" "}
@@ -98,5 +80,3 @@ const Register = ({ setAuth }) => {
     </div>
   );
 };
-
-export default Register;
