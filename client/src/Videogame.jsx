@@ -7,7 +7,6 @@ import About from "./pages/about/About";
 import Footer from "./components/footer/Footer";
 import {Login} from "./pages/Login/Login";
 import {Register} from "./pages/Register/Register";
-import { useAuth } from "./hooks/useAuth";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
 import { Sesion } from "./components/sesion/Sesion";
 import { useEffect } from "react";
