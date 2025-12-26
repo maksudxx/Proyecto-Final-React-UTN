@@ -28,11 +28,6 @@ export const useVideogameDetails = () => {
   }, [dispatch, videogame_id]);
 
   const deleteGame = async (id) => {
-    if (
-      !window.confirm("¿Está seguro de que desea eliminar este videojuego?")
-    ) {
-      return;
-    }
     try {
       // Se espera a que el thunk finalice la eliminación
       const result = await dispatch(deleteVideogame(id));
