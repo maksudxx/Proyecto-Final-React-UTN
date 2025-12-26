@@ -1,0 +1,55 @@
+/* Contenedor del toast */
+.confirm-toast-wrapper {
+  background: #383838 !important;
+  border: 1px solid #fe9f02;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Texto */
+.confirm-text {
+  color: #fe9f02;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Acciones */
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Botones base */
+.confirm-btn {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Confirmar */
+.confirm-yes,
+.confirm-no {
+  background: #d0ffbb00;
+  color: #fe9f02;
+  border: 1px solid #fe9f02;
+}
+
+.confirm-yes:hover {
+  transform: scale(1.05);
+  background: #fe9f02;
+  color: #fff;
+}
+
+.confirm-no:hover {
+  transform: scale(1.05);
+  background: #fe9f02;
+  color: #fff;
+}

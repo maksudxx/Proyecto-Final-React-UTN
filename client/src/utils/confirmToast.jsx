@@ -1,29 +1,26 @@
 import { toast } from "react-toastify";
+import "./confirmToast.css";
 
-export const confirmToast = ({
-  text = "¿Confirmar acción?",
-  onConfirm,
-  onCancel,
-}) => {
+export const confirmToast = ({ text, onConfirm }) => {
   toast(
     ({ closeToast }) => (
-      <div>
-        <p>{text}</p>
-        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+      <div className="confirm-toast">
+        <p className="confirm-text">{text}</p>
+
+        <div className="confirm-actions">
           <button
+            className="confirm-btn confirm-yes"
             onClick={() => {
-              onConfirm?.();
+              onConfirm();
               closeToast();
             }}
           >
-            Confirmar
+            Sí
           </button>
 
           <button
-            onClick={() => {
-              onCancel?.();
-              closeToast();
-            }}
+            className="confirm-btn confirm-no"
+            onClick={closeToast}
           >
             Cancelar
           </button>
@@ -33,6 +30,8 @@ export const confirmToast = ({
     {
       autoClose: false,
       closeOnClick: false,
+      draggable: false,
+      className: "confirm-toast-wrapper",
     }
   );
 };
