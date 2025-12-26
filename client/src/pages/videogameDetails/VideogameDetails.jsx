@@ -1,6 +1,7 @@
 import styles from "./VideogameDetails.module.css";
 import { useVideogameDetails } from "../../hooks/useVideogameDetails";
 import Spinner from "../../components/spinner/Spinner";
+import { confirmToast } from "../../utils/confirmToast";
 
 const VideogameDetails = ({ isAuthenticated }) => {
   const { isLoading, videogame, deleteGame } = useVideogameDetails();
@@ -101,7 +102,12 @@ const VideogameDetails = ({ isAuthenticated }) => {
           <button className={styles.btn}>Modificar</button>
           <button
             className={`${styles.btnDelete} ${styles.btn}`}
-            onClick={() => deleteGame(videogame_id)}
+            onClick={() =>
+              confirmToast({
+                text: "¿Seguro que querés eliminar este videojuego?",
+                onConfirm: () => deleteGame(videogame_id),
+              })
+            }
           >
             Eliminar
           </button>
