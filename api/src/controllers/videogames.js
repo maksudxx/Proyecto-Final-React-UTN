@@ -45,7 +45,7 @@ async function preloadGames() {
       return;
     }
     // 2. hacemos la peticion a la api, ya que no hay nada cargado en la BD
-    const rawGames = await fetchGamesFromRawg(2);
+    const rawGames = await fetchGamesFromRawg(10);
     for (const game of rawGames) {
       //obtenemos informacion que necesita la BD consultando por id
       const detailsRes = await axios.get(
