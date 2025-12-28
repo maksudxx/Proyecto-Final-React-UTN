@@ -1,0 +1,32 @@
+.menuContainer {
+  width: 100%;
+  color: #fff;
+  padding-left: 80px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.option {
+  font-size: 25px;
+  margin: 20px 0;
+}
+.title:hover,
+.option:hover {
+  color: #fe9f02;
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1700px) {
+  .menuContainer {
+    padding-left: 40px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .option {
+    font-size: 20px;
+  }
+}
