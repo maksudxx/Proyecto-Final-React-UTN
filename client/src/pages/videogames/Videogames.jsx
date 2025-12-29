@@ -29,9 +29,9 @@ const Videogames = () => {
             {videogames?.length > 0 ? (
               videogames
                 ?.slice(pagesVisited, pagesVisited + postsPorPagina)
-                .map((v, index) => (
+                .map((v) => (
                   <Card
-                    key={index}
+                    key={v.videogame_name}
                     id={v.videogame_id}
                     idApi={v.videogame_id_api}
                     name={v.videogame_name}
