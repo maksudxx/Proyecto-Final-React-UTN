@@ -1,13 +1,13 @@
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import SelectForm from "../../components/SelectForm/SelectForm";
-import Spinner from "../../components/spinner/Spinner";
+import { Spinner } from "../../components/spinner/Spinner";
 import { useVideogame } from "../../hooks/useVideogameForm";
 import styles from "./NewVideogame.module.css";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 const NewVideogame = (isAuthenticated) => {
-  if (!isAuthenticated) return <Redirect to="/" />
+  if (!isAuthenticated) return <Redirect to="/" />;
   const {
     handleImageUpload,
     handleInputChange,
@@ -25,7 +25,6 @@ const NewVideogame = (isAuthenticated) => {
     videogame_name,
     videogame_description,
     videogame_rating,
-    videogame_image,
     videogame_release_date,
     developers,
   } = input;
