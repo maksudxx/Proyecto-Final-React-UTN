@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { genresList, platformsList } from "../../data/DataMenu";
 import styles from "./MenuAside.module.css";
 import { useDispatch } from "react-redux";
 import {
   filterVideogamesGenre,
   filterVideogamesPlatform,
+  getVideogames,
 } from "../../redux/actions/videogameActions";
 
 export const MenuAside = () => {
@@ -22,13 +23,19 @@ export const MenuAside = () => {
     dispatch(filterVideogamesPlatform(name));
   };
 
+  const getVideogamesAll = () => {
+    dispatch(getVideogames());
+  };
+
   const { data: datagenres } = genresList;
   const { data: dataPlatforms } = platformsList;
 
   return (
     <aside className={styles.menuContainer}>
       <div>
-        <p className={styles.title}>INICIO</p>
+        <p className={styles.title} onClick={() => getVideogamesAll()}>
+          INICIO
+        </p>
       </div>
       <div>
         <p className={styles.title}>REVIEWS</p>
@@ -36,7 +43,11 @@ export const MenuAside = () => {
       <div>
         <p className={styles.title}>GENEROS</p>
         {datagenres.map(({ name, icon: Icon }) => (
-          <div key={name} className={styles.item} onClick={() => searchGenre(name)}>
+          <div
+            key={name}
+            className={styles.item}
+            onClick={() => searchGenre(name)}
+          >
             <p className={styles.option}>
               <span>
                 <Icon />
@@ -49,7 +60,11 @@ export const MenuAside = () => {
       <div>
         <p className={styles.title}>PLATAFORMAS</p>
         {dataPlatforms.map(({ name, icon: Icon }) => (
-          <div key={name} className={styles.item} onClick={()=> searchPlatform(name)}>
+          <div
+            key={name}
+            className={styles.item}
+            onClick={() => searchPlatform(name)}
+          >
             <p className={styles.option}>
               <span>
                 <Icon />
