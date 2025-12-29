@@ -1,7 +1,7 @@
 import styles from "./VideogameDetails.module.css";
 import { useVideogameDetails } from "../../hooks/useVideogameDetails";
-import Spinner from "../../components/spinner/Spinner";
 import { confirmToast } from "../../utils/confirmToast";
+import { Spinner } from "../../components/spinner/Spinner";
 
 const VideogameDetails = ({ isAuthenticated }) => {
   const { isLoading, videogame, deleteGame } = useVideogameDetails();
