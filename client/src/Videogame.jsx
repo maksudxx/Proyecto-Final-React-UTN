@@ -1,10 +1,10 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import Videogames from "./pages/videogames/Videogames";
+import { Videogames } from "./pages/videogames/Videogames";
 import { Header } from "./components/header/Header";
-import VideogameDetails from "./pages/videogameDetails/VideogameDetails";
-import NewVideogame from "./pages/newVideogame/NewVideogame";
-import About from "./pages/about/About";
-import Footer from "./components/footer/Footer";
+import { VideogameDetails } from "./pages/videogameDetails/VideogameDetails";
+import { NewVideogame } from "./pages/newVideogame/NewVideogame";
+import { About } from "./pages/about/About";
+import { Footer } from "./components/footer/Footer";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";

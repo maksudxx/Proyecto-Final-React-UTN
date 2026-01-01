@@ -3,7 +3,7 @@ import { useVideogameDetails } from "../../hooks/useVideogameDetails";
 import { confirmToast } from "../../utils/confirmToast";
 import { Spinner } from "../../components/spinner/Spinner";
 
-const VideogameDetails = ({ isAuthenticated }) => {
+export const VideogameDetails = ({ isAuthenticated }) => {
   const { isLoading, videogame, deleteGame } = useVideogameDetails();
 
   if (isLoading) return <Spinner />;
@@ -116,5 +116,3 @@ const VideogameDetails = ({ isAuthenticated }) => {
     </div>
   );
 };
-
-export default VideogameDetails;

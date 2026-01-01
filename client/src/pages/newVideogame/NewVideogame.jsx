@@ -6,7 +6,7 @@ import styles from "./NewVideogame.module.css";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
-const NewVideogame = (isAuthenticated) => {
+export const NewVideogame = (isAuthenticated) => {
   if (!isAuthenticated) return <Redirect to="/" />;
   const {
     handleImageUpload,
@@ -163,4 +163,4 @@ const NewVideogame = (isAuthenticated) => {
   );
 };
 
-export default NewVideogame;
+

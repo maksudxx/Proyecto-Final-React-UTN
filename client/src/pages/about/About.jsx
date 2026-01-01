@@ -1,6 +1,6 @@
 import styles from "./About.module.css";
 
-const About = () => {
+export const About = () => {
   return (
     <div className={styles.container}>
       <p className={styles.title}>Acerca de "Videogames API"</p>
@@ -76,5 +76,3 @@ const About = () => {
     </div>
   );
 };
-
-export default About;

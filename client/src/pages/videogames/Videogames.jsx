@@ -8,7 +8,7 @@ import { useVideogameList } from "../../hooks/useVideogameList";
 import Grid from "@mui/material/Grid";
 import { MenuAside } from "../../components/MenuAside/MenuAside";
 
-const Videogames = () => {
+export const Videogames = () => {
   const { changePage, pageCount, pagesVisited, videogames, postsPorPagina } =
     useVideogameList();
 
@@ -63,5 +63,3 @@ const Videogames = () => {
     </>
   );
 };
-
-export default Videogames;

@@ -1,5 +1,3 @@
-import React from "react";
-import { Link as a } from "react-router-dom";
 import {
   AiOutlineInstagram,
   AiOutlineLinkedin,
@@ -10,7 +8,7 @@ import {
 } from "react-icons/ai";
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerName}>
@@ -45,5 +43,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;
