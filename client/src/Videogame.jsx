@@ -2,7 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { Videogames } from "./pages/videogames/Videogames";
 import { Header } from "./components/header/Header";
 import { VideogameDetails } from "./pages/videogameDetails/VideogameDetails";
-import { NewVideogame } from "./pages/newVideogame/NewVideogame";
+import { FormVideogame } from "./pages/formVideogame/FormVideogame";
 import { About } from "./pages/about/About";
 import { Footer } from "./components/footer/Footer";
 import { Login } from "./pages/Login/Login";
@@ -54,7 +54,7 @@ function Videogame() {
         {/* Rutas privadas */}
         <Route exact path="/newGame">
           <PrivateRoute
-            component={NewVideogame}
+            component={FormVideogame}
             isAuthenticated={isAuthenticated}
           />
         </Route>
