@@ -17,26 +17,20 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Videogame() {
   const dispatch = useDispatch();
-
   const { isAuthenticated, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(checkAuthAction());
   }, [dispatch]);
+
   if (loading) return <div>Verificando...</div>;
+
   return (
     <div className="App">
       <Header />
       <Sesion />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-      />
-      ;
+      <ToastContainer position="top-right" autoClose={3000} />
+
       <Switch>
         {/* Rutas públicas */}
         <Route exact path="/login">
@@ -52,12 +46,23 @@ function Videogame() {
         <Route exact path="/about" component={About} />
 
         {/* Rutas privadas */}
-        <Route exact path="/newGame">
-          <PrivateRoute
-            component={FormVideogame}
-            isAuthenticated={isAuthenticated}
-          />
-        </Route>
+        <PrivateRoute
+          exact
+          path="/newGame"
+          key="new-game"
+          component={FormVideogame}
+          isAuthenticated={isAuthenticated}
+          title="PUBLICAR UN NUEVO JUEGO"
+        />
+
+        <PrivateRoute
+          exact
+          path="/editGame/:videogame_id"
+          key="edit-game"
+          component={FormVideogame}
+          isAuthenticated={isAuthenticated}
+          title="MODIFICAR JUEGO"
+        />
       </Switch>
       <Footer />
     </div>
