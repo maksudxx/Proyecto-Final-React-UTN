@@ -84,6 +84,7 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
     arrayPlatforms,
     arrayTags,
     arrayDevelopers,
+    videogame_image
   } = req.body;
   const { videogame_id } = req.params;
   try {
@@ -96,7 +97,8 @@ router.put("/videogames/:videogame_id", async (req, res, next) => {
       arrayGenres,
       arrayPlatforms,
       arrayTags,
-      arrayDevelopers
+      arrayDevelopers,
+      videogame_image
     );
 
     if (!result) {

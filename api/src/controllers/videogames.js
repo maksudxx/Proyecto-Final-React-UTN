@@ -236,7 +236,8 @@ async function editGameInDb(
   arrayGenres,
   arrayPlatforms,
   arrayTags,
-  arrayDevelopers
+  arrayDevelopers,
+  videogame_image
 ) {
   try {
     const editGame = await Videogame.findOne({
@@ -250,6 +251,7 @@ async function editGameInDb(
     editGame.videogame_description = videogame_description;
     editGame.videogame_release_date = videogame_release_date;
     editGame.videogame_rating = videogame_rating;
+    editGame.videogame_image = videogame_image;
 
     // 2. Lógica para Desarrolladores (findOrCreate)
     if (arrayDevelopers && arrayDevelopers.length > 0) {
