@@ -242,22 +242,44 @@ async function editGameInDb(
     const editGame = await Videogame.findOne({
       where: { videogame_id },
     });
+
     if (!editGame) return null;
 
+    // 1. Actualizar datos básicos
     editGame.videogame_name = videogame_name;
     editGame.videogame_description = videogame_description;
     editGame.videogame_release_date = videogame_release_date;
     editGame.videogame_rating = videogame_rating;
 
+    // 2. Lógica para Desarrolladores (findOrCreate)
+    if (arrayDevelopers && arrayDevelopers.length > 0) {
+      const devInstances = await Promise.all(
+        arrayDevelopers.map(async (dev) => {
+          // Buscamos por nombre, si no existe se crea
+          const [instance] = await Developer.findOrCreate({
+            where: { developer_name: dev.name.trim() },
+          });
+          return instance;
+        })
+      );
+      // Seteamos las instancias (Sequelize extraerá los IDs automáticamente)
+      await editGame.setDevelopers(devInstances);
+    } else {
+      // Si el array viene vacío, quitamos todos los desarrolladores vinculados
+      await editGame.setDevelopers([]);
+    }
+
+    // 3. Relaciones que ya traen IDs (Genres, Platforms, Tags)
     if (arrayGenres) await editGame.setGenres(arrayGenres);
     if (arrayPlatforms) await editGame.setPlatforms(arrayPlatforms);
     if (arrayTags) await editGame.setTags(arrayTags);
-    if (arrayDevelopers) await editGame.setDevelopers(arrayDevelopers);
 
+    // 4. Guardar cambios en la tabla principal
     await editGame.save();
+
     return editGame;
   } catch (error) {
-    console.error("Error insert game in DB", error);
+    console.error("Error updating game in DB", error);
     throw error;
   }
 }
