@@ -6,6 +6,7 @@ import {
   GET_VIDEOGAMES_ID,
   GET_VIDEOGAMES_NAME,
   DELETE_VIDEOGAME_SUCESS,
+  PUT_VIDEOGAME,
 } from "../types/index";
 
 export function getVideogames() {
@@ -79,6 +80,22 @@ export function deleteVideogame(id, dispatch) {
     } catch (err) {
       console.log(err);
       return;
+    }
+  };
+}
+
+export function updateVideogame(id, body) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(
+        "http://localhost:3001/videogames/" + id,
+        body
+      );
+      dispatch({ type: PUT_VIDEOGAME, payload: id });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
     }
   };
 }

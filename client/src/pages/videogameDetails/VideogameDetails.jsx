@@ -1,13 +1,14 @@
-import styles from "./VideogameDetails.module.css";
 import { useVideogameDetails } from "../../hooks/useVideogameDetails";
 import { confirmToast } from "../../utils/confirmToast";
 import { Spinner } from "../../components/spinner/Spinner";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import styles from "./VideogameDetails.module.css";
 
 export const VideogameDetails = ({ isAuthenticated }) => {
   const { isLoading, videogame, deleteGame } = useVideogameDetails();
 
   if (isLoading) return <Spinner />;
-
+  const history = useHistory();
   const {
     videogame_id,
     videogame_name,
@@ -99,7 +100,14 @@ export const VideogameDetails = ({ isAuthenticated }) => {
       {/* BOTONES DE MODIFICAR Y ELIMINAR */}
       {isAuthenticated && (
         <div className={styles.btnContainer}>
-          <button className={styles.btn}>Modificar</button>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              history.push("/editGame/" + videogame_id);
+            }}
+          >
+            Modificar
+          </button>
           <button
             className={`${styles.btnDelete} ${styles.btn}`}
             onClick={() =>

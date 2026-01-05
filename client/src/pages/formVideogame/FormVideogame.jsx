@@ -1,22 +1,28 @@
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom";
 import SelectForm from "../../components/SelectForm/SelectForm";
 import { Spinner } from "../../components/spinner/Spinner";
 import { useVideogame } from "../../hooks/useVideogameForm";
 import styles from "./Formvideogame.module.css";
 
-export const FormVideogame = (isAuthenticated) => {
+export const FormVideogame = ({ isAuthenticated, title }) => {
+  // Si no está autenticado, redirigir
   if (!isAuthenticated) return <Redirect to="/" />;
+
   const {
     handleImageUpload,
     handleInputChange,
     handleSelectChange,
     handleSubmit,
+    selectedGenres,
+    selectedPlatforms,
+    selectedTags,
     input,
     genreOptions,
     platformsOptions,
     tagsOptions,
     loading,
     imagePreview,
+    isEdit,
   } = useVideogame();
 
   const {
@@ -26,12 +32,13 @@ export const FormVideogame = (isAuthenticated) => {
     videogame_release_date,
     developers,
   } = input;
-
+  
   return (
     <div className={styles.container}>
-      <p className={styles.title}>PUBLICAR UN NUEVO JUEGO</p>
+      {/* Ahora 'title' mostrará el texto correcto */}
+      <p className={styles.title}>{title}</p>
+
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* Nombre del juego */}
         <div className={styles.containerInput}>
           <p>Nombre del juego:</p>
           <input
@@ -45,7 +52,6 @@ export const FormVideogame = (isAuthenticated) => {
           />
         </div>
 
-        {/* Fecha de lanzamiento */}
         <div className={styles.containerInput}>
           <p>Fecha de lanzamiento:</p>
           <input
@@ -53,13 +59,11 @@ export const FormVideogame = (isAuthenticated) => {
             name="videogame_release_date"
             value={videogame_release_date}
             onChange={handleInputChange}
-            onFocus={(e) => e.target.showPicker?.()}
             className={styles.input}
             required
           />
         </div>
 
-        {/* Rating */}
         <div className={styles.containerInput}>
           <p>Rating:</p>
           <input
@@ -75,9 +79,8 @@ export const FormVideogame = (isAuthenticated) => {
           />
         </div>
 
-        {/* Desarrollador */}
         <div className={styles.containerInput}>
-          <p>Desarrollador/es (separar por coma):</p>
+          <p>Desarrollador/es:</p>
           <input
             type="text"
             name="developers"
@@ -89,7 +92,6 @@ export const FormVideogame = (isAuthenticated) => {
           />
         </div>
 
-        {/* Descripción */}
         <div className={styles.containerInput}>
           <p>Descripción:</p>
           <input
@@ -103,31 +105,30 @@ export const FormVideogame = (isAuthenticated) => {
           />
         </div>
 
-        {/* Select de géneros */}
         <SelectForm
           title="Géneros"
           option={genreOptions}
+          value={selectedGenres}
           field="arrayGenres"
           handleSelectChange={handleSelectChange}
         />
 
-        {/* Select de plataformas */}
         <SelectForm
           title="Plataformas"
           option={platformsOptions}
+          value={selectedPlatforms}
           field="arrayPlatforms"
           handleSelectChange={handleSelectChange}
         />
 
-        {/* Select de Tags */}
         <SelectForm
           title="Tags"
           option={tagsOptions}
+          value={selectedTags}
           field="arrayTags"
           handleSelectChange={handleSelectChange}
         />
 
-        {/* Imagen principal */}
         <div className={`${styles.containerInput} ${styles.containerImage}`}>
           <p>Imagen Principal:</p>
           <input
@@ -153,12 +154,12 @@ export const FormVideogame = (isAuthenticated) => {
             />
           )}
         </div>
-
-        {/* Botón enviar */}
-        <input type="submit" value="Guardar" className={styles.button} />
+        <input
+          type="submit"
+          value={isEdit ? "Guardar Cambios" : "Crear Juego"}
+          className={styles.button}
+        />
       </form>
     </div>
   );
 };
-
-
