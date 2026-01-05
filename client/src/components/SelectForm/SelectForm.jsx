@@ -1,7 +1,7 @@
 import Select from "react-select";
 import styles from "./SelectForm.module.css";
 
-const SelectForm = ({ title, option, handleSelectChange, field }) => {
+const SelectForm = ({ title, option, handleSelectChange, field, value }) => {
   const placeholder = `seleccioná ${title}`;
 
   const customStyles = {
@@ -79,6 +79,7 @@ const SelectForm = ({ title, option, handleSelectChange, field }) => {
         onChange={(selected) => handleSelectChange(selected, field)}
         placeholder={placeholder}
         styles={customStyles}
+        value={value}
       />
     </section>
   );
