@@ -3,16 +3,14 @@ import FilterGenre from "../filter/FilterGenre";
 import FilterPlatforms from "../filter/FilterPlatforms";
 import { useVideogame } from "../../hooks/useVideogameForm";
 import styles from "./SearchBar.module.css";
-
+import { genresList, platformsList } from "../../data/DataMenu";
 
 const SearchBar = () => {
-
-  const { genres, platforms } = useVideogame();
   return (
     <div className={styles.container}>
-      <FilterGenre props={genres} />
-      <FilterPlatforms props={platforms} />
       <Search />
+      <FilterGenre data={genresList.data} />
+      <FilterPlatforms data={platformsList.data} />
     </div>
   );
 };
