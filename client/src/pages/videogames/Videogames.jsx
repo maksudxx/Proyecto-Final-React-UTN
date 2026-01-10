@@ -23,7 +23,7 @@ export const Videogames = () => {
           <MenuAside />
         </Grid>
         <Grid size={{ xs: 12, md: 10 }} className={styles.container}>
-          {/* <SearchBar /> */}
+          <SearchBar />
           <p className={styles.title}>LISTA DE JUEGOS</p>
           <ul className={styles.containerCards}>
             {videogames?.length > 0 ? (
