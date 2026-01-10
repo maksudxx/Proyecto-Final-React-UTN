@@ -6,15 +6,18 @@ import {
 } from "../../redux/actions/videogameActions";
 import styles from "./Filter.module.css";
 
-const FilterPlatforms = ({ props }) => {
+const FilterPlatforms = ({ data }) => {
   const [platform, setPlatform] = useState("");
   const dispatch = useDispatch();
   const handleChangePlatform = (e) => {
     setPlatform(e.target.value);
-    e.target.value === "1-Todas las plataformas"
+    e.target.value === "TODAS LAS PLATAFORMAS"
       ? dispatch(getVideogames())
       : dispatch(filterVideogamesPlatform(e.target.value));
   };
+
+  const newArrayPlatforms = [{name: "TODAS LAS PLATAFORMAS"}, ...data]
+
   return (
     <select
       value={platform}
@@ -22,8 +25,8 @@ const FilterPlatforms = ({ props }) => {
       className={styles.select}
       name="platform"
     >
-      {props?.map((p, index) => (
-        <option key={index}>{p.platform_name}</option>
+      {newArrayPlatforms.map(({name}) => (
+        <option key={name}>{name}</option>
       ))}
     </select>
   );

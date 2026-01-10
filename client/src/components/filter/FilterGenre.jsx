@@ -6,15 +6,17 @@ import {
 } from "../../redux/actions/videogameActions";
 import styles from "./Filter.module.css";
 
-const FilterGenre = ({ props }) => {
+const FilterGenre = ({ data }) => {
   const [genre, setGenre] = useState("");
   const dispatch = useDispatch();
   const handleChangeGenre = (e) => {
     setGenre(e.target.value);
-    e.target.value === "1-Todos los generos"
+    e.target.value === "TODOS LOS GENEROS"
       ? dispatch(getVideogames())
       : dispatch(filterVideogamesGenre(e.target.value));
   };
+  const newArrayGenre = [{ name: "TODOS LOS GENEROS" }, ...data];
+
   return (
     <select
       name="genre"
@@ -22,8 +24,8 @@ const FilterGenre = ({ props }) => {
       onChange={handleChangeGenre}
       className={styles.select}
     >
-      {props.map((g, index) => (
-        <option key={index}>{g.genre_name}</option>
+      {newArrayGenre.map(({ name }) => (
+        <option key={name}>{name}</option>
       ))}
     </select>
   );
