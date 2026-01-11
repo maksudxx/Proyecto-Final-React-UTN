@@ -1,78 +1,72 @@
 import styles from "./About.module.css";
 
+const TECH_STACK = [
+  "React", "CSS Modules", "Redux", "NodeJs", "Express", 
+  "Sequelize ORM", "PostgreSQL", "JWT", "Cloudinary"
+];
+
+const SECTIONS_INFO = [
+  {
+    title: "Lista de juegos",
+    content: "Visualiza tarjetas con juegos de la base de datos. Incluye detalles, búsqueda automática y filtros por plataformas o géneros."
+  },
+  {
+    title: "Agregar un juego",
+    content: "Formulario para crear juegos propios. Requiere registro previo para almacenar la información en la base de datos."
+  },
+  {
+    title: "Gestión de juegos",
+    content: "Funcionalidades completas para modificar o eliminar registros existentes en la aplicación."
+  },
+  {
+    title: "Autenticación",
+    content: "Sistema de registro e inicio de sesión para gestionar permisos de creación de contenido."
+  }
+];
+
 export const About = () => {
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>Acerca de "Videogames API"</p>
-      <img
-        src="https://res.cloudinary.com/djh4udgqb/image/upload/v1765769562/fondoabout_xdq0um.jpg"
-        alt="personajes"
-        className={styles.image}
-      />
-      <div className={styles.containerInformation}>
-        <p>
-          Aplicacion desarrollada por Facundo Maksud con fines educativos para
-          el proyecto final del bootcamp de ReactJs dictado por la UTN. Esta
-          aplicacion consume la api de{" "}
-          <a href="https://rawg.io/" target="_blank" className={styles.a}>
-            Rawg.io
-          </a>{" "}
-          el cual la informacion es gurdada en una Base de datos. Las
-          tecnologias y/o librerias utilizadas para este proyecto para
-          complementar con lo visto en el curso fueron:{" "}
-          <span className={styles.p}>
-            CSS Modules, Redux, NodeJs, Express, Sequelize ORM, PostgreSQL, JWT.
-          </span>
-        </p>
+    <article className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Acerca de "Videogames API" (V1.0)</h1>
+        <div className={styles.imageWrapper}>
+          <img
+            src="https://res.cloudinary.com/djh4udgqb/image/upload/v1765769562/fondoabout_xdq0um.jpg"
+            alt="Personajes de videojuegos"
+            className={styles.image}
+          />
+        </div>
+      </header>
 
-        <br />
-        <p className={styles.title2}>
-          Las partes que componen esta pagina son:{" "}
-        </p>
-        <br />
-        <ul>
-          <li className={styles.li}>
-            <p className={styles.subTitle}>Landing page o inicio: </p>
-            <p>la misma muestra la presentacion del proyecto</p>
-          </li>{" "}
-          <br />
-          <li className={styles.li}>
-            <p className={styles.subTitle}>Lista de juegos:</p>
-            <p>
-              {" "}
-              En esta seccion se muestra unas tarjetas con todos los juegos que
-              estan almacenados en la base de datos. en esta seccion podemos ver
-              la informacion detallada de cada juego al presionar sobre la
-              imagen o el titulo de la misma. Tambien tenemos una barra de
-              busqueda, la cual al ingresar el nombre del juego automaticamente
-              lo busca. Por ultimo tenemos los filtros por plataformas y generos
-              los cuales hace lo anteriormente mencionado traer todos los juegos
-              de determinada plataforma o genero
-            </p>
-          </li>
-          <br />
-          <li className={styles.li}>
-            <p className={styles.subTitle}>Agregar un juego:</p>{" "}
-            <p>
-              En esta seccion podemos crear o agregar nuestro propio juego
-              llenando un formulario. este juego se almacenara en la base de
-              datos de la aplicacion y se mostrara una vez guardado en la lista
-              de juegos. Aclaracion: para poder ingresar nuevos juegos tiene que
-              estar logueado.
-            </p>
-          </li>
-          <br />
-          <li className={styles.li}>
-            <p className={styles.subTitle}>Iniciar Sesion / Registarse: </p>
-            <p>
-              En esta seccion vamos a poder crearnos una cuenta para poder crear
-              o agregar nuevos juegos a la BD.
-            </p>
-          </li>
-        </ul>
-      </div>
-      <br />
-      <br />
-    </div>
+      <section className={styles.containerInformation}>
+        <div className={styles.intro}>
+          <p>
+            Página desarrollada por <strong>Facundo Maksud</strong> con fines educativos. 
+            Esta aplicación consume la API de{" "}
+            <a href="https://rawg.io/" target="_blank" rel="noopener noreferrer" className={styles.link}>
+              Rawg.io
+            </a>.
+          </p>
+          
+          <h3>Tecnologías utilizadas:</h3>
+          <ul className={styles.techList}>
+            {TECH_STACK.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+        </div>
+
+        <h2 className={styles.title2}>Estructura de la aplicación</h2>
+        
+        <div className={styles.gridSections}>
+          {SECTIONS_INFO.map((section) => (
+            <section key={section.title} className={styles.sectionCard}>
+              <h3 className={styles.subTitle}>{section.title}</h3>
+              <p>{section.content}</p>
+            </section>
+          ))}
+        </div>
+      </section>
+    </article>
   );
 };
