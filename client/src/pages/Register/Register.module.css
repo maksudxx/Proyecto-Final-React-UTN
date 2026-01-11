@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Permite que el contenido respire si la pantalla es pequeña */
+  min-height: 100vh; 
   color: #fff;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .title {
-  font-size: 2.5rem; /* Un poco más pequeño que el login para que no se rompa */
+  font-size: 2.5rem; 
   color: #fe9f02;
   font-weight: bold;
   margin: 40px 0;
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px; /* Un poco más ancho que el login por el campo 'nombre' */
+  max-width: 500px;
   padding: 30px 20px;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@
 }
 
 .spanInput {
-  flex: 0 0 110px; /* Alineación perfecta de las etiquetas */
+  flex: 0 0 110px;
 }
 
 .input {

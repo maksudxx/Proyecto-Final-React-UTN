@@ -7,7 +7,6 @@
 }
 
 .title {
-  /* clamp(mínimo, preferido, máximo) */
   font-size: clamp(2rem, 6vw, 5rem);
   color: #fe9f02;
   font-weight: 800;
@@ -17,9 +16,8 @@
   letter-spacing: 2px;
 }
 .containerCards {
-  width: 100%; /* Cambiado de 80vw para que use el espacio del Grid de Material UI */
+  width: 100%;
   display: grid;
-  /* repeat(auto-fill, minmax(ancho_mínimo, 1fr)) es la clave del responsive */
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 40px;
   justify-items: center;
@@ -99,7 +97,7 @@
     margin: 20px 0;
   }
   .containerCards {
-    grid-template-columns: 1fr; /* Una sola card por fila en móvil */
+    grid-template-columns: 1fr; 
     gap: 25px;
   }
   .paginationBttns {
