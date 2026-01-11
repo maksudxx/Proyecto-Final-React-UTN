@@ -3,66 +3,86 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   color: #fe9f02;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .image {
-  width: 70%;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
 }
 
 .containerInformation {
-  width: 80%;
-  font-size: 1.5rem;
-  margin-top: 30px;
+  width: 90%;
+  max-width: 900px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-top: 40px;
 }
-.list1 {
-  align-self: center;
-}
-.li {
-  list-style: none;
-  margin-bottom: 5px;
-}
-.p {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.a {
+
+/* Unificamos .link y .a ya que ambos controlan los enlaces */
+.link, .a {
   color: #fe9f02;
+  text-decoration: none;
+  font-weight: bold;
 }
+
+.link:hover, .a:hover {
+  text-decoration: underline;
+}
+
 .title2 {
   color: #fe9f02;
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 40px;
+  font-size: 1.5rem;
 }
 
 .subTitle {
   font-weight: bold;
+  color: #fe9f02;
   text-decoration: underline;
+  margin-top: 25px;
   margin-bottom: 10px;
+  display: block;
 }
 
-@media (max-width: 400px) {
+/* --- RESPONSIVE --- */
+
+@media (max-width: 768px) {
+  .containerInformation {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
   .title {
-    font-size: 2rem;
-    text-align: center;
-    margin: 30px 0;
+    font-size: 1.6rem;
+    margin: 20px 0;
   }
 
   .image {
-    width: 100%;
-    height: 200px;
+    height: 250px;
   }
 
-  .containerInformation{
-    width: 90%;
+  .containerInformation {
+    width: 95%;
     font-size: 1rem;
   }
 }
