@@ -2,38 +2,58 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 0;
+  margin: 30px 0;
+  width: 100%;
 }
 
 .title {
-  font-size: 70px;
+  /* clamp(mínimo, preferido, máximo) */
+  font-size: clamp(2rem, 6vw, 5rem);
   color: #fe9f02;
-  font-weight: bold;
+  font-weight: 800;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 .containerCards {
-  width: 80vw;
+  width: 100%; /* Cambiado de 80vw para que use el espacio del Grid de Material UI */
   display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
-  gap: 60px;
-  justify-content: center;
-  margin: 50px 0;
+  /* repeat(auto-fill, minmax(ancho_mínimo, 1fr)) es la clave del responsive */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  margin: 40px 0;
+  padding: 0 20px;
+  list-style: none;
+  box-sizing: border-box;
 }
 
 .paginationBttns {
-  height: 40px;
-  list-style: none;
   display: flex;
   justify-content: center;
-  font-weight: bold;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;       
+  list-style: none;
+  padding: 0;
+  margin: 40px 0;
+  width: 100%;
 }
 
 .paginationBttns a {
-  border-radius: 10%;
-  padding: 10px;
-  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px; 
+  height: 35px;
+  padding: 5px;  
   border: 1px solid #fe9f02;
   color: #fe9f02;
   cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
 }
 
 .paginationBttns a:hover {
@@ -68,10 +88,30 @@
   /* border: 1px solid #fff; */
 }
 @media screen and (min-width: 1300px) and (max-width: 1700px) {
-.title {
-  font-size: 80px;
-  padding-left: 45px;
+  .title {
+    font-size: 80px;
+    padding-left: 45px;
+  }
 }
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px 0;
+  }
+  .containerCards {
+    grid-template-columns: 1fr; /* Una sola card por fila en móvil */
+    gap: 25px;
+  }
+  .paginationBttns {
+    gap: 5px;
+  }
+
+  .paginationBttns a {
+    min-width: 30px; 
+    height: 30px;
+    font-size: 0.8rem;
+    margin: 2px;
+  }
 }
 @media (max-width: 400px) {
   .title {

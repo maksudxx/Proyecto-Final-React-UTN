@@ -2,93 +2,117 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  justify-content: center; /* Centra verticalmente en la pantalla */
+  min-height: 100vh; /* Permite que crezca si el contenido es mucho */
   color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+.title {
+  font-size: 3rem;
+  color: #fe9f02;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.link{
+  color: #fff;
+}
 .containerForm {
   display: flex;
   flex-direction: column;
-  height: 40vh;
-  width: 30vw;
-  justify-content: space-around;
+  width: 100%;
+  max-width: 450px; /* Ancho ideal para escritorio */
+  padding: 40px 20px;
+  justify-content: center;
   align-items: center;
   background: hsla(0, 0%, 100%, 0.07);
-  margin: 0 0 30px 0;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
 }
+
 .containerInput {
   width: 100%;
-  height: 90px;
+  margin-bottom: 25px; /* Espaciado constante */
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
+
+.spanInput {
+  flex: 0 0 100px; /* El texto siempre ocupa 100px para que los inputs queden alineados */
+}
+
 .input {
-  width: 60%;
-  height: 40%;
+  flex: 1; /* El input toma el resto del espacio disponible */
+  height: 40px;
   border: 0;
   background: transparent;
   border-bottom: 3px solid #fe9f02;
   color: #fff;
-  margin-left: 30px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-.input:focus{
- outline: none
-}
-
-.spanInput {
-  width: 100px;
+.input:focus {
+  outline: none;
+  border-bottom: 3px solid #fff;
 }
 
 .button {
   height: 50px;
-  width: 130px;
+  width: 100%; /* Botón ancho para móviles */
+  max-width: 200px;
   background: transparent;
   color: #fff;
   border: 3px solid #fe9f02;
   border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: 0.3s;
 }
 
 .button:hover {
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
-  background: hsla(0, 0%, 100%, 0.07);
-}
-.title {
-  font-size: 3rem;
-  color: #fe9f02;
-  font-weight: bold;
-  margin: 60px 0;
+  background: #fe9f02; /* Cambiamos el fondo al hacer hover para feedback visual */
+  color: #000;
 }
 
-.spanInfo {
-  font-size: 1.3rem;
-}
+/* --- RESPONSIVE --- */
 
-.link {
-  color: #fff;
-  margin-left: 8px;
-  font-size: 1.3rem;
-}
-
-.link:hover {
-  color: #fe9f02;
-}
-
-@media (max-width: 400px) {
-  .containerForm {
-    height: 40vh;
-    width: 90vw;
-  }
-  .containerInput {
-    width: 90%;
-    font-size: 1.1rem;
-  }
+@media (max-width: 600px) {
   .title {
     font-size: 2rem;
-    margin: 50px 0 35px 0;
+    margin-top: 20px;
+  }
+
+  .containerForm {
+    width: 95vw; /* Casi todo el ancho en móviles */
+    padding: 30px 15px;
+  }
+
+  .containerInput {
+    flex-direction: column; /* En móviles pequeños, etiqueta arriba e input abajo */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .spanInput {
+    flex: none;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+    margin-left: 0; /* Quitamos el margen lateral que rompe el centrado */
+  }
+
+  .spanInfo, .link {
+    font-size: 1rem;
   }
 }

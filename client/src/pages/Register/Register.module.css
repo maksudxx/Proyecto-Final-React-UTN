@@ -1,95 +1,122 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    color: #fff;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Permite que el contenido respire si la pantalla es pequeña */
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.containerForm{
-    display: flex;
-    flex-direction: column;
-    height: 50vh;
-    width: 30vw;
-    justify-content: space-around;
-    align-items: center;
-    background: hsla(0, 0%, 100%, 0.07);
-    margin: 0 0 30px 0;
-}
-.containerInput{
-    width: 100%;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-}
-.input{
-    width: 60%;
-    height: 40%;
-    border: 0;
-    background: transparent;
-    border-bottom: 3px solid #fe9f02;
-    color: #fff;
-    margin-left: 30px;;
-}
-
-.input:focus{
-    outline: none
-}
-
-.spanInput{
-    width: 100px;
-}
-
-.button{
-    height: 50px;
-    width: 130px;
-    background: transparent;
-    color: #fff;
-    border: 3px solid #fe9f02;
-    border-radius: 8px;
-}
-
-.button:hover{
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    background:hsla(0, 0%, 100%, 0.07)
-}
 .title {
-    font-size: 3rem;
-    color: #fe9f02;
-    font-weight: bold;
-    margin: 60px 0;
-  }
+  font-size: 2.5rem; /* Un poco más pequeño que el login para que no se rompa */
+  color: #fe9f02;
+  font-weight: bold;
+  margin: 40px 0;
+  text-align: center;
+}
 
-  .spanInfo{
-      font-size: 1.3rem
-  }
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px; /* Un poco más ancho que el login por el campo 'nombre' */
+  padding: 30px 20px;
+  justify-content: center;
+  align-items: center;
+  background: hsla(0, 0%, 100%, 0.07);
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
 
+.containerInput {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.spanInput {
+  flex: 0 0 110px; /* Alineación perfecta de las etiquetas */
+}
+
+.input {
+  flex: 1;
+  height: 45px;
+  border: 0;
+  background: transparent;
+  border-bottom: 3px solid #fe9f02;
+  color: #fff;
+  font-size: 1rem;
+  padding-left: 10px;
+  transition: border-bottom 0.3s;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 3px solid #fff;
+}
+
+.button {
+  height: 50px;
+  width: 100%;
+  max-width: 200px;
+  background: transparent;
+  color: #fff;
+  border: 3px solid #fe9f02;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #fe9f02;
+  color: #000;
+}
+
+.spanInfo, .link {
+  font-size: 1.1rem;
+  text-align: center;
+}
 .link{
-    color: #fff;
-    margin-left: 8px;
-    font-size: 1.3rem
+  color: #fff;
+}
+.link:hover {
+  color: #fe9f02;
 }
 
-.link:hover{
-    color: #fe9f02
-}
+/* --- RESPONSIVE --- */
 
-@media (max-width: 400px) {
-    .containerForm {
-      height: 40vh;
-      width: 90vw;
-    }
-    .containerInput {
-      width: 90%;
-      font-size: 1.1rem;
-    }
-    .title {
-      font-size: 2rem;
-      margin: 50px 0 35px 0;
-      text-align: center;
-    }
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.8rem;
+    margin: 30px 0;
   }
+
+  .containerForm {
+    width: 100%;
+    padding: 20px 15px;
+  }
+
+  .containerInput {
+    flex-direction: column; /* Apila etiqueta e input en celulares */
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .spanInput {
+    flex: none;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+  }
+}

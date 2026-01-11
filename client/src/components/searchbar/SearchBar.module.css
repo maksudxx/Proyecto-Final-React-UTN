@@ -1,18 +1,26 @@
-.container{
-    display: flex;
-    width: 60vw;
-    justify-content: space-around;
-    align-items: center;
-    height: 7vh;
-    background:hsla(0,0%,100%,.07);
-    border-radius: 7px;
-    margin: 45px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
 }
 
-@media(max-width: 400px){
-    .container{
-        margin: 0;
-        flex-direction: column;
-        height: 170px;
-    }
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ESTILOS PARA ESCRITORIO (Cuando la pantalla crece) */
+@media (min-width: 900px) {
+  .container {
+    flex-direction: row;
+    justify-content: center; /* Centra el buscador si quieres */
+    margin: 20px 0;
+  }
+ 
+  .searchContainer {
+    display: none;
+  }
 }

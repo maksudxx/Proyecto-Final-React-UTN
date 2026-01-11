@@ -2,9 +2,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 150px;
+  height: 120px;
   background: #ffffff12;
-  padding: 0 20px;
+  padding: 0 40px;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  color: #fff;
+  font-size: 80px;
+  transition: font-size 0.3s ease;
+}
+
+.containerOptions {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.option {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.option:hover {
+  color: #fe9f02;
 }
 
 .menuResponsive {
@@ -12,71 +43,52 @@
   font-size: 30px;
   color: white;
   cursor: pointer;
+  order: 2;
 }
 
-.logo {
-  margin-left: 50px;
-}
+/* --- RESPONSIVE --- */
 
-.containerOptions {
-  display: flex;
-  justify-content: space-around;
-  width: 20%;
-  margin-right: 50px;
-}
-
-.option {
-  color: #fff;
-  font-size: 25px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.option:hover {
-  color: #fe9f02;
-}
-
-/* SEARCH */
-.search {
-  display: block;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .headerContainer {
-    height: 100px;
+@media (max-width: 1024px) {
+  .containerOptions {
+    gap: 15px;
   }
+  .option {
+    font-size: 1rem;
+  }
+  .logoImage {
+    font-size: 60px;
+  }
+}
 
+@media (max-width: 768px) {
   .menuResponsive {
     display: block;
-  }
-
-  .logo {
-    margin-left: 0;
-  }
-
-  .search {
-    display: none;
   }
 
   .containerOptions {
     position: absolute;
     top: 100px;
-    right: 0;
-    background: #000;
+    left: 0;
     width: 100%;
+    height: calc(100vh - 100px); 
+    background: rgba(0, 0, 0, 0.95);
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 40px;
     display: none;
-    margin-right: 0
+    margin-right: 0;
+    z-index: 1000;
   }
 
   .containerOptions.active {
-    display: flex;
+    display: flex; 
   }
 
   .option {
-    margin: 20px 0;
-    font-size: 22px;
+    font-size: 1.8rem;
+  }
+
+  .logoImage {
+    font-size: 50px;
   }
 }
