@@ -21,12 +21,8 @@ export const Header = () => {
       </div>
 
       <Link to="/" className={styles.logo}>
-        <CgGames color="white" size={120} />
+        <CgGames className={styles.logoImage}/>
       </Link>
-
-      <div className={styles.search}>
-        <Search />
-      </div>
 
       <div
         className={`${styles.containerOptions} ${click ? styles.active : ""}`}
@@ -40,6 +36,10 @@ export const Header = () => {
             Agregar juego
           </Link>
         )}
+
+        <Link className={styles.option} to="/register" onClick={changeClick}>
+          Registrate
+        </Link>
 
         <Link className={styles.option} to="/about" onClick={changeClick}>
           Acerca de
