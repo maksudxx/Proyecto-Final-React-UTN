@@ -9,8 +9,10 @@ const SearchBar = () => {
   return (
     <div className={styles.container}>
       <Search />
-      <FilterGenre data={genresList.data} />
-      <FilterPlatforms data={platformsList.data} />
+      <div className={styles.searchContainer}>
+        <FilterGenre data={genresList.data} />
+        <FilterPlatforms data={platformsList.data} />
+      </div>
     </div>
   );
 };
