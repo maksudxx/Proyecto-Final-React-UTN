@@ -4,7 +4,6 @@ import Card from "../../components/card/Card";
 import GameNotFound from "../../components/gameNotFound/GameNotFound";
 import SearchBar from "../../components/searchbar/SearchBar";
 import { useVideogameList } from "../../hooks/useVideogameList";
-
 import Grid from "@mui/material/Grid";
 import { MenuAside } from "../../components/MenuAside/MenuAside";
 
@@ -22,9 +21,13 @@ export const Videogames = () => {
         >
           <MenuAside />
         </Grid>
-        <Grid size={{ xs: 12, md: 10 }} className={styles.container}>
-          <SearchBar />
+        <Grid
+          size={{ xs: 12, md: 10 }}
+          className={styles.container}
+          sx={{ px: { xs: 2, md: 5 } }}
+        >
           <p className={styles.title}>LISTA DE JUEGOS</p>
+          <SearchBar />
           <ul className={styles.containerCards}>
             {videogames?.length > 0 ? (
               videogames
