@@ -19,7 +19,7 @@ const corsOptions = {
   origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true, 
   methods: "GET, POST, OPTIONS, PUT, DELETE",
-  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, token",
   optionSuccessStatus: 200,
 };
 server.use(cors(corsOptions));
