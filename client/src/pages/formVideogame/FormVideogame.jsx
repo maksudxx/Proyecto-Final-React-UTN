@@ -2,7 +2,7 @@ import { Redirect } from "react-router-dom";
 import SelectForm from "../../components/SelectForm/SelectForm";
 import { Spinner } from "../../components/spinner/Spinner";
 import { useVideogame } from "../../hooks/useVideogameForm";
-import styles from "./Formvideogame.module.css";
+import styles from "./FormVideogame.module.css";
 
 export const FormVideogame = ({ isAuthenticated, title }) => {
   // Si no está autenticado, redirigir
