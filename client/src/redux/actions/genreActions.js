@@ -1,5 +1,5 @@
 import { GET_GENRES } from "../types";
-import api from '../../axios'; // Mantén la misma ruta de importación
+import api from '../../axios'; 
 
 export function getGenres() {
     return async function (dispatch) {
