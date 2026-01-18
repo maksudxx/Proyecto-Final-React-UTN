@@ -2,15 +2,27 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DATABASE } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DATABASE, DATABASE_URL } = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATABASE}`,
-  {
-    logging: false,
-    native: false,
-  }
-);
+// 1. Definimos la URL local por si no existe la de producción
+const DB_LOCAL = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DATABASE}`;
+
+// 2. Elegimos qué URL usar
+const targetURL = DATABASE_URL || DB_LOCAL;
+
+// 3. Creamos la instancia única de Sequelize
+const sequelize = new Sequelize(targetURL, {
+  logging: false,
+  native: false,
+  dialectOptions: DATABASE_URL 
+    ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
+    : {}, // Si es local, no enviamos opciones de SSL
+});
 
 const basename = path.basename(__filename);
 
