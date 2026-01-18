@@ -1,10 +1,13 @@
-import axios from "axios";
 import { GET_GENRES } from "../types";
+import api from '../../axios'; // Mantén la misma ruta de importación
 
 export function getGenres() {
     return async function (dispatch) {
-      const response = await axios.get("http://localhost:3001/genres");
-      const json = response.data;
-      dispatch({ type: GET_GENRES, payload: json });
+      try {
+        const response = await api.get("/genres");
+        dispatch({ type: GET_GENRES, payload: response.data });
+      } catch (error) {
+        console.error("Error al obtener géneros:", error);
+      }
     };
-  }
+}
