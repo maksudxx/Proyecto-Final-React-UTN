@@ -113,6 +113,9 @@ La interfaz de usuario ha sido optimizada para ofrecer una experiencia fluida en
 Este proyecto fue desarrollado por **Facundo Maksud**.  
 Se puso especial énfasis en la **refactorización del código** para lograr componentes limpios y una **interfaz de usuario totalmente responsive**, adaptada a cualquier dispositivo móvil.
 
+Link del deploy: https://videogames-brown.vercel.app/
+
 Cualquier comentario o **feedback** será bien recibido.  
 ¡Muchas gracias! 🙌
+
 
